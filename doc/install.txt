@@ -1,0 +1,7 @@
+// Instal·lar API Google
+curl -sS https://getcomposer.org/installer | php
+php composer.phar require google/apiclient:^2.0
+
+https://developers.google.com/admin-sdk/directory/v1/quickstart/php
+
+A Visual Studio Code, per PHP: PHP extension pack
