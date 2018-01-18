@@ -2,5 +2,6 @@
 composer.lock
 composer.json
 
+.credentials
 client_secret.json
 exportacioDadesCentre.xml
