@@ -2,10 +2,23 @@
 curl -sS https://getcomposer.org/installer | php
 php composer.phar require google/apiclient:^2.0
 
-https://developers.google.com/admin-sdk/directory/v1/quickstart/php
-
 A Visual Studio Code, per PHP: PHP extension pack
 
 
 chmod 755 ~/.credentials
 chmod 755 ~/.credentials/admin-directory_v1-php-gestib2google.json
+
+
+
+
+Google Directory API: Getting Started - PHP Quickstart
+https://developers.google.com/admin-sdk/directory/v1/quickstart/php
+
+NextPageToken
+https://firebase.google.com/docs/auth/admin/manage-users
+
+Error: Request rate higher than configured??
+https://developers.google.com/admin-sdk/directory/v1/limits#backoff
+
+Start Bootstrap SB Admin theme
+https://github.com/BlackrockDigital/startbootstrap-sb-admin/
