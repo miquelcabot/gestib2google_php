@@ -31,7 +31,6 @@ function normalizedName($name) {
 }
 
 class DomainUser {
-  public $domain;
   public $id;
   public $name;
   public $surname;
@@ -44,9 +43,8 @@ class DomainUser {
   public $withoutcode;
   public $groups;
   
-  public function __construct($domain, $id, $name, $surname, $surname1, $surname2, $domainemail, 
+  public function __construct($id, $name, $surname, $surname1, $surname2, $domainemail, 
                        $suspended, $teacher, $tutor, $withoutcode, $groups) { 
-    $this->domain =      $domain;
     $this->id =          $id;
     $this->name =        $name;
     $this->surname =     $surname;
@@ -67,24 +65,24 @@ class DomainUser {
       $email = "";
       $email = normalizedname(substr($this->name,0,1)) .
         normalizedname($this->surname1);
-      return $email."@".$this->domain;
+      return $email."@".DOMAIN;
     } else {
       $email = "";
       $email = normalizedname(substr($this->name,0,1)) .
         normalizedname(substr($this->surname1,0,1)) .
         normalizedname(substr($this->surname2,0,1));
-      return $email.str_pad(0, 2, '0', STR_PAD_LEFT)."@".$this->domain;
+      return $email.str_pad(0, 2, '0', STR_PAD_LEFT)."@".DOMAIN;
     }
   }
   
   public function user() {
-    return  str_replace("@".$this->domain,"",$this->email());
+    return  str_replace("@".DOMAIN,"",$this->email());
   }
   
   public function groupswithdomain() {
     $gr = [];
     foreach ($this->groups as $group) {
-      array_push($gr, $group."@".$this->domain);
+      array_push($gr, $group."@".DOMAIN);
     }
     return $gr;
   }

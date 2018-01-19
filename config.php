@@ -3,6 +3,8 @@ define('APPLICATION_NAME', 'GestIB 2 Google');
 define('CREDENTIALS_PATH', '~/.credentials/admin-directory_v1-gestib2google.json');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 
+define('DOMAIN', 'iesemilidarder.com');
+
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/admin-directory_v1-gestib2google.json
 define('SCOPES', implode(' ', array(
