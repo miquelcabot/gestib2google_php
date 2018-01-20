@@ -76,7 +76,7 @@ class DomainUser {
   }
   
   public function user() {
-    return  str_replace("@".DOMAIN,"",$this->email());
+    return str_replace("@".DOMAIN,"",$this->email());
   }
   
   public function groupswithdomain() {

@@ -2,6 +2,7 @@
 require_once 'client.php';
 require_once 'api/domainuser.php';
 require_once 'api/xmlfile.php';
+require_once 'api/domainread.php';
 
 // Get the API client and construct the service object.
 $domainuser = new DomainUser(1, "Pep", 
@@ -16,4 +17,5 @@ print_r($domainuser->groupswithprefixadded());
 $xml = simplexml_load_file("exportacioDadesCentre.xml");
 readXmlFile($xml);
 
+readDomainUsers();
 ?>
