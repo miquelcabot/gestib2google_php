@@ -49,7 +49,7 @@ function getDomainUsers($service, $domaingroups) {
             $id = NULL;
             $withoutcode = FALSE;
              
-            if (isset($user['externalIds']) && isset($user['externalIds'][0]['value'])) {
+            if (isset($user['externalIds']) && isset($user['externalIds'][0]['value']) && !empty($user['externalIds'][0]['value'])) {
                 $id = $user['externalIds'][0]['value'];
             } else {
                 $userWithoutCode++;

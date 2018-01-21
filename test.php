@@ -24,7 +24,7 @@ $client = getClient();
 $service = new Google_Service_Directory($client);
 
 $domainusers = readDomainUsers($service);
-$cont = applyDomainChanges($xmlusers, $domainusers, FALSE, $service);
+$cont = applyDomainChanges($xmlusers, $domainusers, TRUE, $service);
 
 echo($cont['deleted']." users will be suspended\r\n");
 echo($cont['created']." users will be created\r\n");

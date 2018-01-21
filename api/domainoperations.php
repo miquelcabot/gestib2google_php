@@ -1,33 +1,26 @@
 <?php
 function deleteDomainUsers($xmlusers, $domainusers, $apply, $service) {
     $cont = 0;
-  
     echo("Deleting domain users...\r\n");
     foreach ($domainusers as $domainuser) {     // For every domain user
         if (!$domainuser->suspended && !$domainuser->withoutcode) {
             if (!array_key_exists($domainuser->id, $xmlusers)) {
                 echo("SUSPEND --> ".$domainuser."\r\n");
                 $cont++;
-            /*
-                if (apply) {
+                if ($apply) {
                     // Suspend domain user
-                    service.users.update({
-                        auth: auth,
-                        userKey: $user.email(), 
-                        resource: {
-                            suspended: true
-                        }
-                    });
+                    $userObj = new Google_Service_Directory_User(
+                        array(
+                            'suspended' => TRUE
+                        )
+                    );
+                    $service->users->update($domainuser->email(), $userObj);
                     // Remove from all groups
-                    groupswithdomain = $user.groupswithdomain();
-                    for (i in groupswithdomain) {
-                        service.members.delete({
-                            auth: auth,
-                            groupKey: groupswithdomain[i], 
-                            memberKey: $user.email()
-                        });
+                    foreach ($domainuser->groupswithdomain() as $groupwithdomain) {
+                        // https://developers.google.com/admin-sdk/directory/v1/reference/members/delete
+                        $service->members->delete($groupwithdomain, $domainuser->email());
                     }
-                }*/
+                }
             }
         }
     }
@@ -43,20 +36,18 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
     foreach ($xmlusers as $xmluser) {     // For every XML user
         if (!array_key_exists($xmluser->id, $domainusers)) {  // It doesn't exists in domain
             // Email pot ser repetit, comprovar-ho!!
-            if (!$xmluser->teacher) {            
-/*
-                for (d_user in domainusers) {
+            if (!$xmluser->teacher) {  
+                foreach ($domainusers as $d_user) {
                     // Si hi ha un usuari del domini amb les 3 primeres lletres iguals
-                    if (domainusers[d_user].email().startsWith(xmluser.email().substring(0,3))) {
-                        var n_email_dom = parseInt(domainusers[d_user].email().substring(3,5));
-                        var n_email_xml = parseInt(xmluser.email().substring(3,5));
-                        if (n_email_dom>=n_email_xml) {
-                            var n_email = n_email_dom+1;
-                            xmluser.domainemail = xmluser.email().substring(0,3)+domainuser.pad(n_email,2)+"@"+domain;
+                    if (substr($d_user->email(),0,3)===substr($xmluser->email(),0,3)) {
+                        $n_email_dom = intval(substr($d_user->email(),3,5));
+                        $n_email_xml = intval(substr($xmluser->email(),3,5));
+                        if ($n_email_dom>=$n_email_xml) {
+                            $n_email = $n_email_dom+1;
+                            $xmluser->domainemail = substr($xmluser->email(),0,3).str_pad($n_email, 2, '0', STR_PAD_LEFT)."@".DOMAIN;
                         }
                     }
                 }
-*/       
             }
             // Afegim l'usuari que cream al diccionari de usuaris del domini
             $domainusers[$xmluser->id] = new DomainUser(
@@ -74,71 +65,47 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                 );
             echo("CREATE --> ".$xmluser."\r\n");
             $contc++;
-              /*
-            if (apply) {
-                // Create domain user
-                // https://developers.google.com/admin-sdk/reseller/v1/codelab/end-to-end
-                service.users.insert({
-                    auth: auth,
-                    resource: { 
-                        primaryEmail: xmluser.email(), 
-                        name: { givenName: xmluser.name, familyName: xmluser.surname }, 
-                        orgUnitPath: (xmluser.teacher?'/Professorat':'/Alumnat'),
-                        externalIds: [{ type: 'organization', value: xmluser.id }], 
-                        suspended: false,
-                        changePasswordAtNextLogin: true,
-                        password: "12345678"
-                    }   //Default password
-                }, function(err, response) {
-                    if (err) {
-                        console.log('The API returned an error: ' + err);
-                        return;
+            if ($apply) {
+                try {
+                    // Create domain user
+                    // https://developers.google.com/admin-sdk/reseller/v1/codelab/end-to-end
+                    $userObj = new Google_Service_Directory_User(array(
+                            'primaryEmail' => $xmluser->email(), 
+                            'name' => array("givenName" => $xmluser->name, "familyName" => $xmluser->surname), 
+                            'orgUnitPath' => ($xmluser->teacher?'/Professorat':'/Alumnat'),
+                            'externalIds' => array(array("type" => 'organization', "value" => $xmluser->id)),
+                            'suspended' => FALSE,
+                            'changePasswordAtNextLogin' => TRUE,
+                            'password' => DEFAULT_PASSWORD //Default password
+                        ));
+                    $service->users->insert($userObj);
+                    // Insert all "ee.",  "alumnat." and "tutors" groups
+                    foreach ($xmluser->groupswithprefixadded() as $gr) {
+                        // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
+                        $memberObj = new Google_Service_Directory_Member(array(
+                            'email' => $xmluser->email()));
+                        $service->members->insert($gr."@".DOMAIN, $memberObj);
                     }
-                });
-                // Insert all "ee.",  "alumnat." and "tutors" groups
-                for (gr in xmluser.groupswithprefixadded()) {
-                    // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
-                    service.members.insert({
-                        auth: auth,
-                        groupKey: xmluser.groupswithprefixadded()[gr]+"@"+domain, 
-                        resource: {
-                            email: xmluser.email()
-                        }
-                    }, function(err, response) {
-                        if (err) {
-                            console.log('The API returned an error: ' + err);
-                            return;
-                        }
-                    });
+                } catch(Exception $e) {
+                    $error = json_decode($e->getMessage());
+                    echo('ERROR: ' .$error->error->message."\r\n");
                 }
             }
-              */
         } else {
             $domainuser = $domainusers[$xmluser->id];
             if ($domainuser->suspended) {
                 echo("ACTIVATE --> ".$xmluser."\r\n");
                 $conta++;
-              /*
-                if (apply) {
-                    // Suspend domain user
-                    service.users.update({
-                        auth: auth,
-                        userKey: domain_user.email(), 
-                        resource: {
-                            suspended: true
-                        }
-                    }, function(err, response) {
-                        if (err) {
-                            console.log('The API returned an error: ' + err);
-                            return;
-                        }
-                    });
+                if ($apply) {
+                    // Activate domain user
+                    $userObj = new Google_Service_Directory_User(array(
+                            'suspended' => FALSE
+                        ));
+                    $service->users->update($domainuser->email(), $userObj);
                 }
-              */
             }
             // Tant si estava actiu com no, existeix, i per tant, actualitzar 
             // els grups "ee.", "alumnat." i  "tutors"
-            // TODO: Insert and delete "tutors" group
             $creategroups = array_diff($xmluser->groupswithprefixadded(), $domainuser->groupswithprefix());
             $deletegroups = array_diff($domainuser->groupswithprefix(), $xmluser->groupswithprefixadded());
             if (!$domainuser->suspended && (count($creategroups)>0 || count($deletegroups)>0)) {
@@ -152,61 +119,22 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                 }
                 $contg++;
                 if ($apply) {
-                  
+                    // Actualitzam els grups de l'usuari
+                    $memberObj = new Google_Service_Directory_Member(array(
+                        'email' => $domainuser->email()));
+                    foreach ($creategroups as $gr) {
+                        // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
+                        $service->members->insert($gr."@".DOMAIN, $memberObj);
+                    }
+                    foreach ($deletegroups as $gr) {
+                        // https://developers.google.com/admin-sdk/directory/v1/reference/members/delete
+                        $service->members->delete($gr."@".DOMAIN, $memberObj);
+                    }
                 }
             }
         }
     }
-  /*
 
-
-
-            if (((creategroups.length>0) || (deletegroups.length>0))
-                        && (!domain_user.suspended)) {
-                if (creategroups.length>0) {
-                    console.log("CREATE GROUPS --> "+domain_user.surname+", "+domain_user.name+
-                        " ("+domain_user.email()+") ["+creategroups+"]");
-                }
-                if (deletegroups.length>0) {
-                    console.log("DELETE GROUPS --> "+domain_user.surname+", "+domain_user.name+
-                        " ("+domain_user.email()+") ["+deletegroups+"]");
-                }
-                contg++;
-                if (apply) {
-                    // Actualitzam els grups de l'usuari
-                    for (gr in creategroups) {
-                        // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
-                        service.members.insert({
-                            auth: auth,
-                            groupKey: creategroups[gr]+"@"+domain, 
-                            body: {
-                                email: domain_user.email()
-                            }
-                        }, function(err, response) {
-                            if (err) {
-                                console.log('The API returned an error: ' + err);
-                                return;
-                            }
-                        });
-                    }
-                    for (gr in deletegroups) {
-                        // https://developers.google.com/admin-sdk/directory/v1/reference/members/delete
-                        service.members.delete({
-                            auth: auth,
-                            groupKey: deletegroups[gr]+"@"+domain, 
-                            resource: {
-                                email: domain_user.email()
-                            }
-                        }, function(err, response) {
-                            if (err) {
-                                console.log('The API returned an error: ' + err);
-                                return;
-                            }
-                        });
-                    }
-                }
-            }
-     */
     return array("created" => $contc,
                  "activated" => $conta,
                  "groupsmodified" => $contg);
