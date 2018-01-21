@@ -3,6 +3,7 @@ require_once 'client.php';
 require_once 'api/domainuser.php';
 require_once 'api/xmlfile.php';
 require_once 'api/domainread.php';
+require_once 'api/domainoperations.php';
 
 // Get the API client and construct the service object.
 $domainuser = new DomainUser(1, "Pep", 
@@ -14,8 +15,19 @@ print_r($domainuser->groupswithdomain());
 print_r($domainuser->groupswithprefix());
 print_r($domainuser->groupswithprefixadded());
 
-$xml = simplexml_load_file("exportacioDadesCentre.xml");
-readXmlFile($xml);
 
-readDomainUsers();
+$xml = simplexml_load_file("exportacioDadesCentre.xml");
+$xmlusers = readXmlFile($xml);
+
+// Get the API client and construct the service object.
+$client = getClient();
+$service = new Google_Service_Directory($client);
+
+$domainusers = readDomainUsers($service);
+$cont = applyDomainChanges($xmlusers, $domainusers, FALSE, $service);
+
+echo($cont['deleted']." users will be suspended\r\n");
+echo($cont['created']." users will be created\r\n");
+echo($cont['activated']." users will be activated\r\n");
+echo($cont['groupsmodified']." users will change their group membership\r\n");
 ?>

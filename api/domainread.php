@@ -88,11 +88,7 @@ function getDomainUsers($service, $domaingroups) {
     return $domainusers;
 }
 
-function readDomainUsers() {
-    // Get the API client and construct the service object.
-    $client = getClient();
-    $service = new Google_Service_Directory($client);
-  
+function readDomainUsers($service) {
     $domaingroups = getDomainGroups($service);
     $domainusers = getDomainUsers($service, $domaingroups);
   

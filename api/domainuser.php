@@ -90,7 +90,9 @@ class DomainUser {
   public function groupswithprefix() {
     $gr = [];
     foreach ($this->groups as $group) {
-      if ((strpos($group, 'alumnat.') == 0) || (strpos($group, 'ee.') == 0) || (strpos($group, 'tutors') == 0)) {
+      if ((strpos($group, 'alumnat.') !== FALSE && strpos($group, 'alumnat.') == 0) || 
+          (strpos($group, 'ee.') !== FALSE && strpos($group, 'ee.') == 0) || 
+          ($group === 'tutors')) {
         array_push($gr, $group);
       }
     }
@@ -100,7 +102,8 @@ class DomainUser {
   public function groupswithprefixsimple() {
     $gr = [];
     foreach ($this->groups as $group) {
-      if ((strpos($group, 'alumnat.') == 0) || (strpos($group, 'ee.') == 0)) {
+      if ((strpos($group, 'alumnat.') !== FALSE && strpos($group, 'alumnat.') == 0) || 
+          (strpos($group, 'ee.') !== FALSE && strpos($group, 'ee.') == 0)) {
         array_push($gr, str_replace("alumnat.", "", str_replace("ee.", "", $group)));
       }
     }
