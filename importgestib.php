@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    require_once 'client.php';
+    require_once 'api/client.php';
     require_once 'api/domainuser.php';
     require_once 'api/xmlfile.php';
     require_once 'api/domainread.php';
     require_once 'api/domainoperations.php';
+  
+    // Echo while every long loop iteration
+    while (@ob_end_flush());      
+    ob_implicit_flush(true);
 ?>
 <head>
   <meta charset="utf-8">
@@ -14,40 +18,36 @@
   <meta name="description" content="">
   <meta name="author" content="Miquel A. Cabot">
   <title>GestIB to Google - IES Emili Darder</title>
-  <!-- Bootstrap core CSS-->
-  <link href="libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom fonts for this template-->
-  <link href="libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <!-- Page level plugin CSS-->
-  <link href="libraries/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
-  <div class="content-wrapper">
+<body>
 <?php
+    $apply = isset($_REQUEST['apply']);
     if ($_FILES['xmlfile']['error'] == UPLOAD_ERR_OK               //checks for errors
           && is_uploaded_file($_FILES['xmlfile']['tmp_name'])) { //checks that file is uploaded
       $xml = simplexml_load_file($_FILES['xmlfile']['tmp_name']);
       $xmlusers = readXmlFile($xml);
 
-      $client = getClient();
-      $service = new Google_Service_Directory($client);
+      $domainusers = readDomainUsers();
+      
+      $cont = applyDomainChanges($xmlusers, $domainusers, $apply);
 
-      $domainusers = readDomainUsers($service);
-      $cont = applyDomainChanges($xmlusers, $domainusers, FALSE, $service);
-
-      echo($cont['deleted']." users will be suspended\r\n");
-      echo($cont['created']." users will be created\r\n");
-      echo($cont['activated']." users will be activated\r\n");
-      echo($cont['groupsmodified']." users will change their group membership\r\n");
+      if ($apply) {
+          echo($cont['deleted']." users have been suspended<br>\r\n");
+          echo($cont['created']." users have been created<br>\r\n");
+          echo($cont['activated']." users have been activated<br>\r\n");
+          echo($cont['groupsmodified']." users have been changed their group membership<br>\r\n");
+      } else {
+          echo($cont['deleted']." users will be suspended<br>\r\n");
+          echo($cont['created']." users will be created<br>\r\n");
+          echo($cont['activated']." users will be activated<br>\r\n");
+          echo($cont['groupsmodified']." users will change their group membership<br>\r\n"); 
+      }
     } else {
       echo("Error uploading file...<br>");
       print_r($_FILES);
     }
 ?>
-  </div>
 </body>
 
 </html>

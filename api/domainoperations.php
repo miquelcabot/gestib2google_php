@@ -4,11 +4,11 @@ require_once 'domainuser.php';
 
 function deleteDomainUsers($xmlusers, $domainusers, $apply, $service) {
     $cont = 0;
-    echo("Deleting domain users...\r\n");
+    echo("Deleting domain users...<br>\r\n");
     foreach ($domainusers as $domainuser) {     // For every domain user
         if (!$domainuser->suspended && !$domainuser->withoutcode) {
             if (!array_key_exists($domainuser->id, $xmlusers)) {
-                echo("SUSPEND --> ".$domainuser."\r\n");
+                echo("SUSPEND --> ".$domainuser."<br>\r\n");
                 $cont++;
                 if ($apply) {
                     // Suspend domain user
@@ -35,7 +35,7 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
     $conta = 0;
     $contg = 0;
   
-    echo("Adding domain users...\r\n");
+    echo("Adding domain users...<br>\r\n");
     foreach ($xmlusers as $xmluser) {     // For every XML user
         if (!array_key_exists($xmluser->id, $domainusers)) {  // It doesn't exists in domain
             // Email pot ser repetit, comprovar-ho!!
@@ -66,7 +66,7 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                 $xmluser->withoutcode, // withoutcode
                 $xmluser->groups       // groups
                 );
-            echo("CREATE --> ".$xmluser."\r\n");
+            echo("CREATE --> ".$xmluser."<br>\r\n");
             $contc++;
             if ($apply) {
                 try {
@@ -91,13 +91,13 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                     }
                 } catch(Exception $e) {
                     $error = json_decode($e->getMessage());
-                    echo('ERROR: ' .$error->error->message."\r\n");
+                    echo('ERROR: ' .$error->error->message."<br>\r\n");
                 }
             }
         } else {
             $domainuser = $domainusers[$xmluser->id];
             if ($domainuser->suspended) {
-                echo("ACTIVATE --> ".$xmluser."\r\n");
+                echo("ACTIVATE --> ".$xmluser."<br>\r\n");
                 $conta++;
                 if ($apply) {
                     // Activate domain user
@@ -114,11 +114,11 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
             if (!$domainuser->suspended && (count($creategroups)>0 || count($deletegroups)>0)) {
                 if (count($creategroups)>0) {
                     echo("CREATE GROUPS --> ".$domainuser->surname.", ".$domainuser->name.
-                        " (".$domainuser->email().") [".implode(", ",$creategroups)."]\r\n");
+                        " (".$domainuser->email().") [".implode(", ",$creategroups)."]<br>\r\n");
                 }
                 if (count($deletegroups)) {
                     echo("DELETE GROUPS --> ".$domainuser->surname.", ".$domainuser->name.
-                        " (".$domainuser->email().") [".implode(", ",$deletegroups)."]\r\n");
+                        " (".$domainuser->email().") [".implode(", ",$deletegroups)."]<br>\r\n");
                 }
                 $contg++;
                 if ($apply) {

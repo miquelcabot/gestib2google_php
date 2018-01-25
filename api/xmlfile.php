@@ -36,7 +36,7 @@ function getgroupemails($name, $isstudent) {
 }
 
 function readXmlGroups($xmlfile) {
-    echo("Loading XML groups...\r\n");
+    echo("Loading XML groups...<br>\r\n");
     $xmlgroups = [];
     $xmltutors = [];
     
@@ -54,7 +54,7 @@ function readXmlGroups($xmlfile) {
 
 
 function readXmlTimeTable($xmlfile, $xmlgroups) {
-    echo("Loading XML timetable...\r\n");
+    echo("Loading XML timetable...<br>\r\n");
     $xmltimetable = [];
     
     foreach ($xmlfile->HORARIP->SESSIO as $sessio) {
@@ -80,7 +80,7 @@ function readXmlTimeTable($xmlfile, $xmlgroups) {
 }
 
 function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
-    echo("Loading XML users...\r\n");
+    echo("Loading XML users...<br>\r\n");
     $xmlusers = [];
     
     // Afegim els alumnes

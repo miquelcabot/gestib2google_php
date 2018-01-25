@@ -27,7 +27,7 @@ function getDomainGroups() {
 }
 
 function getDomainGroupsMembers($service) {
-    echo("Loading domain groups...\r\n");
+    echo("Loading domain groups...<br>\r\n");
     $domaingroupsmembers = [];
 
     // Print the first 10 users in the domain.
@@ -37,7 +37,7 @@ function getDomainGroupsMembers($service) {
     foreach ($results->getGroups() as $group) {
         $cont++;
         // We read the members of this group
-        echo("Loading members of '".str_replace("@".DOMAIN,"",$group->getEMail())."' group...\r\n");
+        echo("Loading members of '".str_replace("@".DOMAIN,"",$group->getEMail())."' group...<br>\r\n");
           
         $membersgroup = [];
         
@@ -53,7 +53,7 @@ function getDomainGroupsMembers($service) {
                 "members" => $membersgroup
             );
     }
-    echo($cont." groups loaded\r\n");
+    echo($cont." groups loaded<br>\r\n");
   
     ksort($domaingroupsmembers);
   
@@ -61,7 +61,7 @@ function getDomainGroupsMembers($service) {
 }
 
 function getDomainUsers($service, $domaingroupsmembers) {
-    echo("Loading domain users...\r\n");
+    echo("Loading domain users...<br>\r\n");
     $domainusers = [];
   
     // INICI Carregam els usuaris 500 a 500, que és el valor màxim de maxResults, paginant la resta
@@ -115,7 +115,7 @@ function getDomainUsers($service, $domaingroupsmembers) {
     } while ($nextPageToken);
     // FI Carregam els usuaris 500 a 500, que és el valor màxim de maxResults, paginant la resta
  
-    echo($cont." users loaded\r\n");
+    echo($cont." users loaded<br>\r\n");
     return $domainusers;
 }
 
