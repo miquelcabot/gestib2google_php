@@ -1,4 +1,7 @@
 <?php
+require_once 'client.php';
+require_once 'domainuser.php';
+
 function deleteDomainUsers($xmlusers, $domainusers, $apply, $service) {
     $cont = 0;
     echo("Deleting domain users...\r\n");
@@ -128,7 +131,7 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                     }
                     foreach ($deletegroups as $gr) {
                         // https://developers.google.com/admin-sdk/directory/v1/reference/members/delete
-                        $service->members->delete($gr."@".DOMAIN, $memberObj);
+                        $service->members->delete($gr."@".DOMAIN, $domainuser->email());
                     }
                 }
             }
@@ -140,7 +143,10 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                  "groupsmodified" => $contg);
 }
 
-function applyDomainChanges($xmlusers, $domainusers, $apply, $service) {
+function applyDomainChanges($xmlusers, $domainusers, $apply) {
+    $client = getClient();
+    $service = new Google_Service_Directory($client);
+  
     $contd = deleteDomainUsers($xmlusers, $domainusers, $apply, $service);
     $cont = addDomainUsers($xmlusers, $domainusers, $apply, $service);
     return array("deleted" => $contd,

@@ -1,4 +1,5 @@
 <?php
+require_once 'domainuser.php';
 
 function getgroupemails($name, $isstudent) {
     $name = strtolower($name);

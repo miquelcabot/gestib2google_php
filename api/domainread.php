@@ -1,7 +1,34 @@
 <?php
-function getDomainGroups($service) {
-    echo("Loading domain groups...\r\n");
+require_once 'client.php';
+require_once 'domainuser.php';
+
+function getDomainGroups() {
     $domaingroups = [];
+  
+    $client = getClient();
+    $service = new Google_Service_Directory($client);
+
+    // Print the first 10 users in the domain.
+    $results = $service->groups->listGroups(array('customer' => 'my_customer','maxResults' => 1000000));
+
+    $cont = 0;
+    foreach ($results->getGroups() as $group) {
+        $cont++;
+          
+        $domaingroups[str_replace("@".DOMAIN,"",$group->getEMail())] = array (
+                "email" =>   str_replace("@".DOMAIN,"",$group->getEMail()),
+                "id" =>      $group->getId(),
+                "name" =>    $group->getName()
+            );
+    }
+  
+    sort($domaingroups);
+    return $domaingroups;
+}
+
+function getDomainGroupsMembers($service) {
+    echo("Loading domain groups...\r\n");
+    $domaingroupsmembers = [];
 
     // Print the first 10 users in the domain.
     $results = $service->groups->listGroups(array('customer' => 'my_customer','maxResults' => 1000000));
@@ -19,17 +46,21 @@ function getDomainGroups($service) {
             array_push($membersgroup, $member->getEMail());
         }
 
-        $domaingroups[str_replace("@".DOMAIN,"",$group->getEMail())] = array (
+        $domaingroupsmembers[str_replace("@".DOMAIN,"",$group->getEMail())] = array (
+                "email" =>   str_replace("@".DOMAIN,"",$group->getEMail()),
                 "id" =>      $group->getId(),
                 "name" =>    $group->getName(),
                 "members" => $membersgroup
             );
     }
     echo($cont." groups loaded\r\n");
-    return $domaingroups;
+  
+    ksort($domaingroupsmembers);
+  
+    return $domaingroupsmembers;
 }
 
-function getDomainUsers($service, $domaingroups) {
+function getDomainUsers($service, $domaingroupsmembers) {
     echo("Loading domain users...\r\n");
     $domainusers = [];
   
@@ -58,7 +89,7 @@ function getDomainUsers($service, $domaingroups) {
             }
           
             $member = [];                // Afegim tots els grups del que és membre
-            foreach ($domaingroups as $key => $groupname) {
+            foreach ($domaingroupsmembers as $key => $groupname) {
                 foreach ($groupname['members'] as $email) {
                     if ($user['primaryEmail']==$email) {
                         array_push($member, $key);
@@ -88,9 +119,12 @@ function getDomainUsers($service, $domaingroups) {
     return $domainusers;
 }
 
-function readDomainUsers($service) {
-    $domaingroups = getDomainGroups($service);
-    $domainusers = getDomainUsers($service, $domaingroups);
+function readDomainUsers() {
+    $client = getClient();
+    $service = new Google_Service_Directory($client);
+  
+    $domaingroupsmembers = getDomainGroupsMembers($service);
+    $domainusers = getDomainUsers($service, $domaingroupsmembers);
   
     return $domainusers;
 }

@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    require_once 'client.php';
+    require_once 'api/domainuser.php';
+    require_once 'api/xmlfile.php';
+    require_once 'api/domainread.php';
+    require_once 'api/domainoperations.php';
+  
+    $domaingroups = getDomainGroups();
+?>
 
 <head>
   <meta charset="utf-8">
@@ -33,18 +42,64 @@
           <span class="nav-link-text">Inici</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="ESO">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseESO" data-parent="#exampleAccordion">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="1r ESO">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseESO1" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-user"></i>
-          <span class="nav-link-text">ESO</span>
+          <span class="nav-link-text">1r ESO</span>
         </a>
-        <ul class="sidenav-second-level collapse" id="collapseESO">
-          <li>
-            <a href="#">1r ESO A</a>
-          </li>
-          <li>
-            <a href="#">1r ESO B</a>
-          </li>
+        <ul class="sidenav-second-level collapse" id="collapseESO1">
+  <?php
+      foreach ($domaingroups as $group) {
+          if (strpos($group['email'], 'alumnat.eso1') !== FALSE && strpos($group['email'], 'alumnat.eso1') == 0) {
+              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
+          }
+      }
+  ?>
+        </ul>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="2n ESO">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseESO2" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-user"></i>
+          <span class="nav-link-text">2n ESO</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseESO2">
+  <?php
+      foreach ($domaingroups as $group) {
+          if (strpos($group['email'], 'alumnat.eso2') !== FALSE && strpos($group['email'], 'alumnat.eso2') == 0) {
+              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
+          }
+      }
+  ?>
+        </ul>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="3r ESO">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseESO3" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-user"></i>
+          <span class="nav-link-text">3r ESO</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseESO3">
+  <?php
+      foreach ($domaingroups as $group) {
+          if (strpos($group['email'], 'alumnat.eso3') !== FALSE && strpos($group['email'], 'alumnat.eso3') == 0) {
+              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
+          }
+      }
+  ?>
+        </ul>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="4t ESO">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseESO4" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-user"></i>
+          <span class="nav-link-text">4t ESO</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseESO4">
+  <?php
+      foreach ($domaingroups as $group) {
+          if (strpos($group['email'], 'alumnat.eso4') !== FALSE && strpos($group['email'], 'alumnat.eso4') == 0) {
+              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
+          }
+      }
+  ?>
         </ul>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Batxillerat">
@@ -53,18 +108,13 @@
           <span class="nav-link-text">Batxillerat</span>
         </a>
         <ul class="sidenav-second-level collapse" id="collapseBatxillerat">
-          <li>
-            <a href="#">1r Batxillerat A</a>
-          </li>
-          <li>
-            <a href="#">1r Batxillerat B</a>
-          </li>
-          <li>
-            <a href="#">2r Batxillerat A</a>
-          </li>
-          <li>
-            <a href="#">2r Batxillerat B</a>
-          </li>
+ <?php
+      foreach ($domaingroups as $group) {
+          if (strpos($group['email'], 'alumnat.bat') !== FALSE && strpos($group['email'], 'alumnat.bat') == 0) {
+              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
+          }
+      }
+  ?>
         </ul>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cicles Formatius">
@@ -73,22 +123,24 @@
           <span class="nav-link-text">Cicles Formatius</span>
         </a>
         <ul class="sidenav-second-level collapse" id="collapseCF">
-          <li>
-            <a href="#">1r SMX</a>
-          </li>
-          <li>
-            <a href="#">2n SMX</a>
-          </li>
-          <li>
-            <a href="#">1r ASIX</a>
-          </li>
-          <li>
-            <a href="#">2n ASIX</a>
-          </li>
+ <?php
+      foreach ($domaingroups as $group) {
+          if (strpos($group['email'], 'alumnat.smx') !== FALSE && strpos($group['email'], 'alumnat.smx') == 0) {
+              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
+          }
+      }
+  ?>
+<?php
+      foreach ($domaingroups as $group) {
+          if (strpos($group['email'], 'alumnat.asix') !== FALSE && strpos($group['email'], 'alumnat.asix') == 0) {
+              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
+          }
+      }
+  ?>
         </ul>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Professorat">
-        <a class="nav-link" id="taulalink">
+        <a class="nav-link" id="taulalink" href="javascript:mostrar('professorat')">
           <i class="fa fa-fw fa-graduation-cap"></i>
           <span class="nav-link-text">Professorat</span>
         </a>
@@ -124,16 +176,16 @@
         <div class="card-header">
           <i class="fa fa-file"></i> Importar fitxer XML de GestIB</div>
         <div class="card-body">
-          <form action="importgestib" method="POST" enctype="multipart/form-data">
+          <form action="importgestib.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
               <label for="xmlfile">Fitxer XML de GestIB</label>
-              <input class="form-control" id="xmlfile" name="xmlfile" type="file" placeholder="File">
+              <input class="form-control" id="xmlfile" name="xmlfile" type="file" placeholder="File" required="required">
             </div>
-            <div class="form-group">
+           <!-- <div class="form-group">
               <label for="domain">Domini</label>
               <input class="form-control" id="domain" name="domain" type="text" placeholder="Domini" value="iesemilidarder.com">
             </div>
-          <!--  <div class="form-group">
+            <div class="form-group">
               <label for="tutorsgroup">Nom del grup de tutors</label>
               <input class="form-control" id="tutorsgroup" name="tutorsgroup" type="text" placeholder="Grup tutors" value="tutors">
             </div>
@@ -271,6 +323,11 @@
             $("#importarxml").show();
         });
     });
+    
+    function mostrar(grup) {
+        $("#importarxml").hide();
+        $("#taulausuaris").show();
+    }
   </script>
 </div>
 </body>

@@ -8,7 +8,8 @@ A Visual Studio Code, per PHP: PHP extension pack
 chmod 755 ~/.credentials
 chmod 755 ~/.credentials/admin-directory_v1-php-gestib2google.json
 
-
+php.ini
+upload_max_filesize = 20M
 
 
 Google Directory API: Getting Started - PHP Quickstart
