@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
     include 'login.php';
     require_once 'api/domainuser.php';
@@ -11,6 +9,8 @@
     while (@ob_end_flush());      
     ob_implicit_flush(true);
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

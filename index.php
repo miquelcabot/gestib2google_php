@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
     include 'login.php';
     require_once 'api/client.php';
@@ -10,7 +8,8 @@
   
     $domaingroups = getDomainGroups();
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
