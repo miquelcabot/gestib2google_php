@@ -11,3 +11,5 @@ define('SCOPES', implode(' ', array(
   Google_Service_Directory::ADMIN_DIRECTORY_ORGUNIT
   )
 ));
+
+date_default_timezone_set('Europe/Madrid');
