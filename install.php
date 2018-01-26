@@ -1,6 +1,6 @@
 
 <?php
-require_once __DIR__ . '/libraries/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 require_once 'config.php';
 
 if (php_sapi_name() != 'cli') {
@@ -17,6 +17,8 @@ function getClient() {
   $client->setScopes(SCOPES);
   $client->setAuthConfig(CLIENT_SECRET_PATH);
   $client->setAccessType('offline');
+  
+  $client->setRedirectUri('http://servidorphp-mcabot.codeanyapp.com/gestib2googlephp/oauth2callback.php');
 
   // Load previously authorized credentials from a file.
   $credentialsPath = expandCredentialsDirectory(CREDENTIALS_PATH);

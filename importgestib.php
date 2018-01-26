@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    require_once 'api/client.php';
+    include 'login.php';
     require_once 'api/domainuser.php';
     require_once 'api/xmlfile.php';
     require_once 'api/domainread.php';

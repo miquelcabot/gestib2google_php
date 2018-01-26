@@ -23,3 +23,6 @@ https://developers.google.com/admin-sdk/directory/v1/limits#backoff
 
 Start Bootstrap SB Admin theme
 https://github.com/BlackrockDigital/startbootstrap-sb-admin/
+
+Google OAuth 2.0 authentication
+https://developers.google.com/api-client-library/php/auth/web-app
