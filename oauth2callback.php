@@ -9,7 +9,7 @@ $client->setApplicationName(APPLICATION_NAME);
 $client->setScopes(SCOPES);
 $client->setAccessType('offline');
 
-$client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/gestib2googlephp/oauth2callback.php');
+$client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback.php');
 
 if (!isset($_GET['code'])) {
   $auth_url = $client->createAuthUrl();
@@ -17,7 +17,7 @@ if (!isset($_GET['code'])) {
 } else {
   $client->authenticate($_GET['code']);
   $_SESSION['access_token'] = $client->getAccessToken();
-  $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/gestib2googlephp/';
+  $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'];
   header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 ?>

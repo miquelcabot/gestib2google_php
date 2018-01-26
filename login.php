@@ -15,7 +15,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
   $files = $drive->files->listFiles(array())->getItems();
   echo json_encode($files);*/
 } else {
-  $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/gestib2googlephp/oauth2callback.php';
+  $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback.php';
   header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 ?>
