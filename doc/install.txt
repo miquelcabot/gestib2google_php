@@ -4,13 +4,8 @@ php composer.phar require google/apiclient:^2.0
 
 A Visual Studio Code, per PHP: PHP extension pack
 
-
-chmod 755 ~/.credentials
-chmod 755 ~/.credentials/admin-directory_v1-php-gestib2google.json
-
 php.ini
 upload_max_filesize = 20M
-
 
 Google Directory API: Getting Started - PHP Quickstart
 https://developers.google.com/admin-sdk/directory/v1/quickstart/php
