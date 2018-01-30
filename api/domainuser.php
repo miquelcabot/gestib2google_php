@@ -11,7 +11,7 @@ function removeAccents($str) {
 }
 
 function normalizedName($name) {
-  $tokens = explode(" ",removeAccents(mb_strtolower($name)));
+  $tokens = explode(" ",removeAccents(mb_strtolower($name,'UTF-8')));
   $names = [];
   // Words with compound names and surnames
   $especialTokens = array('da', 'de', 'di', 'do', 'del', 'la', 'las', 'le', 'los', 

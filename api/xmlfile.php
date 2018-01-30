@@ -2,7 +2,7 @@
 require_once 'domainuser.php';
 
 function getgroupemails($name, $isstudent) {
-    $name = mb_strtolower($name);
+    $name = mb_strtolower($name,'UTF-8');
     $email = [];
     $curs = filter_var($name, FILTER_SANITIZE_NUMBER_INT); // We get the course from the numbers in the string
     $grup = substr($name, -1); // We get the group name from the last char of the string
@@ -93,10 +93,10 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
          
         $xmlusers[strval($student['codi'])] = new DomainUser(
             strval($student['codi']),
-            ucwords(mb_strtolower($student['nom'])), 
-            ucwords(mb_strtolower($student['ap1']." ".$student['ap2'])),
-            ucwords(mb_strtolower($student['ap1'])), 
-            ucwords(mb_strtolower($student['ap2'])), 
+            ucwords(mb_strtolower($student['nom']),'UTF-8'), 
+            ucwords(mb_strtolower($student['ap1']." ".$student['ap2']),'UTF-8'),
+            ucwords(mb_strtolower($student['ap1']),'UTF-8'), 
+            ucwords(mb_strtolower($student['ap2']),'UTF-8'), 
             NULL,            // domainemail
             FALSE,           // suspended
             FALSE,           // teacher 
@@ -115,10 +115,10 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
         
         $xmlusers[strval($teacher['codi'])] = new DomainUser(
             strval($teacher['codi']),
-            ucwords(mb_strtolower($teacher['nom'])), 
-            ucwords(mb_strtolower($teacher['ap1']." ".$teacher['ap2'])),
-            ucwords(mb_strtolower($teacher['ap1'])), 
-            ucwords(mb_strtolower($teacher['ap2'])), 
+            ucwords(mb_strtolower($teacher['nom']),'UTF-8'), 
+            ucwords(mb_strtolower($teacher['ap1']." ".$teacher['ap2']),'UTF-8'),
+            ucwords(mb_strtolower($teacher['ap1']),'UTF-8'), 
+            ucwords(mb_strtolower($teacher['ap2']),'UTF-8'), 
             NULL,            // domainemail
             FALSE,           // suspended
             TRUE,            // teacher 
