@@ -106,7 +106,7 @@ function getDomainUsers($service, $domaingroupsmembers) {
                 NULL,                  // surname 2
                 $user['primaryEmail'], // domainemail
                 $user['suspended'],    // suspended
-                strpos(strtolower($user['orgUnitPath']), "professor") !== FALSE,  // teacher 
+                strpos(mb_strtolower($user['orgUnitPath']), "professor") !== FALSE,  // teacher 
                 $istutor,              // tutor
                 $withoutcode,          // withoutcode
                 $member                // groups
