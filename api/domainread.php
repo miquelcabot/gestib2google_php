@@ -96,7 +96,7 @@ function getDomainUsers($service, $domaingroupsmembers) {
                     }
                 }
             }
-            $istutor = in_array("tutors", $member); // Comprovam si és tutor
+            $istutor = in_array(TUTORS_GROUP_NAME, $member); // Comprovam si és tutor
 
             $domainusers[$id] = new DomainUser(
                 $id,

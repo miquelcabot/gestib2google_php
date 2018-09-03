@@ -82,7 +82,7 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                             'password' => DEFAULT_PASSWORD //Default password
                         ));
                     $service->users->insert($userObj);
-                    // Insert all "ee.",  "alumnat." and "tutors" groups
+                    // Insert all TEACHERS_GROUP_PREFIX,  STUDENTS_GROUP_PREFIX and TUTORS_GROUP_NAME groups
                     foreach ($xmluser->groupswithprefixadded() as $gr) {
                         // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
                         $memberObj = new Google_Service_Directory_Member(array(
@@ -108,7 +108,7 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                 }
             }
             // Tant si estava actiu com no, existeix, i per tant, actualitzar 
-            // els grups "ee.", "alumnat." i  "tutors"
+            // els grups TEACHERS_GROUP_PREFIX, STUDENTS_GROUP_PREFIX i  TUTORS_GROUP_NAME
             $creategroups = array_diff($xmluser->groupswithprefixadded(), $domainuser->groupswithprefix());
             $deletegroups = array_diff($domainuser->groupswithprefix(), $xmluser->groupswithprefixadded());
             if (!$domainuser->suspended && (count($creategroups)>0 || count($deletegroups)>0)) {

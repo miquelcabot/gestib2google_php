@@ -52,7 +52,6 @@ function readXmlGroups($xmlfile) {
   return array($xmlgroups, array_unique($xmltutors));
 }
 
-
 function readXmlTimeTable($xmlfile, $xmlgroups) {
     echo("Loading XML timetable...<br>\r\n");
     $xmltimetable = [];

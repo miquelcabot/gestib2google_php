@@ -50,7 +50,7 @@
         <ul class="sidenav-second-level collapse" id="collapseESO1">
   <?php
       foreach ($domaingroups as $group) {
-          if (strpos($group['email'], 'alumnat.eso1') !== FALSE && strpos($group['email'], 'alumnat.eso1') == 0) {
+          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso1') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso1') == 0) {
               echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
           }
       }
@@ -65,7 +65,7 @@
         <ul class="sidenav-second-level collapse" id="collapseESO2">
   <?php
       foreach ($domaingroups as $group) {
-          if (strpos($group['email'], 'alumnat.eso2') !== FALSE && strpos($group['email'], 'alumnat.eso2') == 0) {
+          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso2') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso2') == 0) {
               echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
           }
       }
@@ -80,7 +80,7 @@
         <ul class="sidenav-second-level collapse" id="collapseESO3">
   <?php
       foreach ($domaingroups as $group) {
-          if (strpos($group['email'], 'alumnat.eso3') !== FALSE && strpos($group['email'], 'alumnat.eso3') == 0) {
+          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso3') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso3') == 0) {
               echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
           }
       }
@@ -95,7 +95,7 @@
         <ul class="sidenav-second-level collapse" id="collapseESO4">
   <?php
       foreach ($domaingroups as $group) {
-          if (strpos($group['email'], 'alumnat.eso4') !== FALSE && strpos($group['email'], 'alumnat.eso4') == 0) {
+          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso4') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso4') == 0) {
               echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
           }
       }
@@ -110,7 +110,7 @@
         <ul class="sidenav-second-level collapse" id="collapseBatxillerat">
  <?php
       foreach ($domaingroups as $group) {
-          if (strpos($group['email'], 'alumnat.bat') !== FALSE && strpos($group['email'], 'alumnat.bat') == 0) {
+          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'bat') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'bat') == 0) {
               echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
           }
       }
@@ -125,14 +125,14 @@
         <ul class="sidenav-second-level collapse" id="collapseCF">
  <?php
       foreach ($domaingroups as $group) {
-          if (strpos($group['email'], 'alumnat.smx') !== FALSE && strpos($group['email'], 'alumnat.smx') == 0) {
+          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'smx') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'smx') == 0) {
               echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
           }
       }
   ?>
 <?php
       foreach ($domaingroups as $group) {
-          if (strpos($group['email'], 'alumnat.asix') !== FALSE && strpos($group['email'], 'alumnat.asix') == 0) {
+          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'asix') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'asix') == 0) {
               echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
           }
       }

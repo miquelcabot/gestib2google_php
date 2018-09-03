@@ -90,9 +90,9 @@ class DomainUser {
   public function groupswithprefix() {
     $gr = [];
     foreach ($this->groups as $group) {
-      if ((strpos($group, 'alumnat.') !== FALSE && strpos($group, 'alumnat.') == 0) || 
-          (strpos($group, 'ee.') !== FALSE && strpos($group, 'ee.') == 0) || 
-          ($group === 'tutors')) {
+      if ((strpos($group, STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group, STUDENTS_GROUP_PREFIX) == 0) || 
+          (strpos($group, TEACHERS_GROUP_PREFIX) !== FALSE && strpos($group, TEACHERS_GROUP_PREFIX) == 0) || 
+          ($group === TUTORS_GROUP_NAME)) {
         array_push($gr, $group);
       }
     }
@@ -102,9 +102,9 @@ class DomainUser {
   public function groupswithprefixsimple() {
     $gr = [];
     foreach ($this->groups as $group) {
-      if ((strpos($group, 'alumnat.') !== FALSE && strpos($group, 'alumnat.') == 0) || 
-          (strpos($group, 'ee.') !== FALSE && strpos($group, 'ee.') == 0)) {
-        array_push($gr, str_replace("alumnat.", "", str_replace("ee.", "", $group)));
+      if ((strpos($group, STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group, STUDENTS_GROUP_PREFIX) == 0) || 
+          (strpos($group, TEACHERS_GROUP_PREFIX) !== FALSE && strpos($group, TEACHERS_GROUP_PREFIX) == 0)) {
+        array_push($gr, str_replace(STUDENTS_GROUP_PREFIX, "", str_replace(TEACHERS_GROUP_PREFIX, "", $group)));
       }
     }
     return gr;
@@ -114,13 +114,13 @@ class DomainUser {
     $gr = [];
     foreach ($this->groups as $group) {
       if ($this->teacher) {
-        array_push($gr, "ee.".$group);
+        array_push($gr, TEACHERS_GROUP_PREFIX.$group);
       } else {
-        array_push($gr, "alumnat.".$group);
+        array_push($gr, STUDENTS_GROUP_PREFIX.$group);
       }
     }
     if ($this->teacher && $this->tutor) {
-      array_push($gr, "tutors");
+      array_push($gr, TUTORS_GROUP_NAME);
     }
     return $gr;
   }
