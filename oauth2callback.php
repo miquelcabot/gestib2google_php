@@ -9,7 +9,7 @@ $client->setApplicationName(APPLICATION_NAME);
 $client->setScopes(SCOPES);
 $client->setAccessType('offline');
 
-$client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback.php');
+$client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] );
 
 if (!isset($_GET['code'])) {
   $auth_url = $client->createAuthUrl();
@@ -17,7 +17,7 @@ if (!isset($_GET['code'])) {
 } else {
   $client->authenticate($_GET['code']);
   $_SESSION['access_token'] = $client->getAccessToken();
-  $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'];
+  $redirect_uri = str_replace('oauth2callback.php', '', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
   header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 ?>
