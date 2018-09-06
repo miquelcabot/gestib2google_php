@@ -7,29 +7,34 @@ function getgroupemails($name, $isstudent) {
     $curs = filter_var($name, FILTER_SANITIZE_NUMBER_INT); // We get the course from the numbers in the string
     $grup = substr($name, -1); // We get the group name from the last char of the string
   
+    if ($isstudent) {
+        $pre_group = STUDENTS_GROUP_PREFIX;
+    } else {
+        $pre_group = TEACHERS_GROUP_PREFIX;
+    }
     if (strpos($name, "batx") !== FALSE) {
-        array_push($email, "bat".$curs.$grup);
+        array_push($email, $pre_group."bat".$curs.$grup);
     } else if (strpos($name, "eso") !== FALSE) {
-        array_push($email, "eso".$curs.$grup);
+        array_push($email, $pre_group."eso".$curs.$grup);
     } else if (strpos($name, "ifc21") !== FALSE) {
         if ($grup=="a") {
-            array_push($email, "smx1");
+            array_push($email, $pre_group."smx1");
         } else if ($grup=="b") {
-            array_push($email, "smx2");
+            array_push($email, $pre_group."smx2");
         } else if (($grup=="c") && $isstudent) {
             // Si és estudiant, feim que grup C de SMX sigui de 1r i 2n
-            array_push($email, "smx1");
-            array_push($email, "smx2");
+            array_push($email, $pre_group."smx1");
+            array_push($email, $pre_group."smx2");
         }
     } else if (strpos($name, "ifc31") !== FALSE) {
         if ($grup=="a") {
-            array_push($email, "asix1");
+            array_push($email, $pre_group."asix1");
         } else if ($grup=="b") {
-            array_push($email, "asix2");
+            array_push($email, $pre_group."asix2");
         } else if (($grup=="c") && $isstudent) {
             // Si és estudiant, feim que grup C de ASIX sigui de 1r i 2n
-            array_push($email, "asix1");
-            array_push($email, "asix2");
+            array_push($email, $pre_group."asix1");
+            array_push($email, $pre_group."asix2");
         }
     }
     return $email;
@@ -74,7 +79,7 @@ function readXmlTimeTable($xmlfile, $xmlgroups) {
         }
         
     }
-    
+
     return $xmltimetable;
 }
 
@@ -110,6 +115,9 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
         $emailsteacher = [];
         if (isset($xmltimetable[strval($teacher['codi'])])) {
             $emailsteacher = $xmltimetable[strval($teacher['codi'])];
+        }
+        if (isset($teacher['departament']) && array_key_exists(strval($teacher['departament']), DEPARTMENT_NUMBER_TO_NAME)) {
+            array_push($emailsteacher, DEPARTMENT_GROUP_PREFIX.DEPARTMENT_NUMBER_TO_NAME[strval($teacher['departament'])]);
         }
         
         $xmlusers[strval($teacher['codi'])] = new DomainUser(

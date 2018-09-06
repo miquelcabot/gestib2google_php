@@ -92,6 +92,7 @@ class DomainUser {
     foreach ($this->groups as $group) {
       if ((strpos($group, STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group, STUDENTS_GROUP_PREFIX) == 0) || 
           (strpos($group, TEACHERS_GROUP_PREFIX) !== FALSE && strpos($group, TEACHERS_GROUP_PREFIX) == 0) || 
+          (strpos($group, DEPARTMENT_GROUP_PREFIX) !== FALSE && strpos($group, DEPARTMENT_GROUP_PREFIX) == 0) || 
           ($group === TUTORS_GROUP_NAME)) {
         array_push($gr, $group);
       }
@@ -99,26 +100,8 @@ class DomainUser {
     return $gr;
   }
   
-  public function groupswithprefixsimple() {
-    $gr = [];
-    foreach ($this->groups as $group) {
-      if ((strpos($group, STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group, STUDENTS_GROUP_PREFIX) == 0) || 
-          (strpos($group, TEACHERS_GROUP_PREFIX) !== FALSE && strpos($group, TEACHERS_GROUP_PREFIX) == 0)) {
-        array_push($gr, str_replace(STUDENTS_GROUP_PREFIX, "", str_replace(TEACHERS_GROUP_PREFIX, "", $group)));
-      }
-    }
-    return gr;
-  }
-  
   public function groupswithprefixadded() {
-    $gr = [];
-    foreach ($this->groups as $group) {
-      if ($this->teacher) {
-        array_push($gr, TEACHERS_GROUP_PREFIX.$group);
-      } else {
-        array_push($gr, STUDENTS_GROUP_PREFIX.$group);
-      }
-    }
+    $gr = $this->groups;
     if ($this->teacher && $this->tutor) {
       array_push($gr, TUTORS_GROUP_NAME);
     }
