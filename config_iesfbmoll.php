@@ -8,7 +8,7 @@ define('DEFAULT_PASSWORD', 'Curs201819');         // For example: '12345678'
 define('DEPARTMENT_GROUP_PREFIX', 'dept.');       // For example: 'dept.'
 define('TEACHERS_GROUP_PREFIX', 'professorat.');  // For example: 'professorat.'
 define('STUDENTS_GROUP_PREFIX', 'alumnat.');      // For example: 'alumnat.'
-define('TUTORS_GROUP_NAME', 'tutors');            // For example: 'tutors'
+define('TUTORS_GROUP_PREFIX', 'tutors');          // For example: 'tutors'
 
 define('DEPARTMENT_NUMBER_TO_NAME', [
   "597" => "orientacio",                  // Orientació
@@ -62,6 +62,6 @@ if (!defined('STUDENTS_GROUP_PREFIX') || !STUDENTS_GROUP_PREFIX) {
   die("Error: You must define STUDENTS_GROUP_PREFIX constant in config.php file");
 }
 
-if (!defined('TUTORS_GROUP_NAME') || !TUTORS_GROUP_NAME) {
-  die("Error: You must define TUTORS_GROUP_NAME constant in config.php file");
+if (!defined('TUTORS_GROUP_PREFIX') || !TUTORS_GROUP_PREFIX) {
+  die("Error: You must define TUTORS_GROUP_PREFIX constant in config.php file");
 }
