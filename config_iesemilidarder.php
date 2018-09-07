@@ -11,27 +11,27 @@ define('STUDENTS_GROUP_PREFIX', 'alumnat.'); // For example: 'alumnat.'
 define('TUTORS_GROUP_NAME', 'tutors');       // For example: 'tutors'
 
 define('DEPARTMENT_NUMBER_TO_NAME', [
-  "553" => "angles",         // "Anglès (EOI)"
+  "544" => "orientacio",     // "Orientació"
   "546" => "plastica",       // "Arts plàstiques"
-  "563" => "naturals",       // "Biologia i geologia"
   "547" => "naturals",       // "Ciències naturals"
-  "565" => "socials",        // "Ciències socials, geografia i història"
-  "562" => "plastica",       // "Dibuix i educació plàstica i visual"
   "548" => "educaciofisica", // "Educació física i esportiva"
   "549" => "mixt",           // "Filosofia"
   "550" => "fisiquim",       // "Física i química"
-  "6489" => "mixt",          // "Formació i orientació laboral"
   "551" => "mixt",           // "Francès (EOI)"
   "552" => "socials",        // "Geografia i història"
-  "561" => "informatica",    // "Informàtica i comunicacions (F.P.)"
+  "553" => "angles",         // "Anglès (EOI)"
   "554" => "mixt",           // "Llatí"
   "555" => "castella",       // "Llengua castellana i literatura"
   "556" => "catala",         // "Llengua catalana i literatura"
-  "564" => "angles",         // "Llengües estrangeres"
   "557" => "mates",          // "Matemàtiques"
   "558" => "mixt",           // "Música"
-  "544" => "orientacio",     // "Orientació"
-  "560" => "tecnologia"      // "Tecnologia"
+  "560" => "tecnologia",     // "Tecnologia"
+  "561" => "informatica",    // "Informàtica i comunicacions (F.P.)"
+  "562" => "plastica",       // "Dibuix i educació plàstica i visual"
+  "563" => "naturals",       // "Biologia i geologia"
+  "564" => "angles",         // "Llengües estrangeres"
+  "565" => "socials",        // "Ciències socials, geografia i història"
+  "6489" => "mixt"           // "Formació i orientació laboral"
 ]);
 
 define('SCOPES', implode(' ', array(
