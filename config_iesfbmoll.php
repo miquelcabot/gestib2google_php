@@ -1,5 +1,5 @@
 <?php
-define('APPLICATION_NAME', 'GestIB 2 Google');
+define('APPLICATION_NAME', 'GestIB to Google');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 
 define('DOMAIN', 'iesfbmoll.org');                // For example: 'iesfbmoll.org'
