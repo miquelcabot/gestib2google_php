@@ -2,7 +2,7 @@
 define('APPLICATION_NAME', 'GestIB 2 Google');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 
-define('DOMAIN', 'iesemilidarder.com');      // For example: 'iesemilidarder.com'
+define('DOMAIN', 'iesfbmoll.com');      // For example: 'iesemilidarder.com'
 define('DEFAULT_PASSWORD', '12345678');      // For example: '12345678'
 
 define('DEPARTMENT_GROUP_PREFIX', 'dep.');   // For example: 'dep.'

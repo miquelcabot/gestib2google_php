@@ -5,3 +5,4 @@ composer.json
 .credentials
 client_secret.json
 exportacioDadesCentre.xml
+config.php
