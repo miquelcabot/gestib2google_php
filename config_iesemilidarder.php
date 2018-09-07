@@ -34,6 +34,27 @@ define('DEPARTMENT_NUMBER_TO_NAME', [
   "6489" => "mixt"           // "Formació i orientació laboral"
 ]);
 
+define('FP_GROUP_NAME_CONVERSION', [
+  "ifc21" => [        // GM Sistemes microinformàtics i xarxes
+    "name" => "smx",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],   
+  "ifc31" => [        // GS Administració de sistemes microinformàtics en xarxa  
+    "name" => "asix",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ]
+]);
+
 define('SCOPES', implode(' ', array(
   Google_Service_Directory::ADMIN_DIRECTORY_USER,
   Google_Service_Directory::ADMIN_DIRECTORY_GROUP,

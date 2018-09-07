@@ -26,11 +26,31 @@ define('DEPARTMENT_NUMBER_TO_NAME', [
   "622" => "informaticaicomunicacions",   // Informàtica i comunicacions (F.P.)
   "624" => "sanitat",                     // Sanitat (F.P.)
   "626" => "filosofiaiclassiques",        // Llengües i cultura clàssiques
-  "627" => "plastica",                    // Dibuix i educació plàstica i visual (O DIBUIX??)
+  "627" => "dibuix",                      // Dibuix i educació plàstica i visual
   "628" => "biologiaigeologia",           // Biologia i geologia
   "629" => "llenguesestrangeres",         // Llengües estrangeres
   "630" => "geografiaihistoria",          // Ciències socials, geografia i història
   "5789" => "filosofiaiclassiques",       // Filosofia
+]);
+
+define('FP_GROUP_NAME_CONVERSION', [
+  "com21" => "",      // GM Activitats comercials
+  "com34" => "",      // GS Comerç internacional
+  "ifc21" => "smx",   // GM Sistemes microinformàtics i xarxes
+  "ifc31" => "asix",  // GS Administració de sistemes microinformàtics en xarxa  
+  "ifc32" => "dam",   // GS Desenvolupament d'aplicacions multiplataforma
+  "ifc33" => "daw",   // GS Desenvolupament d'aplicacions webs
+  "imp11" => "",      // FPB Perruqueria i estètica
+  "imp21" => "",      // GM Estètica i bellesa
+  "imp22" => "",      // GM Perruqueria i cosmètica capil·lar
+  "imp31" => "",      // GS Estètica integral i benestar
+  "imp33" => "",      // GS Assessoria d'imatge personal i corporativa
+  "san22" => "",      // GM Farmàcia i parafarmàcia
+  "san23" => "",      // GM Cures auxiliars d'infermeria
+  "san31" => "",      // GS Anatomia patològica i citodiagnòstic
+  "san32" => "",      // GS Dietètica
+  "san36" => "",      // GS Laboratori clínic i biomèdic
+  "sea21" => ""       // GM Emergències i protecció civil
 ]);
 
 define('SCOPES', implode(' ', array(

@@ -14,11 +14,30 @@ function getgroupemails($name, $isstudent, $istutor) {
     } else {
         $pre_group = TEACHERS_GROUP_PREFIX;
     }
+
     if (strpos($name, "batx") !== FALSE) {
         array_push($email, $pre_group."bat".$curs.$grup);
     } else if (strpos($name, "eso") !== FALSE) {
         array_push($email, $pre_group."eso".$curs.$grup);
-    } else if (strpos($name, "ifc21") !== FALSE) {
+    } else {
+        // Formació Professional
+        $fp_name = explode(" ",$name)[0];
+        if (array_key_exists($fp_name, FP_GROUP_NAME_CONVERSION)) {
+            if (array_key_exists($grup, FP_GROUP_NAME_CONVERSION[$fp_name]["groups"])) {
+                $fp_converted_name = FP_GROUP_NAME_CONVERSION[$fp_name]["name"];
+                if ($isstudent) {
+                    $group_names =FP_GROUP_NAME_CONVERSION[$fp_name]["groups"][$grup]["student"];
+                } else {
+                    $group_names =FP_GROUP_NAME_CONVERSION[$fp_name]["groups"][$grup]["teacher"];
+                }
+                foreach ($group_names as $group_name) {
+                    array_push($email, $pre_group.$fp_converted_name.$group_name);
+                }
+            }
+        }
+    }
+    
+    /*if (strpos($name, "ifc21") !== FALSE) {
         if ($grup=="a") {
             array_push($email, $pre_group."smx1");
         } else if ($grup=="b") {
@@ -38,7 +57,7 @@ function getgroupemails($name, $isstudent, $istutor) {
             array_push($email, $pre_group."asix1");
             array_push($email, $pre_group."asix2");
         }
-    }
+    }*/
     return $email;
 }
 
