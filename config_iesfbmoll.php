@@ -2,11 +2,11 @@
 define('APPLICATION_NAME', 'GestIB 2 Google');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 
-define('DOMAIN', 'iesfbmoll.com');      // For example: 'iesemilidarder.com'
-define('DEFAULT_PASSWORD', '12345678');      // For example: '12345678'
+define('DOMAIN', 'iesfbmoll.org');      // For example: 'iesemilidarder.com'
+define('DEFAULT_PASSWORD', 'Curs201819');      // For example: '12345678'
 
-define('DEPARTMENT_GROUP_PREFIX', 'dep.');   // For example: 'dep.'
-define('TEACHERS_GROUP_PREFIX', 'ee.');      // For example: 'ee.'
+define('DEPARTMENT_GROUP_PREFIX', 'dept.');   // For example: 'dep.'
+define('TEACHERS_GROUP_PREFIX', 'professorat.');      // For example: 'ee.'
 define('STUDENTS_GROUP_PREFIX', 'alumnat.'); // For example: 'alumnat.'
 define('TUTORS_GROUP_NAME', 'tutors');       // For example: 'tutors'
 

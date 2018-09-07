@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="Miquel A. Cabot">
-  <title>GestIB to Google - IES Emili Darder</title>
+  <title>GestIB to Google</title>
 </head>
 
 <body>
