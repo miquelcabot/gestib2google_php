@@ -1,7 +1,7 @@
 <?php
 require_once 'domainuser.php';
 
-function getgroupemails($name, $isstudent) {
+function getgroupemails($name, $isstudent, $istutor) {
     $name = mb_strtolower($name,'UTF-8');
     $email = [];
     $curs = filter_var($name, FILTER_SANITIZE_NUMBER_INT); // We get the course from the numbers in the string
@@ -9,6 +9,8 @@ function getgroupemails($name, $isstudent) {
   
     if ($isstudent) {
         $pre_group = STUDENTS_GROUP_PREFIX;
+    } else if ($istutor) {
+        $pre_group = TUTORS_GROUP_PREFIX;
     } else {
         $pre_group = TEACHERS_GROUP_PREFIX;
     }
@@ -48,13 +50,21 @@ function readXmlGroups($xmlfile) {
     foreach ($xmlfile->CURSOS->CURS as $curs) {
         foreach ($curs->GRUP as $grup) {
             $xmlgroups[strval($grup['codi'])] = $curs['descripcio']." ".$grup['nom'];
-            array_push($xmltutors, $grup['tutor']);
+            if (!array_key_exists(strval($grup['tutor']), $xmltutors)) {
+                $xmltutors[strval($grup['tutor'])] = [];
+            }
+            array_push($xmltutors[strval($grup['tutor'])], $curs['descripcio']." ".$grup['nom']);
+            $xmltutors[strval($grup['tutor'])] = array_unique($xmltutors[strval($grup['tutor'])]);
             if (!empty($grup['tutor2'])) {
-                array_push($xmltutors, $grup['tutor2']);
+                if (!array_key_exists(strval($grup['tutor2']), $xmltutors)) {
+                    $xmltutors[strval($grup['tutor2'])] = [];
+                }
+                array_push($xmltutors[strval($grup['tutor2'])], $curs['descripcio']." ".$grup['nom']);
+                $xmltutors[strval($grup['tutor2'])] = array_unique($xmltutors[strval($grup['tutor2'])]);
             }        
         }
     }
-  return array($xmlgroups, array_unique($xmltutors));
+  return array($xmlgroups, $xmltutors);
 }
 
 function readXmlTimeTable($xmlfile, $xmlgroups) {
@@ -66,8 +76,7 @@ function readXmlTimeTable($xmlfile, $xmlgroups) {
         
         if (isset($xmlgroups[strval($sessio['grup'])])) {
             $xmlgroup = $xmlgroups[strval($sessio['grup'])];
-            $emailsTeachers = getgroupemails($xmlgroup, FALSE);
-            //array_push($emailsTeachers, getgroupemails($xmlgroup, FALSE));
+            $emailsTeachers = getgroupemails($xmlgroup, FALSE, FALSE);
         }
       
         if (isset($xmltimetable[strval($sessio['professor'])])) {
@@ -92,7 +101,7 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
         $emailsstudent = [];
         if (isset($xmlgroups[strval($student['grup'])])) {
             $xmlgroup = $xmlgroups[strval($student['grup'])];
-            $emailsstudent = getgroupemails($xmlgroup, TRUE);
+            $emailsstudent = getgroupemails($xmlgroup, TRUE, FALSE);
         }
          
         $xmlusers[strval($student['codi'])] = new DomainUser(
@@ -104,7 +113,6 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
             NULL,            // domainemail
             FALSE,           // suspended
             FALSE,           // teacher 
-            FALSE,           // tutor
             FALSE,           // withoutcode
             $emailsstudent   // groups
         );
@@ -119,6 +127,14 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
         if (isset($teacher['departament']) && array_key_exists(strval($teacher['departament']), DEPARTMENT_NUMBER_TO_NAME)) {
             array_push($emailsteacher, DEPARTMENT_GROUP_PREFIX.DEPARTMENT_NUMBER_TO_NAME[strval($teacher['departament'])]);
         }
+        // Si és tutor, estarà a l'array associatiu $xmltutors
+        if (array_key_exists(strval($teacher['codi']), $xmltutors)) {
+            foreach ($xmltutors[strval($teacher['codi'])] as $tutorgroup) {
+                foreach (getgroupemails($tutorgroup, FALSE, TRUE) as $tutorgroupname) {
+                    array_push($emailsteacher, $tutorgroupname);
+                }
+            }
+        }
         
         $xmlusers[strval($teacher['codi'])] = new DomainUser(
             strval($teacher['codi']),
@@ -129,7 +145,6 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
             NULL,            // domainemail
             FALSE,           // suspended
             TRUE,            // teacher 
-            in_array(strval($teacher['codi']), $xmltutors), //tutor
             FALSE,           // withoutcode
             $emailsteacher   // groups
         );

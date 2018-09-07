@@ -8,7 +8,7 @@ define('DEFAULT_PASSWORD', 'Curs201819');         // For example: '12345678'
 define('DEPARTMENT_GROUP_PREFIX', 'dept.');       // For example: 'dept.'
 define('TEACHERS_GROUP_PREFIX', 'professorat.');  // For example: 'professorat.'
 define('STUDENTS_GROUP_PREFIX', 'alumnat.');      // For example: 'alumnat.'
-define('TUTORS_GROUP_PREFIX', 'tutors');          // For example: 'tutors'
+define('TUTORS_GROUP_PREFIX', 'tutor.');          // For example: 'tutor.'
 
 define('DEPARTMENT_NUMBER_TO_NAME', [
   "597" => "orientacio",                  // Orientació

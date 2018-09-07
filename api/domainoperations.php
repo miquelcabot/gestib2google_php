@@ -61,8 +61,7 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                 $xmluser->surname,
                 $xmluser->email(),     // domainemail
                 $xmluser->suspended,   // suspended
-                $xmluser->teacher,     // teacher 
-                $xmluser->tutor,       // tutor
+                $xmluser->teacher,     // teacher
                 $xmluser->withoutcode, // withoutcode
                 $xmluser->groups       // groups
                 );

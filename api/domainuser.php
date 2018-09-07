@@ -39,12 +39,11 @@ class DomainUser {
   public $domainemail;
   public $suspended;
   public $teacher;
-  public $tutor;
   public $withoutcode;
   public $groups;
   
   public function __construct($id, $name, $surname, $surname1, $surname2, $domainemail, 
-                       $suspended, $teacher, $tutor, $withoutcode, $groups) { 
+                       $suspended, $teacher, $withoutcode, $groups) { 
     $this->id =          $id;
     $this->name =        $name;
     $this->surname =     $surname;
@@ -53,7 +52,6 @@ class DomainUser {
     $this->domainemail = $domainemail;
     $this->suspended =   $suspended;
     $this->teacher =     $teacher;
-    $this->tutor =       $tutor;
     $this->withoutcode = $withoutcode;
     $this->groups =      $groups;
   }
@@ -93,7 +91,7 @@ class DomainUser {
       if ((strpos($group, STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group, STUDENTS_GROUP_PREFIX) == 0) || 
           (strpos($group, TEACHERS_GROUP_PREFIX) !== FALSE && strpos($group, TEACHERS_GROUP_PREFIX) == 0) || 
           (strpos($group, DEPARTMENT_GROUP_PREFIX) !== FALSE && strpos($group, DEPARTMENT_GROUP_PREFIX) == 0) || 
-          ($group === TUTORS_GROUP_PREFIX)) {
+          (strpos($group, TUTORS_GROUP_PREFIX) !== FALSE && strpos($group, TUTORS_GROUP_PREFIX) == 0)) {
         array_push($gr, $group);
       }
     }
@@ -101,11 +99,7 @@ class DomainUser {
   }
   
   public function groupswithprefixadded() {
-    $gr = $this->groups;
-    if ($this->teacher && $this->tutor) {
-      array_push($gr, TUTORS_GROUP_PREFIX);
-    }
-    return $gr;
+    return $this->groups;
   }
 
   public function __toString() {

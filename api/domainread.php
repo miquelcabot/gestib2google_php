@@ -96,7 +96,6 @@ function getDomainUsers($service, $domaingroupsmembers) {
                     }
                 }
             }
-            $istutor = in_array(TUTORS_GROUP_PREFIX, $member); // Comprovam si és tutor
 
             $domainusers[$id] = new DomainUser(
                 $id,
@@ -107,7 +106,6 @@ function getDomainUsers($service, $domaingroupsmembers) {
                 $user['primaryEmail'], // domainemail
                 $user['suspended'],    // suspended
                 strpos(mb_strtolower($user['orgUnitPath'],'UTF-8'), "professor") !== FALSE,  // teacher 
-                $istutor,              // tutor
                 $withoutcode,          // withoutcode
                 $member                // groups
               );
