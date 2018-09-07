@@ -3,6 +3,6 @@ composer.lock
 composer.json
 
 .credentials
-client_secret.json
-exportacioDadesCentre.xml
+client_secret*.json
+exportacioDadesCentre*.xml
 config.php
