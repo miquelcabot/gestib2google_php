@@ -51,8 +51,16 @@ if (!defined('DEFAULT_PASSWORD') || !DEFAULT_PASSWORD) {
   die("Error: You must define DEFAULT_PASSWORD constant in config.php file");
 }
 
+if (!defined('DEPARTMENT_GROUP_PREFIX') || !DEPARTMENT_GROUP_PREFIX) {
+  die("Error: You must define DEPARTMENT_GROUP_PREFIX constant in config.php file");
+}
+
 if (!defined('TEACHERS_GROUP_PREFIX') || !TEACHERS_GROUP_PREFIX) {
   die("Error: You must define TEACHERS_GROUP_PREFIX constant in config.php file");
+}
+
+if (!defined('STUDENTS_GROUP_PREFIX') || !STUDENTS_GROUP_PREFIX) {
+  die("Error: You must define STUDENTS_GROUP_PREFIX constant in config.php file");
 }
 
 if (!defined('TUTORS_GROUP_NAME') || !TUTORS_GROUP_NAME) {
