@@ -2,36 +2,35 @@
 define('APPLICATION_NAME', 'GestIB 2 Google');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 
-define('DOMAIN', 'iesfbmoll.org');      // For example: 'iesemilidarder.com'
-define('DEFAULT_PASSWORD', 'Curs201819');      // For example: '12345678'
+define('DOMAIN', 'iesfbmoll.org');                // For example: 'iesfbmoll.org'
+define('DEFAULT_PASSWORD', 'Curs201819');         // For example: '12345678'
 
-define('DEPARTMENT_GROUP_PREFIX', 'dept.');   // For example: 'dep.'
-define('TEACHERS_GROUP_PREFIX', 'professorat.');      // For example: 'ee.'
-define('STUDENTS_GROUP_PREFIX', 'alumnat.'); // For example: 'alumnat.'
-define('TUTORS_GROUP_NAME', 'tutors');       // For example: 'tutors'
+define('DEPARTMENT_GROUP_PREFIX', 'dept.');       // For example: 'dept.'
+define('TEACHERS_GROUP_PREFIX', 'professorat.');  // For example: 'professorat.'
+define('STUDENTS_GROUP_PREFIX', 'alumnat.');      // For example: 'alumnat.'
+define('TUTORS_GROUP_NAME', 'tutors');            // For example: 'tutors'
 
 define('DEPARTMENT_NUMBER_TO_NAME', [
-  "544" => "orientacio",     // "Orientació"
-  "546" => "plastica",       // "Arts plàstiques"
-  "547" => "naturals",       // "Ciències naturals"
-  "548" => "educaciofisica", // "Educació física i esportiva"
-  "549" => "mixt",           // "Filosofia"
-  "550" => "fisiquim",       // "Física i química"
-  "551" => "mixt",           // "Francès (EOI)"
-  "552" => "socials",        // "Geografia i història"
-  "553" => "angles",         // "Anglès (EOI)"
-  "554" => "mixt",           // "Llatí"
-  "555" => "castella",       // "Llengua castellana i literatura"
-  "556" => "catala",         // "Llengua catalana i literatura"
-  "557" => "mates",          // "Matemàtiques"
-  "558" => "mixt",           // "Música"
-  "560" => "tecnologia",     // "Tecnologia"
-  "561" => "informatica",    // "Informàtica i comunicacions (F.P.)"
-  "562" => "plastica",       // "Dibuix i educació plàstica i visual"
-  "563" => "naturals",       // "Biologia i geologia"
-  "564" => "angles",         // "Llengües estrangeres"
-  "565" => "socials",        // "Ciències socials, geografia i història"
-  "6489" => "mixt"           // "Formació i orientació laboral"
+  "597" => "orientacio",                  // Orientació
+  "602" => "educaciofisica",              // Educació física i esportiva
+  "604" => "fisicaiquimica",              // Física i química
+  "605" => "formacioiorientaciolaboral",  // Formació i orientació laboral
+  "611" => "llenguacastellana",           // Llengua castellana i literatura
+  "612" => "llenguacatalana",             // Llengua catalana i literatura
+  "613" => "matematiques",                // Matemàtiques
+  "614" => "musica",                      // Música
+  "616" => "tecnologia",                  // Tecnologia
+  "618" => "administracio",               // Administració (F.P.)
+  "619" => "comercimarqueting",           // Comerç i màrqueting (F.P.)
+  "621" => "imatgepersonal",              // Imatge personal (F.P.)
+  "622" => "informaticaicomunicacions",   // Informàtica i comunicacions (F.P.)
+  "624" => "sanitat",                     // Sanitat (F.P.)
+  "626" => "filosofiaiclassiques",        // Llengües i cultura clàssiques
+  "627" => "plastica",                    // Dibuix i educació plàstica i visual (O DIBUIX??)
+  "628" => "biologiaigeologia",           // Biologia i geologia
+  "629" => "llenguesestrangeres",         // Llengües estrangeres
+  "630" => "geografiaihistoria",          // Ciències socials, geografia i història
+  "5789" => "filosofiaiclassiques",       // Filosofia
 ]);
 
 define('SCOPES', implode(' ', array(
