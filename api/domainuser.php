@@ -93,7 +93,7 @@ class DomainUser {
       if ((strpos($group, STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group, STUDENTS_GROUP_PREFIX) == 0) || 
           (strpos($group, TEACHERS_GROUP_PREFIX) !== FALSE && strpos($group, TEACHERS_GROUP_PREFIX) == 0) || 
           (strpos($group, DEPARTMENT_GROUP_PREFIX) !== FALSE && strpos($group, DEPARTMENT_GROUP_PREFIX) == 0) || 
-          ($group === TUTORS_GROUP_NAME)) {
+          ($group === TUTORS_GROUP_PREFIX)) {
         array_push($gr, $group);
       }
     }
@@ -103,7 +103,7 @@ class DomainUser {
   public function groupswithprefixadded() {
     $gr = $this->groups;
     if ($this->teacher && $this->tutor) {
-      array_push($gr, TUTORS_GROUP_NAME);
+      array_push($gr, TUTORS_GROUP_PREFIX);
     }
     return $gr;
   }

@@ -63,6 +63,6 @@ if (!defined('STUDENTS_GROUP_PREFIX') || !STUDENTS_GROUP_PREFIX) {
   die("Error: You must define STUDENTS_GROUP_PREFIX constant in config.php file");
 }
 
-if (!defined('TUTORS_GROUP_NAME') || !TUTORS_GROUP_NAME) {
-  die("Error: You must define TUTORS_GROUP_NAME constant in config.php file");
+if (!defined('TUTORS_GROUP_PREFIX') || !TUTORS_GROUP_PREFIX) {
+  die("Error: You must define TUTORS_GROUP_PREFIX constant in config.php file");
 }
