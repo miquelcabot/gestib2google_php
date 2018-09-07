@@ -145,6 +145,12 @@
           <span class="nav-link-text">Professorat</span>
         </a>
       </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuaris">
+        <a class="nav-link" id="usuarislink">
+          <i class="fa fa-fw fa-users"></i>
+          <span class="nav-link-text">Usuaris</span>
+        </a>
+      </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Importar XML">
         <a class="nav-link" id="xmllink">
           <i class="fa fa-fw fa-file"></i>
@@ -226,6 +232,26 @@
                 </table>
             </div>
           </div>
+      </div>
+    </div>
+    <!-- Fi importar fitxer XML de GestIB -->
+
+<!-- Mostrar usuaris del domini -->
+<div id="usuarisdomini" style="display: none;">
+      <div class="card mb-3" >
+        <div class="card-header">
+          <i class="fa fa-file"></i> Mostrar usuaris del domini</div>
+        <div class="card-body">
+          <form action="showusers.php" method="GET">
+          <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label"> 
+                <input class="form-check-input" id="onlywithoutcode" name="onlywithoutcode" type="checkbox"> Només els usuaris sense ID</label>
+              </div>
+            </div>
+            <input type="submit" value="Mostrar">
+          </form>
+        </div>
       </div>
     </div>
     <!-- Fi importar fitxer XML de GestIB -->
@@ -316,16 +342,24 @@
     $(document).ready(function(){
         $("#taulalink").click(function(){
             $("#importarxml").hide();
+            $("#usuarisdomini").hide();
             $("#taulausuaris").show();
+        });
+        $("#usuarislink").click(function(){
+            $("#taulausuaris").hide();
+            $("#importarxml").hide();
+            $("#usuarisdomini").show();
         });
         $("#xmllink").click(function(){
             $("#taulausuaris").hide();
+            $("#usuarisdomini").hide();
             $("#importarxml").show();
         });
     });
     
     function mostrar(grup) {
         $("#importarxml").hide();
+        $("#usuarisdomini").hide();
         $("#taulausuaris").show();
     }
   </script>
