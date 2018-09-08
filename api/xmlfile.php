@@ -133,7 +133,8 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
             FALSE,           // suspended
             FALSE,           // teacher 
             FALSE,           // withoutcode
-            $emailsstudent   // groups
+            $emailsstudent,   // groups
+            strval($student['expedient']) // expedient
         );
     }
     
@@ -165,7 +166,8 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
             FALSE,           // suspended
             TRUE,            // teacher 
             FALSE,           // withoutcode
-            $emailsteacher   // groups
+            $emailsteacher,  // groups
+            NULL             // expedient
         );
     }
     return $xmlusers;

@@ -107,7 +107,8 @@ function getDomainUsers($service, $domaingroupsmembers) {
                 $user['suspended'],    // suspended
                 strpos(mb_strtolower($user['orgUnitPath'],'UTF-8'), "professor") !== FALSE,  // teacher 
                 $withoutcode,          // withoutcode
-                $member                // groups
+                $member,               // groups
+                NULL                   // expedient
               );
         }
     } while ($nextPageToken);

@@ -45,7 +45,6 @@
       }
     } else {
       echo("Error uploading file...<br>");
-      print_r($_FILES);
     }
 ?>
 </body>

@@ -63,7 +63,8 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                 $xmluser->suspended,   // suspended
                 $xmluser->teacher,     // teacher
                 $xmluser->withoutcode, // withoutcode
-                $xmluser->groups       // groups
+                $xmluser->groups,      // groups
+                NULL                   // expedient
                 );
             echo("CREATE --> ".$xmluser."<br>\r\n");
             $contc++;
@@ -134,6 +135,8 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                     }
                 }
             }
+            // Actualitzar unitat organtizativa
+            
         }
     }
 
