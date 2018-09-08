@@ -108,7 +108,8 @@ function getDomainUsers($service, $domaingroupsmembers) {
                 strpos(mb_strtolower($user['orgUnitPath'],'UTF-8'), "professor") !== FALSE,  // teacher 
                 $withoutcode,          // withoutcode
                 $member,               // groups
-                NULL                   // expedient
+                NULL,                  // expedient
+                $user['orgUnitPath']   // organizationalUnit
               );
         }
     } while ($nextPageToken);

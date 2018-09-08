@@ -34,6 +34,7 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
     $contc = 0;
     $conta = 0;
     $contg = 0;
+    $conto = 0;
   
     echo("Adding domain users...<br>\r\n");
     foreach ($xmlusers as $xmluser) {     // For every XML user
@@ -64,7 +65,8 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                 $xmluser->teacher,     // teacher
                 $xmluser->withoutcode, // withoutcode
                 $xmluser->groups,      // groups
-                NULL                   // expedient
+                NULL,                  // expedient
+                NULL                   // organizationalUnit
                 );
             echo("CREATE --> ".$xmluser."<br>\r\n");
             $contc++;
@@ -136,13 +138,26 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                 }
             }
             // Actualitzar unitat organtizativa
-            
+            if ($domainuser->organizationalUnit != ($xmluser->teacher?'/Professorat':'/Alumnat')) {
+                echo("CHANGE ORGANIZATIONAL UNIT --> ".$domainuser->surname.", ".$domainuser->name.
+                    " (".$domainuser->email().") [".($xmluser->teacher?'/Professorat':'/Alumnat')."]<br>\r\n");
+                $conto++;
+                if ($apply) {
+                    $userObj = new Google_Service_Directory_User(
+                        array(
+                            'orgUnitPath' => ($xmluser->teacher?'/Professorat':'/Alumnat')
+                        )
+                    );
+                    $service->users->update($domainuser->email(), $userObj);
+                }
+            }
         }
     }
 
     return array("created" => $contc,
                  "activated" => $conta,
-                 "groupsmodified" => $contg);
+                 "groupsmodified" => $contg,
+                 "orgunitmodified" => $conto);
 }
 
 function applyDomainChanges($xmlusers, $domainusers, $apply) {
@@ -154,6 +169,7 @@ function applyDomainChanges($xmlusers, $domainusers, $apply) {
     return array("deleted" => $contd,
                  "created" => $cont['created'],
                  "activated" => $cont['activated'],
-                 "groupsmodified" => $cont['groupsmodified']);
+                 "groupsmodified" => $cont['groupsmodified'],
+                 "orgunitmodified" => $cont['orgunitmodified']);
 }
 ?>

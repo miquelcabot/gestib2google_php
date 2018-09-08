@@ -42,9 +42,10 @@ class DomainUser {
   public $withoutcode;
   public $groups;
   public $expedient;
+  public $organizationalUnit;
   
   public function __construct($id, $name, $surname, $surname1, $surname2, $domainemail, 
-                       $suspended, $teacher, $withoutcode, $groups, $expedient) { 
+                       $suspended, $teacher, $withoutcode, $groups, $expedient, $organizationalUnit) { 
     $this->id =          $id;
     $this->name =        $name;
     $this->surname =     $surname;
@@ -56,6 +57,7 @@ class DomainUser {
     $this->withoutcode = $withoutcode;
     $this->groups =      $groups;
     $this->expedient =   $expedient;
+    $this->organizationalUnit = $organizationalUnit;
   }
   
   public function email() {

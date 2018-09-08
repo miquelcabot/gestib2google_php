@@ -37,11 +37,13 @@
           echo($cont['created']." users have been created<br>\r\n");
           echo($cont['activated']." users have been activated<br>\r\n");
           echo($cont['groupsmodified']." users have been changed their group membership<br>\r\n");
+          echo($cont['orgunitmodified']." users have been changed their organizational unit<br>\r\n");
       } else {
           echo($cont['deleted']." users will be suspended<br>\r\n");
           echo($cont['created']." users will be created<br>\r\n");
           echo($cont['activated']." users will be activated<br>\r\n");
           echo($cont['groupsmodified']." users will change their group membership<br>\r\n"); 
+          echo($cont['orgunitmodified']." users will change their organizational unit<br>\r\n"); 
       }
     } else {
       echo("Error uploading file...<br>");
