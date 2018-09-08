@@ -34,23 +34,159 @@ define('DEPARTMENT_NUMBER_TO_NAME', [
 ]);
 
 define('FP_GROUP_NAME_CONVERSION', [
-  "com21" => "",      // GM Activitats comercials
-  "com34" => "",      // GS Comerç internacional
-  "ifc21" => "smx",   // GM Sistemes microinformàtics i xarxes
-  "ifc31" => "asix",  // GS Administració de sistemes microinformàtics en xarxa  
-  "ifc32" => "dam",   // GS Desenvolupament d'aplicacions multiplataforma
-  "ifc33" => "daw",   // GS Desenvolupament d'aplicacions webs
-  "imp11" => "",      // FPB Perruqueria i estètica
-  "imp21" => "",      // GM Estètica i bellesa
-  "imp22" => "",      // GM Perruqueria i cosmètica capil·lar
-  "imp31" => "",      // GS Estètica integral i benestar
-  "imp33" => "",      // GS Assessoria d'imatge personal i corporativa
-  "san22" => "",      // GM Farmàcia i parafarmàcia
-  "san23" => "",      // GM Cures auxiliars d'infermeria
-  "san31" => "",      // GS Anatomia patològica i citodiagnòstic
-  "san32" => "",      // GS Dietètica
-  "san36" => "",      // GS Laboratori clínic i biomèdic
-  "sea21" => ""       // GM Emergències i protecció civil
+  "com21" => [        // GM Activitats comercials
+    "name" => "com21",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "com34" => [        // GS Comerç internacional
+    "name" => "com34",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "ifc21" => [        // GM Sistemes microinformàtics i xarxes
+    "name" => "smx",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "ifc31" => [        // GS Administració de sistemes microinformàtics en xarxa
+    "name" => "asix",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "ifc32" => [        // GS Desenvolupament d'aplicacions multiplataforma
+    "name" => "dam",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "ifc33" => [        // GS Desenvolupament d'aplicacions webs
+    "name" => "daw",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "imp11" => [        // FPB Perruqueria i estètica
+    "name" => "imp11",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "imp21" => [        // GM Estètica i bellesa
+    "name" => "imp21",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "imp22" => [        // GM Perruqueria i cosmètica capil·lar
+    "name" => "imp22",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "imp31" => [        // GS Estètica integral i benestar
+    "name" => "imp31",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "imp33" => [        // GS Assessoria d'imatge personal i corporativa
+    "name" => "imp33",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "san22" => [        // GM Farmàcia i parafarmàcia
+    "name" => "san22",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "san23" => [        // GM Cures auxiliars d'infermeria
+    "name" => "san23",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "san31" => [        // GS Anatomia patològica i citodiagnòstic
+    "name" => "san31",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "san32" => [        // GS Dietètica
+    "name" => "san32",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "san36" => [        // GS Laboratori clínic i biomèdic
+    "name" => "san36",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ],
+  "sea21" => [        // GM Emergències i protecció civil
+    "name" => "sea21",
+    "groups" => [
+      "a" => ["teacher" => ["1"], "student" => ["1"]],
+      "b" => ["teacher" => ["2"], "student" => ["2"]],
+      "c" => ["teacher" => [], "student" => ["1","2"]],
+      "f" => ["teacher" => [], "student" => []]
+    ]
+  ]
 ]);
 
 define('SCOPES', implode(' ', array(
