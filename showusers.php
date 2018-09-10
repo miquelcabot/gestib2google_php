@@ -22,6 +22,7 @@
 <body>
 <?php
       $onlywithoutcode = isset($_REQUEST['onlywithoutcode']);
+      $onlynotsession = isset($_REQUEST['onlynotsession']);
 
       $domainusers = readDomainUsers();
       echo "<table><tr>";
@@ -33,19 +34,22 @@
       echo "</tr>";
       $totalusers = 0;
       foreach($domainusers as $key=>$domainuser) {
-          if (!$onlywithoutcode || $domainuser->withoutcode) {
-            echo "<tr>";
-            echo "<td>".$domainuser->id."</td>";
-            echo "<td>".$domainuser->surname.", ".$domainuser->name."</td>";
-            echo "<td>".$domainuser->domainemail."</td>";
-            echo "<td>".($domainuser->teacher?"TEACHER":"")."</td>";
-            echo "<td>";
-            foreach ($domainuser->groups as $group) {
-              echo $group.", ";
+          if (!$onlywithoutcode || ($domainuser->withoutcode || strlen($domainuser->id)<15)) {
+            echo $domainuser->lastLoginTime."<br>";
+            if (!$onlynotsession || (substr($domainuser->lastLoginTime,0,4)=="1970")) {
+              echo "<tr>";
+              echo "<td>".$domainuser->id."</td>";
+              echo "<td>".$domainuser->surname.", ".$domainuser->name."</td>";
+              echo "<td>".$domainuser->domainemail."</td>";
+              echo "<td>".($domainuser->teacher?"TEACHER":"")."</td>";
+              echo "<td>";
+              foreach ($domainuser->groups as $group) {
+                echo $group.", ";
+              }
+              echo "</td>";
+              echo "</tr>";
+              $totalusers++;
             }
-            echo "</td>";
-            echo "</tr>";
-            $totalusers++;
           }
       }
       echo "</table>";

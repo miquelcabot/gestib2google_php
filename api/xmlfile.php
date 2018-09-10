@@ -125,17 +125,18 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
          
         $xmlusers[strval($student['codi'])] = new DomainUser(
             strval($student['codi']),
-            ucwords(mb_strtolower($student['nom'],'UTF-8')), 
-            ucwords(mb_strtolower($student['ap1']." ".$student['ap2'],'UTF-8')),
-            ucwords(mb_strtolower($student['ap1'],'UTF-8')), 
-            ucwords(mb_strtolower($student['ap2'],'UTF-8')), 
+            ucwords(trim(mb_strtolower($student['nom'],'UTF-8'))), 
+            ucwords(trim(mb_strtolower($student['ap1']." ".$student['ap2'],'UTF-8'))),
+            ucwords(trim(mb_strtolower($student['ap1'],'UTF-8'))), 
+            ucwords(trim(mb_strtolower($student['ap2'],'UTF-8'))), 
             NULL,            // domainemail
             FALSE,           // suspended
             FALSE,           // teacher 
             FALSE,           // withoutcode
             $emailsstudent,  // groups
             strval($student['expedient']), // expedient
-            NULL             // organizationalUnit
+            NULL,            // organizationalUnit
+            NULL             // lastLoginTime
         );
     }
     
@@ -159,17 +160,18 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
         
         $xmlusers[strval($teacher['codi'])] = new DomainUser(
             strval($teacher['codi']),
-            ucwords(mb_strtolower($teacher['nom'],'UTF-8')), 
-            ucwords(mb_strtolower($teacher['ap1']." ".$teacher['ap2'],'UTF-8')),
-            ucwords(mb_strtolower($teacher['ap1'],'UTF-8')), 
-            ucwords(mb_strtolower($teacher['ap2'],'UTF-8')), 
+            ucwords(trim(mb_strtolower($teacher['nom'],'UTF-8'))), 
+            ucwords(trim(mb_strtolower($teacher['ap1']." ".$teacher['ap2'],'UTF-8'))),
+            ucwords(trim(mb_strtolower($teacher['ap1'],'UTF-8'))), 
+            ucwords(trim(mb_strtolower($teacher['ap2'],'UTF-8'))), 
             NULL,            // domainemail
             FALSE,           // suspended
             TRUE,            // teacher 
             FALSE,           // withoutcode
             $emailsteacher,  // groups
             NULL,            // expedient
-            NULL             // organizationalUnit
+            NULL,            // organizationalUnit
+            NULL             // lastLoginTime
         );
     }
     return $xmlusers;

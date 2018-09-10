@@ -66,7 +66,8 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                 $xmluser->withoutcode, // withoutcode
                 $xmluser->groups,      // groups
                 NULL,                  // expedient
-                NULL                   // organizationalUnit
+                NULL,                  // organizationalUnit
+                NULL                   // lastLoginTime
                 );
             echo("CREATE --> ".$xmluser."<br>\r\n");
             $contc++;

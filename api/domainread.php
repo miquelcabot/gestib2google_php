@@ -109,7 +109,8 @@ function getDomainUsers($service, $domaingroupsmembers) {
                 $withoutcode,          // withoutcode
                 $member,               // groups
                 NULL,                  // expedient
-                $user['orgUnitPath']   // organizationalUnit
+                $user['orgUnitPath'],  // organizationalUnit
+                $user['lastLoginTime'] // lastLoginTime
               );
         }
     } while ($nextPageToken);

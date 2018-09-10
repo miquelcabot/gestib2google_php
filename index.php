@@ -246,7 +246,13 @@
           <div class="form-group">
               <div class="form-check">
                 <label class="form-check-label"> 
-                <input class="form-check-input" id="onlywithoutcode" name="onlywithoutcode" type="checkbox"> Només els usuaris sense ID</label>
+                  <input class="form-check-input" id="onlywithoutcode" name="onlywithoutcode" type="checkbox"> Només els usuaris sense ID
+                </label>
+              </div>
+              <div class="form-check">
+                <label>
+                  <input class="form-check-input" id="onlynotsession" name="onlynotsession" type="checkbox"> Només els usuaris que no han iniciat mai sessió
+                </label>
               </div>
             </div>
             <input type="submit" value="Mostrar">
