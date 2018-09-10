@@ -107,6 +107,22 @@
               <input class="form-control" id="studentsgroup" name="studentsgroup" type="text" placeholder="Prefix" value="alumnat.">
             </div> -->
             <div class="form-group">
+              <label for="groupstaulausuaris" class="col-sm-2 col-form-label">Grups</label>
+              <div class="col-sm-10">
+                <select class="form-control" id="groupstaulausuaris">
+                  <option value="">Tots</option>
+    <?php
+        foreach ($domaingroups as $group) {
+          if (strpos($group['email'], STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'bat') == 0) {
+            echo('<option value="'.$group['email'].'">'.str_replace("Alumnat ","",$group['name']).'</option>');
+          }
+        }
+        echo('<option value="'.TEACHERS_GROUP_PREFIX.'">Professorat</option>');
+    ?>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
               <div class="form-check">
                 <label class="form-check-label"> 
                 <input class="form-check-input" id="apply" name="apply" type="checkbox"> Aplicar canvis</label>
@@ -171,14 +187,14 @@
           </div>
           <div class="form-group">
               <div class="form-check">
-                <label>
+                <label class="form-check-label">
                   <input class="form-check-input" id="onlynotsession" name="onlynotsession" type="checkbox"> Només els usuaris que no han iniciat mai sessió
                 </label>
               </div>
           </div>  
           <div class="form-group">
               <div class="form-check">
-                <label>
+                <label class="form-check-label">
                   <input class="form-check-input" id="onlywithoutorgunit" name="onlywithoutorgunit" type="checkbox"> Només els usuaris de la Unitat Organitzativa principal (/)
                 </label>
               </div>
