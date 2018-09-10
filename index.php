@@ -37,118 +37,21 @@
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Inici">
-        <a class="nav-link" id="taulalink">
+        <a class="nav-link" id="homelink">
           <i class="fa fa-fw fa-home"></i>
           <span class="nav-link-text">Inici</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="1r ESO">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseESO1" data-parent="#exampleAccordion">
-          <i class="fa fa-fw fa-user"></i>
-          <span class="nav-link-text">1r ESO</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseESO1">
-  <?php
-      foreach ($domaingroups as $group) {
-          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso1') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso1') == 0) {
-              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
-          }
-      }
-  ?>
-        </ul>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="2n ESO">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseESO2" data-parent="#exampleAccordion">
-          <i class="fa fa-fw fa-user"></i>
-          <span class="nav-link-text">2n ESO</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseESO2">
-  <?php
-      foreach ($domaingroups as $group) {
-          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso2') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso2') == 0) {
-              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
-          }
-      }
-  ?>
-        </ul>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="3r ESO">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseESO3" data-parent="#exampleAccordion">
-          <i class="fa fa-fw fa-user"></i>
-          <span class="nav-link-text">3r ESO</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseESO3">
-  <?php
-      foreach ($domaingroups as $group) {
-          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso3') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso3') == 0) {
-              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
-          }
-      }
-  ?>
-        </ul>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="4t ESO">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseESO4" data-parent="#exampleAccordion">
-          <i class="fa fa-fw fa-user"></i>
-          <span class="nav-link-text">4t ESO</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseESO4">
-  <?php
-      foreach ($domaingroups as $group) {
-          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso4') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'eso4') == 0) {
-              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
-          }
-      }
-  ?>
-        </ul>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Batxillerat">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseBatxillerat" data-parent="#exampleAccordion">
-          <i class="fa fa-fw fa-user"></i>
-          <span class="nav-link-text">Batxillerat</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseBatxillerat">
- <?php
-      foreach ($domaingroups as $group) {
-          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'bat') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'bat') == 0) {
-              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
-          }
-      }
-  ?>
-        </ul>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cicles Formatius">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCF" data-parent="#exampleAccordion">
-          <i class="fa fa-fw fa-laptop"></i>
-          <span class="nav-link-text">Cicles Formatius</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseCF">
- <?php
-      foreach ($domaingroups as $group) {
-          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'smx') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'smx') == 0) {
-              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
-          }
-      }
-  ?>
-<?php
-      foreach ($domaingroups as $group) {
-          if (strpos($group['email'], STUDENTS_GROUP_PREFIX.'asix') !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'asix') == 0) {
-              echo('<li><a href="javascript:mostrar('.$group['email'].')">'.str_replace("Alumnat ","",$group['name']).'</a></li>');
-          }
-      }
-  ?>
-        </ul>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Professorat">
-        <a class="nav-link" id="taulalink" href="javascript:mostrar('professorat')">
-          <i class="fa fa-fw fa-graduation-cap"></i>
-          <span class="nav-link-text">Professorat</span>
-        </a>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuaris">
-        <a class="nav-link" id="usuarislink">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuaris del XML">
+        <a class="nav-link" id="usuarisxmllink">
           <i class="fa fa-fw fa-users"></i>
-          <span class="nav-link-text">Usuaris</span>
+          <span class="nav-link-text">Usuaris del XML</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuaris del domini">
+        <a class="nav-link" id="usuarisdominilink">
+          <i class="fa fa-fw fa-users"></i>
+          <span class="nav-link-text">Usuaris del domini</span>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Importar XML">
@@ -244,23 +147,45 @@
         <div class="card-body">
           <form action="showusers.php" method="GET">
           <div class="form-group">
+            <label for="groupsusuarisdomini" class="col-sm-2 col-form-label">Grups</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="groupsusuarisdomini">
+                <option value="">Tots</option>
+  <?php
+      foreach ($domaingroups as $group) {
+        if (strpos($group['email'], STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'bat') == 0) {
+          echo('<option value="'.$group['email'].'">'.str_replace("Alumnat ","",$group['name']).'</option>');
+        }
+      }
+      echo('<option value="'.TEACHERS_GROUP_PREFIX.'">Professorat</option>');
+  ?>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
               <div class="form-check">
                 <label class="form-check-label"> 
                   <input class="form-check-input" id="onlywithoutcode" name="onlywithoutcode" type="checkbox"> Només els usuaris sense ID
                 </label>
               </div>
+          </div>
+          <div class="form-group">
               <div class="form-check">
                 <label>
                   <input class="form-check-input" id="onlynotsession" name="onlynotsession" type="checkbox"> Només els usuaris que no han iniciat mai sessió
                 </label>
               </div>
+          </div>  
+          <div class="form-group">
               <div class="form-check">
                 <label>
                   <input class="form-check-input" id="onlywithoutorgunit" name="onlywithoutorgunit" type="checkbox"> Només els usuaris de la Unitat Organitzativa principal (/)
                 </label>
               </div>
             </div>
+          <div class="form-group">
             <input type="submit" value="Mostrar">
+          </div>
           </form>
         </div>
       </div>
@@ -272,6 +197,25 @@
       <div class="card-header">
         <i class="fa fa-table"></i> Usuaris</div>
       <div class="card-body">
+          <div class="form-group">
+            <label for="groupstaulausuaris" class="col-sm-2 col-form-label">Grups</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="groupstaulausuaris">
+                <option value="">Tots</option>
+  <?php
+      foreach ($domaingroups as $group) {
+        if (strpos($group['email'], STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'bat') == 0) {
+          echo('<option value="'.$group['email'].'">'.str_replace("Alumnat ","",$group['name']).'</option>');
+        }
+      }
+      echo('<option value="'.TEACHERS_GROUP_PREFIX.'">Professorat</option>');
+  ?>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Mostrar">
+          </div>
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
@@ -351,28 +295,31 @@
   <!-- <script src="js/sb-admin-datatables.js"></script> -->
   <script>
     $(document).ready(function(){
-        $("#taulalink").click(function(){
-            $("#importarxml").hide();
+        $("#homelink").click(function(){
+          $("#taulausuaris").show();
+          $("#usuarisxml").hide();
+          $("#usuarisdomini").hide();
+          $("#importarxml").hide();
+        });
+        $("#usuarisxmllink").click(function(){
+            $("#taulausuaris").hide();
+            $("#usuarisxml").show();
             $("#usuarisdomini").hide();
-            $("#taulausuaris").show();
-        });
-        $("#usuarislink").click(function(){
-            $("#taulausuaris").hide();
             $("#importarxml").hide();
-            $("#usuarisdomini").show();
-        });
-        $("#xmllink").click(function(){
+          });
+          $("#usuarisdominilink").click(function(){
             $("#taulausuaris").hide();
+            $("#usuarisxml").hide();
+            $("#usuarisdomini").show();
+            $("#importarxml").hide();
+          });
+          $("#xmllink").click(function(){
+            $("#taulausuaris").hide();
+            $("#usuarisxml").hide();
             $("#usuarisdomini").hide();
             $("#importarxml").show();
         });
     });
-    
-    function mostrar(grup) {
-        $("#importarxml").hide();
-        $("#usuarisdomini").hide();
-        $("#taulausuaris").show();
-    }
   </script>
 </div>
 </body>
