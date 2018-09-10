@@ -254,6 +254,11 @@
                   <input class="form-check-input" id="onlynotsession" name="onlynotsession" type="checkbox"> Només els usuaris que no han iniciat mai sessió
                 </label>
               </div>
+              <div class="form-check">
+                <label>
+                  <input class="form-check-input" id="onlywithoutorgunit" name="onlywithoutorgunit" type="checkbox"> Només els usuaris de la Unitat Organitzativa principal (/)
+                </label>
+              </div>
             </div>
             <input type="submit" value="Mostrar">
           </form>
