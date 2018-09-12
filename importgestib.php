@@ -23,6 +23,8 @@
 <body>
 <?php
     $apply = isset($_REQUEST['apply']);
+    $selectedgroup = isset($_REQUEST['group'])?rtrim($_REQUEST['group'], '.'):'';
+
     if ($_FILES['xmlfile']['error'] == UPLOAD_ERR_OK               //checks for errors
           && is_uploaded_file($_FILES['xmlfile']['tmp_name'])) { //checks that file is uploaded
       $xml = simplexml_load_file($_FILES['xmlfile']['tmp_name']);
@@ -30,7 +32,7 @@
 
       $domainusers = readDomainUsers();
       
-      $cont = applyDomainChanges($xmlusers, $domainusers, $apply);
+      $cont = applyDomainChanges($xmlusers, $domainusers, $apply, $selectedgroup);
 
       if ($apply) {
           echo($cont['deleted']." users have been suspended<br>\r\n");

@@ -24,7 +24,7 @@
       $onlywithoutcode = isset($_REQUEST['onlywithoutcode']);
       $onlynotsession = isset($_REQUEST['onlynotsession']);
       $onlywithoutorgunit = isset($_REQUEST['onlywithoutorgunit']);
-      $selectedgroup = rtrim($_REQUEST['group'], '.');
+      $selectedgroup = isset($_REQUEST['group'])?rtrim($_REQUEST['group'], '.'):'';
 
       $domainusers = readDomainUsers();
       echo "<table><tr>";

@@ -2,26 +2,38 @@
 require_once 'client.php';
 require_once 'domainuser.php';
 
-function deleteDomainUsers($xmlusers, $domainusers, $apply, $service) {
+function deleteDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgroup) {
     $cont = 0;
     echo("Deleting domain users...<br>\r\n");
     foreach ($domainusers as $domainuser) {     // For every domain user
         if (!$domainuser->suspended && !$domainuser->withoutcode) {
             if (!array_key_exists($domainuser->id, $xmlusers)) {
-                echo("SUSPEND --> ".$domainuser."<br>\r\n");
-                $cont++;
-                if ($apply) {
-                    // Suspend domain user
-                    $userObj = new Google_Service_Directory_User(
-                        array(
-                            'suspended' => TRUE
-                        )
-                    );
-                    $service->users->update($domainuser->email(), $userObj);
-                    // Remove from all groups
-                    foreach ($domainuser->groupswithdomain() as $groupwithdomain) {
-                        // https://developers.google.com/admin-sdk/directory/v1/reference/members/delete
-                        $service->members->delete($groupwithdomain, $domainuser->email());
+                if (empty($selectedgroup)) {
+                    $group_ok = TRUE;
+                } else {
+                    $group_ok = FALSE;
+                    foreach ($domainuser->groups as $group) {
+                        if ((strpos($group, $selectedgroup) !== FALSE && strpos($group, $selectedgroup) == 0)) {
+                            $group_ok = TRUE;
+                        }
+                    }
+                }
+                if ($group_ok) {
+                    echo("SUSPEND --> ".$domainuser."<br>\r\n");
+                    $cont++;
+                    if ($apply) {
+                        // Suspend domain user
+                        $userObj = new Google_Service_Directory_User(
+                            array(
+                                'suspended' => TRUE
+                            )
+                        );
+                        $service->users->update($domainuser->email(), $userObj);
+                        // Remove from all groups
+                        foreach ($domainuser->groupswithdomain() as $groupwithdomain) {
+                            // https://developers.google.com/admin-sdk/directory/v1/reference/members/delete
+                            $service->members->delete($groupwithdomain, $domainuser->email());
+                        }
                     }
                 }
             }
@@ -30,7 +42,7 @@ function deleteDomainUsers($xmlusers, $domainusers, $apply, $service) {
     return $cont;
 }
 
-function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
+function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgroup) {
     $contc = 0;
     $conta = 0;
     $contg = 0;
@@ -161,12 +173,12 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service) {
                  "orgunitmodified" => $conto);
 }
 
-function applyDomainChanges($xmlusers, $domainusers, $apply) {
+function applyDomainChanges($xmlusers, $domainusers, $apply, $selectedgroup) {
     $client = getClient();
     $service = new Google_Service_Directory($client);
   
-    $contd = deleteDomainUsers($xmlusers, $domainusers, $apply, $service);
-    $cont = addDomainUsers($xmlusers, $domainusers, $apply, $service);
+    $contd = deleteDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgroup);
+    $cont = addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgroup);
     return array("deleted" => $contd,
                  "created" => $cont['created'],
                  "activated" => $cont['activated'],
