@@ -1,10 +1,10 @@
 <?php
-    include 'login.php';
-    require_once 'api/client.php';
-    require_once 'api/domainuser.php';
-    require_once 'api/xmlfile.php';
-    require_once 'api/domainread.php';
-    require_once 'api/domainoperations.php';
+    include '../login.php';
+    require_once '../api/client.php';
+    require_once '../api/domainuser.php';
+    require_once '../api/xmlfile.php';
+    require_once '../api/domainread.php';
+    require_once '../api/domainoperations.php';
   
     // Echo while every long loop iteration
     while (@ob_end_flush());      
@@ -28,7 +28,7 @@
     $client = getClient();
     $service = new Google_Service_Directory($client);
 
-    $xml = simplexml_load_file("exportacioDadesCentre_borja.xml");
+    $xml = simplexml_load_file("../exportacioDadesCentre1415.xml");
     $xmlusers = readXmlFile($xml);
 
     $domainusers = readDomainUsers();
