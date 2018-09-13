@@ -45,11 +45,12 @@ function deleteDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedg
     return $cont;
 }
 
-function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgroup) {
+function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $service, $selectedgroup) {
     $contc = 0;
     $conta = 0;
-    $contg = 0;
+    $contm = 0;
     $conto = 0;
+    $contg = 0;
   
     echo("Adding domain users...<br>\r\n");
     foreach ($xmlusers as $xmluser) {     // For every XML user
@@ -154,15 +155,17 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgrou
                     NULL,                  // organizationalUnit
                     NULL                   // lastLoginTime
                     );
+                foreach ($xmluser->groupswithprefixadded() as $gr) {
+                    // If grop doesn't exist, we create it
+                    if (!array_key_exists($gr, $domaingroupsmembers)) {
+                        echo("CREATE --> GROUP ".$gr."@".DOMAIN."<br>\r\n");
+                        $contg++;
+                        if (!$apply) {
+                            $domaingroupsmembers[$gr] = [];
+                        }
+                    }      
+                }
                 echo("CREATE --> ".$xmluser."<br>\r\n");
-                /*foreach ($xmluser->groupswithprefixadded() as $gr) {
-                    echo "<br>1".$gr."@".DOMAIN;
-                    $domaingroup = $service->groups->get(array('groupKey' => $gr."@".DOMAIN), array());
-                    echo "<br>2";
-                    echo "--------<br>";
-                    print_r($domaingroup);
-                    echo "--------<br>";
-                }*/
 
                 $contc++;
                 if ($apply) {
@@ -182,12 +185,12 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgrou
                         // Insert all TEACHERS_GROUP_PREFIX,  STUDENTS_GROUP_PREFIX and TUTORS_GROUP_PREFIX groups
                         foreach ($xmluser->groupswithprefixadded() as $gr) {
                             // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
-                          /*  // If grop doesn't exist, we create it
-                            $domaingroup = $service->groups->get(array('groupKey' => $gr."@".DOMAIN));
-                            echo "--------<br>";
-                            print_r($domaingroup);
-                            echo "--------<br>";
-                            // Insert member in group*/
+                            // If grop doesn't exist, we create it
+                            if (!array_key_exists($gr, $domaingroupsmembers)) {
+                                $service->groups->insert($gr."@".DOMAIN);
+                                $domaingroupsmembers[$gr] = [];
+                            }
+                            // Insert member in group
                             $memberObj = new Google_Service_Directory_Member(array(
                                 'email' => $xmluser->email()));
                             $service->members->insert($gr."@".DOMAIN, $memberObj);
@@ -234,26 +237,41 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgrou
                     $creategroups = array_diff($xmluser->groupswithprefixadded(), $domainuser->groupswithprefix());
                     $deletegroups = array_diff($domainuser->groupswithprefix(), $xmluser->groupswithprefixadded());
                     if (!$domainuser->suspended && (count($creategroups)>0 || count($deletegroups)>0)) {
-                        if (count($creategroups)>0) {
-                            echo("CREATE GROUPS --> ".$domainuser->surname.", ".$domainuser->name.
-                                " (".$domainuser->email().") [".implode(", ",$creategroups)."]<br>\r\n");
+                        foreach ($creategroups as $gr) {
+                            // If grop doesn't exist, we create it
+                            if (!array_key_exists($gr, $domaingroupsmembers)) {
+                                echo("CREATE --> GROUP ".$gr."@".DOMAIN."<br>\r\n");
+                                $contg++;
+                                if (!$apply) {
+                                    $domaingroupsmembers[$gr] = [];
+                                }
+                            }
                         }
                         if (count($deletegroups)) {
-                            echo("DELETE GROUPS --> ".$domainuser->surname.", ".$domainuser->name.
+                            echo("DELETE MEMBER --> ".$domainuser->surname.", ".$domainuser->name.
                                 " (".$domainuser->email().") [".implode(", ",$deletegroups)."]<br>\r\n");
                         }
-                        $contg++;
+                        if (count($creategroups)>0) {
+                            echo("INSERT MEMBER --> ".$domainuser->surname.", ".$domainuser->name.
+                                " (".$domainuser->email().") [".implode(", ",$creategroups)."]<br>\r\n");
+                        }
+                        $contm++;
                         if ($apply) {
                             // Actualitzam els grups de l'usuari
-                            $memberObj = new Google_Service_Directory_Member(array(
-                                'email' => $domainuser->email()));
-                            foreach ($creategroups as $gr) {
-                                // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
-                                $service->members->insert($gr."@".DOMAIN, $memberObj);
-                            }
                             foreach ($deletegroups as $gr) {
                                 // https://developers.google.com/admin-sdk/directory/v1/reference/members/delete
                                 $service->members->delete($gr."@".DOMAIN, $domainuser->email());
+                            }
+                            foreach ($creategroups as $gr) {
+                                // If grop doesn't exist, we create it
+                                if (!array_key_exists($gr, $domaingroupsmembers)) {
+                                    $service->groups->insert($gr."@".DOMAIN);
+                                    $domaingroupsmembers[$gr] = [];
+                                }
+                                // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
+                                $memberObj = new Google_Service_Directory_Member(array(
+                                    'email' => $domainuser->email()));
+                                $service->members->insert($gr."@".DOMAIN, $memberObj);
                             }
                         }
                     }
@@ -278,20 +296,22 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgrou
 
     return array("created" => $contc,
                  "activated" => $conta,
-                 "groupsmodified" => $contg,
-                 "orgunitmodified" => $conto);
+                 "membersmodified" => $contm,
+                 "orgunitmodified" => $conto,
+                 "groupsmodified" => $contg);
 }
 
-function applyDomainChanges($xmlusers, $domainusers, $apply, $selectedgroup) {
+function applyDomainChanges($xmlusers, $domainusers, $domaingroupsmembers, $apply, $selectedgroup) {
     $client = getClient();
     $service = new Google_Service_Directory($client);
   
     $contd = deleteDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgroup);
-    $cont = addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgroup);
+    $cont = addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $service, $selectedgroup);
     return array("deleted" => $contd,
                  "created" => $cont['created'],
                  "activated" => $cont['activated'],
-                 "groupsmodified" => $cont['groupsmodified'],
-                 "orgunitmodified" => $cont['orgunitmodified']);
+                 "membersmodified" => $cont['membersmodified'],
+                 "orgunitmodified" => $cont['orgunitmodified'],
+                 "groupsmodified" => $cont['groupsmodified']);
 }
 ?>

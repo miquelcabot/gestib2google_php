@@ -132,6 +132,8 @@ function readDomainUsers() {
     $domaingroupsmembers = getDomainGroupsMembers($service);
     $domainusers = getDomainUsers($service, $domaingroupsmembers);
   
-    return $domainusers;
+    return array(
+        "domainusers" => $domainusers,
+        "domaingroupsmembers" => $domaingroupsmembers);
 }
 ?>

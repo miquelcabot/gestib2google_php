@@ -26,7 +26,8 @@
       $onlywithoutorgunit = isset($_REQUEST['onlywithoutorgunit']);
       $selectedgroup = isset($_REQUEST['group'])?rtrim($_REQUEST['group'], '.'):'';
 
-      $domainusers = readDomainUsers();
+      $readdomainusers = readDomainUsers();
+      $domainusers = $readdomainusers['domainusers'];
       echo "<table><tr>";
       echo "<th>Id</th>";
       echo "<th>Name</th>";
