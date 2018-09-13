@@ -109,7 +109,7 @@
             <div class="form-group">
               <label for="groupstaulausuaris" class="col-sm-2 col-form-label">Grups</label>
               <div class="col-sm-10">
-                <select class="form-control" id="groupstaulausuaris">
+                <select class="form-control" id="groupstaulausuaris" name="group">
                   <option value="">Tots</option>
     <?php
         foreach ($domaingroups as $group) {
@@ -165,7 +165,7 @@
           <div class="form-group">
             <label for="groupsusuarisdomini" class="col-sm-2 col-form-label">Grups</label>
             <div class="col-sm-10">
-              <select class="form-control" id="groupsusuarisdomini">
+              <select class="form-control" id="groupsusuarisdomini" name="group">
                 <option value="">Tots</option>
   <?php
       foreach ($domaingroups as $group) {
@@ -216,7 +216,7 @@
           <div class="form-group">
             <label for="groupstaulausuaris" class="col-sm-2 col-form-label">Grups</label>
             <div class="col-sm-10">
-              <select class="form-control" id="groupstaulausuaris">
+              <select class="form-control" id="groupstaulausuaris" name="group">
                 <option value="">Tots</option>
   <?php
       foreach ($domaingroups as $group) {
