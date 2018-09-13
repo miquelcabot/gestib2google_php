@@ -99,7 +99,7 @@ function getDomainUsers($service, $domaingroupsmembers) {
 
             // Cercam si hi ha IDs duplicats. No n'hi pot haver
             if (array_key_exists($id, $domainusers)) {
-                die("ERROR: duplicated ID in domain: ".$id." (".$user['primaryEmail']." and ".$domainusers[$id]->email().")<br>");
+                die("ERROR: Duplicated ID in domain: ".$id." (".$user['primaryEmail']." and ".$domainusers[$id]->email().")<br>");
             }
 
             $domainusers[$id] = new DomainUser(
