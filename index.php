@@ -292,7 +292,7 @@
         <div class="modal-body">Pitgi "Sortir" si vol finalitzar la sessió actual.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel·lar</button>
-          <a class="btn btn-primary" href="login.php">Sortir</a>
+          <a class="btn btn-primary" href="logout.php">Sortir</a>
         </div>
       </div>
     </div>
