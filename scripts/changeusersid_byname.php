@@ -54,7 +54,7 @@
                     if ($apply) {
                         $userObj = new Google_Service_Directory_User(
                             array(
-                                'orgUnitPath' => '/Alumnat',
+                                'orgUnitPath' => STUDENTS_ORGANIZATIONAL_UNIT,
                                 'externalIds' => array(array("type" => 'organization', "value" => $xmluser->id)),
                             )
                         );

@@ -10,6 +10,9 @@ define('TEACHERS_GROUP_PREFIX', 'ee.');      // For example: 'ee.'
 define('STUDENTS_GROUP_PREFIX', 'alumnat.'); // For example: 'alumnat.'
 define('TUTORS_GROUP_PREFIX', 'tutor.');     // For example: 'tutor.'
 
+define('TEACHERS_ORGANIZATIONAL_UNIT', '/Professorat');      // For example: '/Professorat'
+define('STUDENTS_ORGANIZATIONAL_UNIT', '/Alumnat');          // For example: '/Alumnat'
+
 define('DEPARTMENT_NUMBER_TO_NAME', [
   "544" => "orientacio",     // "Orientació"
   "546" => "plastica",       // "Arts plàstiques"

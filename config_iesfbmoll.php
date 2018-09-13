@@ -10,6 +10,9 @@ define('TEACHERS_GROUP_PREFIX', 'professorat.');  // For example: 'professorat.'
 define('STUDENTS_GROUP_PREFIX', 'alumnat.');      // For example: 'alumnat.'
 define('TUTORS_GROUP_PREFIX', 'tutor.');          // For example: 'tutor.'
 
+define('TEACHERS_ORGANIZATIONAL_UNIT', '/Professorat');      // For example: '/Professorat'
+define('STUDENTS_ORGANIZATIONAL_UNIT', '/Alumnat');          // For example: '/Alumnat'
+
 define('DEPARTMENT_NUMBER_TO_NAME', [
   "597" => "orientacio",                  // Orientació
   "602" => "educaciofisica",              // Educació física i esportiva

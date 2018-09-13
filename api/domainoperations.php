@@ -90,7 +90,7 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgrou
                     $userObj = new Google_Service_Directory_User(array(
                             'primaryEmail' => $xmluser->email(), 
                             'name' => array("givenName" => $xmluser->name, "familyName" => $xmluser->surname), 
-                            'orgUnitPath' => ($xmluser->teacher?'/Professorat':'/Alumnat'),
+                            'orgUnitPath' => ($xmluser->teacher?TEACHERS_ORGANIZATIONAL_UNIT:STUDENTS_ORGANIZATIONAL_UNIT),
                             'externalIds' => array(array("type" => 'organization', "value" => $xmluser->id)),
                             'suspended' => FALSE,
                             'changePasswordAtNextLogin' => TRUE,
@@ -151,14 +151,14 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgrou
                 }
             }
             // Actualitzar unitat organtizativa
-            if ($domainuser->organizationalUnit != ($xmluser->teacher?'/Professorat':'/Alumnat')) {
+            if ($domainuser->organizationalUnit != ($xmluser->teacher?TEACHERS_ORGANIZATIONAL_UNIT:STUDENTS_ORGANIZATIONAL_UNIT)) {
                 echo("CHANGE ORGANIZATIONAL UNIT --> ".$domainuser->surname.", ".$domainuser->name.
-                    " (".$domainuser->email().") [".($xmluser->teacher?'/Professorat':'/Alumnat')."]<br>\r\n");
+                    " (".$domainuser->email().") [".($xmluser->teacher?TEACHERS_ORGANIZATIONAL_UNIT:STUDENTS_ORGANIZATIONAL_UNIT)."]<br>\r\n");
                 $conto++;
                 if ($apply) {
                     $userObj = new Google_Service_Directory_User(
                         array(
-                            'orgUnitPath' => ($xmluser->teacher?'/Professorat':'/Alumnat')
+                            'orgUnitPath' => ($xmluser->teacher?TEACHERS_ORGANIZATIONAL_UNIT:STUDENTS_ORGANIZATIONAL_UNIT)
                         )
                     );
                     $service->users->update($domainuser->email(), $userObj);
