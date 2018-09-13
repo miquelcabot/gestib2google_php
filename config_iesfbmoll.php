@@ -42,154 +42,163 @@ define('FP_GROUP_NAME_CONVERSION', [
   "com21" => [        // GM Activitats comercials
     "name" => "com21",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "com34" => [        // GS Comerç internacional
     "name" => "com34",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "ifc21" => [        // GM Sistemes microinformàtics i xarxes
     "name" => "smx",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "d" => ["teacher" => ["d"], "student" => ["d"]],
+      "e" => ["teacher" => ["e"], "student" => ["e"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "ifc31" => [        // GS Administració de sistemes microinformàtics en xarxa
     "name" => "asix",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "d" => ["teacher" => ["d"], "student" => ["d"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "ifc32" => [        // GS Desenvolupament d'aplicacions multiplataforma
     "name" => "dam",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "ifc33" => [        // GS Desenvolupament d'aplicacions webs
     "name" => "daw",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]],
+      "w" => ["teacher" => ["w"], "student" => ["w"]],
+      "x" => ["teacher" => ["x"], "student" => ["x"]]
     ]
   ],
   "imp11" => [        // FPB Perruqueria i estètica
     "name" => "imp11",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "imp21" => [        // GM Estètica i bellesa
     "name" => "imp21",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "d" => ["teacher" => ["d"], "student" => ["d"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "imp22" => [        // GM Perruqueria i cosmètica capil·lar
     "name" => "imp22",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "imp31" => [        // GS Estètica integral i benestar
     "name" => "imp31",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "imp33" => [        // GS Assessoria d'imatge personal i corporativa
     "name" => "imp33",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "san22" => [        // GM Farmàcia i parafarmàcia
     "name" => "san22",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "d" => ["teacher" => ["d"], "student" => ["d"]],
+      "e" => ["teacher" => ["e"], "student" => ["e"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "san23" => [        // GM Cures auxiliars d'infermeria
     "name" => "san23",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "d" => ["teacher" => ["d"], "student" => ["d"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "san31" => [        // GS Anatomia patològica i citodiagnòstic
     "name" => "san31",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "san32" => [        // GS Dietètica
     "name" => "san32",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "san36" => [        // GS Laboratori clínic i biomèdic
     "name" => "san36",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ],
   "sea21" => [        // GM Emergències i protecció civil
     "name" => "sea21",
     "groups" => [
-      "a" => ["teacher" => ["1"], "student" => ["1"]],
-      "b" => ["teacher" => ["2"], "student" => ["2"]],
-      "c" => ["teacher" => [], "student" => ["1","2"]],
-      "f" => ["teacher" => [], "student" => []]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],
+      "b" => ["teacher" => ["b"], "student" => ["b"]],
+      "c" => ["teacher" => ["c"], "student" => ["c"]],
+      "f" => ["teacher" => ["f"], "student" => ["f"]]
     ]
   ]
 ]);
@@ -204,6 +213,6 @@ define('SCOPES', implode(' ', array(
 date_default_timezone_set('Europe/Madrid');
 
 // Check minimum version: PHP7
-if (intval(mb_substr(phpversion(), 0, 1))<7) {
+if (intval(substr(phpversion(), 0, 1))<7) {
   die("ERROR: Required PHP 7 minimum version");
 }
