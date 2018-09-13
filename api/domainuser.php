@@ -18,7 +18,7 @@ function normalizedName($name) {
     'mac', 'mc', 'van', 'von', 'y', 'i', 'san', 'santa','al','el');
 
   foreach ($tokens as $token) {
-    if (!in_array($token, $especialTokens)) { // If token not in $especialTokens
+    if (!in_array($token, $especialTokens) || (sizeof($tokens)==1 && strlen($token)==1)) { // If token not in $especialTokens
       array_push($names, $token);
     }
   }
