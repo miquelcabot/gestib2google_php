@@ -66,12 +66,12 @@ class DomainUser {
   public function email() {
     if (!empty($this->domainemail)) {
       return $this->domainemail;
-    } elseif ($this->teacher) {
+    } elseif ($this->teacher || LONG_STUDENTS_EMAIL) {  // Long email
       $email = "";
       $email = normalizedname(substr($this->name,0,1)) .
         normalizedname($this->surname1);
       return $email."@".DOMAIN;
-    } else {
+    } else {                                            // Short email
       $email = "";
       $email = normalizedname(substr($this->name,0,1)) .
         normalizedname(substr($this->surname1,0,1)) .

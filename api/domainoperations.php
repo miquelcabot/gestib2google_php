@@ -66,7 +66,7 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgrou
             }
             if ($group_ok) { // Apply only to selected group
                 // Email pot ser repetit, comprovar-ho!!
-                if (!$xmluser->teacher) {  
+                if (!$xmluser->teacher && !LONG_STUDENTS_EMAIL) {  // Short email
                     foreach ($domainusers as $d_user) {
                         // Si hi ha un usuari del domini amb les 3 primeres lletres iguals
                         if (substr($d_user->email(),0,3)===substr($xmluser->email(),0,3)) {
@@ -78,6 +78,65 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgrou
                             }
                         }
                     }
+                } else {        // Long email
+                    // Primer, provam mcabot
+                    $emailok = TRUE;
+                    $newemail = normalizedname(substr($xmluser->name,0,1)) .
+                      normalizedname($xmluser->surname1) . 
+                      "@".DOMAIN;
+                    foreach ($domainusers as $d_user) {
+                      // Si hi ha un usuari del domini amb el mateix email
+                      if ($d_user->email()===$newemail) {
+                        $emailok = FALSE;
+                      }
+                    }
+                    // Segon, provam mcabotn
+                    if (!$emailok && isset($xmluser->surname2) && !empty($xmluser->surname2)) {
+                        $emailok = TRUE;
+                        $newemail = normalizedname(substr($xmluser->name,0,1)) .
+                          normalizedname($xmluser->surname1) . 
+                          normalizedname(substr($xmluser->surname2,0,1)) .
+                          "@".DOMAIN;
+                        foreach ($domainusers as $d_user) {
+                          // Si hi ha un usuari del domini amb el mateix email
+                          if ($d_user->email()===$newemail) {
+                            $emailok = FALSE;
+                          }
+                        }
+                    }
+                    // Tercer, provam mcabotnad
+                    if (!$emailok && isset($xmluser->surname2) && !empty($xmluser->surname2)) {
+                        $emailok = TRUE;
+                        $newemail = normalizedname(substr($xmluser->name,0,1)) .
+                          normalizedname($xmluser->surname1) . 
+                          normalizedname(substr($xmluser->surname2,0,3)) .
+                          "@".DOMAIN;
+                        foreach ($domainusers as $d_user) {
+                          // Si hi ha un usuari del domini amb el mateix email
+                          if ($d_user->email()===$newemail) {
+                            $emailok = FALSE;
+                          }
+                        }
+                    }
+                    // Finalment, mcabot2, mcabot3...
+                    if (!$emailok) {
+                        $emailnumber = 1;
+                        while (!$emailok) {
+                            $emailok = TRUE;
+                            $emailnumber++;
+                            $newemail = normalizedname(substr($xmluser->name,0,1)) .
+                              normalizedname($xmluser->surname1) . 
+                              $emailnumber .
+                              "@".DOMAIN;
+                            foreach ($domainusers as $d_user) {
+                              // Si hi ha un usuari del domini amb el mateix email
+                              if ($d_user->email()===$newemail) {
+                                $emailok = FALSE;
+                              }
+                            }
+                        }
+                    }
+                    $xmluser->domainemail = $newemail;
                 }
                 // Afegim l'usuari que cream al diccionari de usuaris del domini
                 $domainusers[$xmluser->id] = new DomainUser(
@@ -96,6 +155,15 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgrou
                     NULL                   // lastLoginTime
                     );
                 echo("CREATE --> ".$xmluser."<br>\r\n");
+                /*foreach ($xmluser->groupswithprefixadded() as $gr) {
+                    echo "<br>1".$gr."@".DOMAIN;
+                    $domaingroup = $service->groups->get(array('groupKey' => $gr."@".DOMAIN), array());
+                    echo "<br>2";
+                    echo "--------<br>";
+                    print_r($domaingroup);
+                    echo "--------<br>";
+                }*/
+
                 $contc++;
                 if ($apply) {
                     try {
@@ -114,6 +182,12 @@ function addDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgrou
                         // Insert all TEACHERS_GROUP_PREFIX,  STUDENTS_GROUP_PREFIX and TUTORS_GROUP_PREFIX groups
                         foreach ($xmluser->groupswithprefixadded() as $gr) {
                             // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
+                          /*  // If grop doesn't exist, we create it
+                            $domaingroup = $service->groups->get(array('groupKey' => $gr."@".DOMAIN));
+                            echo "--------<br>";
+                            print_r($domaingroup);
+                            echo "--------<br>";
+                            // Insert member in group*/
                             $memberObj = new Google_Service_Directory_Member(array(
                                 'email' => $xmluser->email()));
                             $service->members->insert($gr."@".DOMAIN, $memberObj);
