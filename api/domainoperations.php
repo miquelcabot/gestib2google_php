@@ -70,19 +70,19 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                 if (!$xmluser->teacher && !LONG_STUDENTS_EMAIL) {  // Short email
                     foreach ($domainusers as $d_user) {
                         // Si hi ha un usuari del domini amb les 3 primeres lletres iguals
-                        if (substr($d_user->email(),0,3)===substr($xmluser->email(),0,3)) {
-                            $n_email_dom = intval(substr($d_user->email(),3,5));
-                            $n_email_xml = intval(substr($xmluser->email(),3,5));
+                        if (mb_substr($d_user->email(),0,3)===mb_substr($xmluser->email(),0,3)) {
+                            $n_email_dom = intval(mb_substr($d_user->email(),3,5));
+                            $n_email_xml = intval(mb_substr($xmluser->email(),3,5));
                             if ($n_email_dom>=$n_email_xml) {
                                 $n_email = $n_email_dom+1;
-                                $xmluser->domainemail = substr($xmluser->email(),0,3).str_pad($n_email, 2, '0', STR_PAD_LEFT)."@".DOMAIN;
+                                $xmluser->domainemail = mb_substr($xmluser->email(),0,3).str_pad($n_email, 2, '0', STR_PAD_LEFT)."@".DOMAIN;
                             }
                         }
                     }
                 } else {        // Long email
                     // Primer, provam mcabot
                     $emailok = TRUE;
-                    $newemail = normalizedname(substr($xmluser->name,0,1)) .
+                    $newemail = normalizedname(mb_substr($xmluser->name,0,1)) .
                       normalizedname($xmluser->surname1) . 
                       "@".DOMAIN;
                     foreach ($domainusers as $d_user) {
@@ -94,9 +94,9 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                     // Segon, provam mcabotn
                     if (!$emailok && isset($xmluser->surname2) && !empty($xmluser->surname2)) {
                         $emailok = TRUE;
-                        $newemail = normalizedname(substr($xmluser->name,0,1)) .
+                        $newemail = normalizedname(mb_substr($xmluser->name,0,1)) .
                           normalizedname($xmluser->surname1) . 
-                          normalizedname(substr($xmluser->surname2,0,1)) .
+                          normalizedname(mb_substr($xmluser->surname2,0,1)) .
                           "@".DOMAIN;
                         foreach ($domainusers as $d_user) {
                           // Si hi ha un usuari del domini amb el mateix email
@@ -108,9 +108,9 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                     // Tercer, provam mcabotnad
                     if (!$emailok && isset($xmluser->surname2) && !empty($xmluser->surname2)) {
                         $emailok = TRUE;
-                        $newemail = normalizedname(substr($xmluser->name,0,1)) .
+                        $newemail = normalizedname(mb_substr($xmluser->name,0,1)) .
                           normalizedname($xmluser->surname1) . 
-                          normalizedname(substr($xmluser->surname2,0,3)) .
+                          normalizedname(mb_substr($xmluser->surname2,0,3)) .
                           "@".DOMAIN;
                         foreach ($domainusers as $d_user) {
                           // Si hi ha un usuari del domini amb el mateix email
@@ -125,7 +125,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                         while (!$emailok) {
                             $emailok = TRUE;
                             $emailnumber++;
-                            $newemail = normalizedname(substr($xmluser->name,0,1)) .
+                            $newemail = normalizedname(mb_substr($xmluser->name,0,1)) .
                               normalizedname($xmluser->surname1) . 
                               $emailnumber .
                               "@".DOMAIN;

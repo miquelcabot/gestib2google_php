@@ -5,7 +5,7 @@ function getgroupemails($name, $isstudent, $istutor) {
     $name = mb_strtolower($name,'UTF-8');
     $email = [];
     $curs = filter_var($name, FILTER_SANITIZE_NUMBER_INT); // We get the course from the numbers in the string
-    $grup = substr($name, -1); // We get the group name from the last char of the string
+    $grup = mb_substr($name, -1); // We get the group name from the last char of the string
   
     if ($isstudent) {
         $pre_group = STUDENTS_GROUP_PREFIX;
@@ -125,10 +125,10 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
          
         $xmlusers[strval($student['codi'])] = new DomainUser(
             strval($student['codi']),
-            ucwords(trim(mb_strtolower($student['nom'],'UTF-8'))), 
-            ucwords(trim(mb_strtolower($student['ap1']." ".$student['ap2'],'UTF-8'))),
-            ucwords(trim(mb_strtolower($student['ap1'],'UTF-8'))), 
-            ucwords(trim(mb_strtolower($student['ap2'],'UTF-8'))), 
+            mb_convert_case(trim(mb_strtolower($student['nom'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
+            mb_convert_case(trim(mb_strtolower($student['ap1']." ".$student['ap2'],'UTF-8')), MB_CASE_TITLE, "UTF-8"),
+            mb_convert_case(trim(mb_strtolower($student['ap1'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
+            mb_convert_case(trim(mb_strtolower($student['ap2'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
             NULL,            // domainemail
             FALSE,           // suspended
             FALSE,           // teacher 

@@ -68,14 +68,14 @@ class DomainUser {
       return $this->domainemail;
     } elseif ($this->teacher || LONG_STUDENTS_EMAIL) {  // Long email
       $email = "";
-      $email = normalizedname(substr($this->name,0,1)) .
+      $email = normalizedname(mb_substr($this->name,0,1)) .
         normalizedname($this->surname1);
       return $email."@".DOMAIN;
     } else {                                            // Short email
       $email = "";
-      $email = normalizedname(substr($this->name,0,1)) .
-        normalizedname(substr($this->surname1,0,1)) .
-        normalizedname(substr($this->surname2,0,1));
+      $email = normalizedname(mb_substr($this->name,0,1)) .
+        normalizedname(mb_substr($this->surname1,0,1)) .
+        normalizedname(mb_substr($this->surname2,0,1));
       return $email.str_pad(0, 2, '0', STR_PAD_LEFT)."@".DOMAIN;
     }
   }

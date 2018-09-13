@@ -38,7 +38,7 @@
       $totalusers = 0;
       foreach($domainusers as $key=>$domainuser) {
           if (!$onlywithoutcode || ($domainuser->withoutcode || strlen($domainuser->id)<15)) {
-            if (!$onlynotsession || (substr($domainuser->lastLoginTime,0,4)=="1970")) {
+            if (!$onlynotsession || (mb_substr($domainuser->lastLoginTime,0,4)=="1970")) {
               if (!$onlywithoutorgunit || ($domainuser->organizationalUnit=="/")) {
                 if (empty($selectedgroup)) {
                   $group_ok = TRUE;

@@ -70,6 +70,6 @@ define('SCOPES', implode(' ', array(
 date_default_timezone_set('Europe/Madrid');
 
 // Check minimum version: PHP7
-if (intval(substr(phpversion(), 0, 1))<7) {
+if (intval(mb_substr(phpversion(), 0, 1))<7) {
   die("ERROR: Required PHP 7 minimum version");
 }

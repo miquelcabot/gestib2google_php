@@ -39,8 +39,8 @@
     foreach($domainusers as $key=>$domainuser) {
         $domainid = $domainuser->id;
         $ambid = FALSE;
-        if (substr( strtolower($domainid), 0, 2 ) === "id") {
-            $domainid = substr( strtolower($domainid), 2, 5 );
+        if (mb_substr( strtolower($domainid), 0, 2 ) === "id") {
+            $domainid = mb_substr( strtolower($domainid), 2, 5 );
             $ambid = TRUE;
         }
         $total++;
