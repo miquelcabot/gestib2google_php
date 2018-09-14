@@ -34,10 +34,10 @@ function getgroupemails($name, $isstudent, $istutor) {
                     array_push($email, $pre_group.$fp_converted_name.$group_name);
                 }
             } else {
-                die("ERROR: Group ".$fp_name."-".$grup." not configured as FP_GROUP_NAME_CONVERSION in config.php");
+                echo("WARNING: Group ".$fp_name."-".$grup." not configured as FP_GROUP_NAME_CONVERSION in config.php<br>");
             }
         } else {
-            die("ERROR: Group ".$fp_name." not configured as FP_GROUP_NAME_CONVERSION in config.php");
+            echo("WARNING: Group ".$fp_name." not configured as FP_GROUP_NAME_CONVERSION in config.php<br>");
         }
     }
     
