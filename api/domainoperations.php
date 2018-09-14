@@ -190,8 +190,14 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                                 // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
                                 // If grop doesn't exist, we create it
                                 if (!array_key_exists($gr, $domaingroupsmembers)) {
-                                    $service->groups->insert($gr."@".DOMAIN);
+                                    $groupObj = new Google_Service_Directory_Group(
+                                        array(
+                                            'email' => $gr."@".DOMAIN
+                                        )
+                                    );
+                                    $service->groups->insert($groupObj);
                                     $domaingroupsmembers[$gr] = [];
+                                    sleep(1);
                                 }
                                 // Insert member in group
                                 $memberObj = new Google_Service_Directory_Member(array(
@@ -223,7 +229,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                 }
             }
             if ($group_ok) { // Apply only to selected group
-                if (!$onlyteachers || $domainuser->teacher) {
+                if (!$onlyteachers || $xmluser->teacher || $domainuser->teacher) {
                     if (in_array($domainuser->organizationalUnit, ['/', TEACHERS_ORGANIZATIONAL_UNIT, STUDENTS_ORGANIZATIONAL_UNIT])) {
                         // Apply only to teachers, students and / organizational units
                         if ($domainuser->suspended) {
@@ -270,8 +276,14 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                                 foreach ($creategroups as $gr) {
                                     // If grop doesn't exist, we create it
                                     if (!array_key_exists($gr, $domaingroupsmembers)) {
-                                        $service->groups->insert($gr."@".DOMAIN);
+                                        $groupObj = new Google_Service_Directory_Group(
+                                            array(
+                                                'email' => $gr."@".DOMAIN
+                                            )
+                                        );
+                                        $service->groups->insert($groupObj);
                                         $domaingroupsmembers[$gr] = [];
+                                        sleep(1);
                                     }
                                     // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
                                     $memberObj = new Google_Service_Directory_Member(array(
