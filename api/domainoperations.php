@@ -68,7 +68,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                 }
             }
             if ($group_ok) { // Apply only to selected group
-                if (!$onlyteachers || $domainuser->teacher) {
+                if (!$onlyteachers || $xmluser->teacher) {
                     // Email pot ser repetit, comprovar-ho!!
                     if (!$xmluser->teacher && !LONG_STUDENTS_EMAIL) {  // Short email
                         foreach ($domainusers as $d_user) {

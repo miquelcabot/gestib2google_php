@@ -34,6 +34,7 @@
       echo "<th>Email</th>";
       echo "<th>Teacher</th>";
       echo "<th>Groups</th>";
+      echo "<th>Organizational Unit</th>";
       echo "</tr>";
       $totalusers = 0;
       foreach($domainusers as $key=>$domainuser) {
@@ -61,6 +62,7 @@
                     echo $group.", ";
                   }
                   echo "</td>";
+                  echo "<td>".$domainuser->organizationalUnit."</td>";
                   echo "</tr>";
                   $totalusers++;
                 }
