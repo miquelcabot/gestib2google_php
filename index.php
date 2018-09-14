@@ -125,6 +125,12 @@
             <div class="form-group">
               <div class="form-check">
                 <label class="form-check-label"> 
+                <input class="form-check-input" id="onlyteachers" name="onlyteachers" type="checkbox"> Només professorat</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label"> 
                 <input class="form-check-input" id="apply" name="apply" type="checkbox"> Aplicar canvis</label>
               </div>
             </div>
