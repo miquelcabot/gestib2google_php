@@ -24,6 +24,8 @@
       $onlywithoutcode = isset($_REQUEST['onlywithoutcode']);
       $onlynotsession = isset($_REQUEST['onlynotsession']);
       $onlywithoutorgunit = isset($_REQUEST['onlywithoutorgunit']);
+      $onlyteachers = isset($_REQUEST['onlyteachers']);
+      $onlyactive = isset($_REQUEST['onlyactive']);
       $selectedgroup = isset($_REQUEST['group'])?rtrim($_REQUEST['group'], '.'):'';
 
       $readdomainusers = readDomainUsers();
@@ -41,30 +43,34 @@
           if (!$onlywithoutcode || ($domainuser->withoutcode || strlen($domainuser->id)<15)) {
             if (!$onlynotsession || (mb_substr($domainuser->lastLoginTime,0,4)=="1970")) {
               if (!$onlywithoutorgunit || ($domainuser->organizationalUnit=="/")) {
-                if (empty($selectedgroup)) {
-                  $group_ok = TRUE;
-                } else {
-                  $group_ok = FALSE;
-                  foreach ($domainuser->groups as $group) {
-                    if ((strpos($group, $selectedgroup) !== FALSE && strpos($group, $selectedgroup) == 0)) {
+                if (!$onlyteachers || $domainuser->teacher) {
+                  if (!$onlyactive || !$domainuser->suspended) {
+                    if (empty($selectedgroup)) {
                       $group_ok = TRUE;
+                    } else {
+                      $group_ok = FALSE;
+                      foreach ($domainuser->groups as $group) {
+                        if ((strpos($group, $selectedgroup) !== FALSE && strpos($group, $selectedgroup) == 0)) {
+                          $group_ok = TRUE;
+                        }
+                      }
+                    }
+                    if ($group_ok) {
+                      echo "<tr>";
+                      echo "<td>".$domainuser->id."</td>";
+                      echo "<td>".$domainuser->surname.", ".$domainuser->name."</td>";
+                      echo "<td>".$domainuser->domainemail."</td>";
+                      echo "<td>".($domainuser->teacher?"TEACHER":"")."</td>";
+                      echo "<td>";
+                      foreach ($domainuser->groups as $group) {
+                        echo $group.", ";
+                      }
+                      echo "</td>";
+                      echo "<td>".$domainuser->organizationalUnit."</td>";
+                      echo "</tr>";
+                      $totalusers++;
                     }
                   }
-                }
-                if ($group_ok) {
-                  echo "<tr>";
-                  echo "<td>".$domainuser->id."</td>";
-                  echo "<td>".$domainuser->surname.", ".$domainuser->name."</td>";
-                  echo "<td>".$domainuser->domainemail."</td>";
-                  echo "<td>".($domainuser->teacher?"TEACHER":"")."</td>";
-                  echo "<td>";
-                  foreach ($domainuser->groups as $group) {
-                    echo $group.", ";
-                  }
-                  echo "</td>";
-                  echo "<td>".$domainuser->organizationalUnit."</td>";
-                  echo "</tr>";
-                  $totalusers++;
                 }
               }
             }

@@ -117,7 +117,6 @@
             echo('<option value="'.$group['email'].'">'.str_replace("Alumnat ","",$group['name']).'</option>');
           }
         }
-        echo('<option value="'.TEACHERS_GROUP_PREFIX.'">Professorat</option>');
     ?>
                 </select>
               </div>
@@ -179,10 +178,21 @@
           echo('<option value="'.$group['email'].'">'.str_replace("Alumnat ","",$group['name']).'</option>');
         }
       }
-      echo('<option value="'.TEACHERS_GROUP_PREFIX.'">Professorat</option>');
   ?>
               </select>
             </div>
+          </div>
+          <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label"> 
+                <input class="form-check-input" id="onlyteachers" name="onlyteachers" type="checkbox"> Només professorat</label>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label"> 
+                <input class="form-check-input" id="onlyactive" name="onlyactive" type="checkbox"> Només usuaris actius</label>
+              </div>
           </div>
           <div class="form-group">
               <div class="form-check">
@@ -230,7 +240,6 @@
           echo('<option value="'.$group['email'].'">'.str_replace("Alumnat ","",$group['name']).'</option>');
         }
       }
-      echo('<option value="'.TEACHERS_GROUP_PREFIX.'">Professorat</option>');
   ?>
               </select>
             </div>
