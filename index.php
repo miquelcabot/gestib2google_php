@@ -42,12 +42,6 @@
           <span class="nav-link-text">Inici</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuaris del XML">
-        <a class="nav-link" id="usuarisxmllink">
-          <i class="fa fa-fw fa-users"></i>
-          <span class="nav-link-text">Usuaris del XML</span>
-        </a>
-      </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuaris del domini">
         <a class="nav-link" id="usuarisdominilink">
           <i class="fa fa-fw fa-users"></i>
@@ -181,6 +175,13 @@
   ?>
               </select>
             </div>
+          </div>
+          
+          <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label"> 
+                <input class="form-check-input" id="googlesheet" name="googlesheet" type="checkbox" checked> EXPORTAR A GOOGLE SHEETS</label>
+              </div>
           </div>
           <div class="form-group">
               <div class="form-check">
@@ -328,27 +329,18 @@
     $(document).ready(function(){
         $("#homelink").click(function(){
           $("#taulausuaris").show();
-          $("#usuarisxml").hide();
           $("#usuarisdomini").hide();
           $("#importarxml").hide();
         });
-        $("#usuarisxmllink").click(function(){
-            $("#taulausuaris").hide();
-            $("#usuarisxml").show();
-            $("#usuarisdomini").hide();
-            $("#importarxml").hide();
-          });
-          $("#usuarisdominilink").click(function(){
-            $("#taulausuaris").hide();
-            $("#usuarisxml").hide();
-            $("#usuarisdomini").show();
-            $("#importarxml").hide();
-          });
-          $("#xmllink").click(function(){
-            $("#taulausuaris").hide();
-            $("#usuarisxml").hide();
-            $("#usuarisdomini").hide();
-            $("#importarxml").show();
+        $("#usuarisdominilink").click(function(){
+          $("#taulausuaris").hide();
+          $("#usuarisdomini").show();
+          $("#importarxml").hide();
+        });
+        $("#xmllink").click(function(){
+          $("#taulausuaris").hide();
+          $("#usuarisdomini").hide();
+          $("#importarxml").show();
         });
     });
   </script>

@@ -206,7 +206,8 @@ define('FP_GROUP_NAME_CONVERSION', [
 define('SCOPES', implode(' ', array(
   Google_Service_Directory::ADMIN_DIRECTORY_USER,
   Google_Service_Directory::ADMIN_DIRECTORY_GROUP,
-  Google_Service_Directory::ADMIN_DIRECTORY_ORGUNIT
+  Google_Service_Directory::ADMIN_DIRECTORY_ORGUNIT,
+  Google_Service_Sheets::SPREADSHEETS
   )
 ));
 
