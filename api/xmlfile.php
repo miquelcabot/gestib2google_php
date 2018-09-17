@@ -152,6 +152,8 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
         }
         if (isset($teacher['departament']) && array_key_exists(strval($teacher['departament']), DEPARTMENT_NUMBER_TO_NAME)) {
             array_push($emailsteacher, DEPARTMENT_GROUP_PREFIX.DEPARTMENT_NUMBER_TO_NAME[strval($teacher['departament'])]);
+        } else {
+            echo("WARNING: Teacher ".$teacher['ap1']." ".$teacher['ap2'].", ".$teacher['nom']." doesn't have a department in the XML file<br>");
         }
         // Si és tutor, estarà a l'array associatiu $xmltutors
         if (array_key_exists(strval($teacher['codi']), $xmltutors)) {
