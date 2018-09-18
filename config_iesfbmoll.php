@@ -17,29 +17,29 @@ define('LONG_STUDENTS_EMAIL', TRUE);         // TRUE: jsmith@domain FALSE: jsf00
 
 define('DEPARTMENT_NUMBER_TO_NAME', [
   "597" => "orientacio",                  // Orientació
-  "602" => "educaciofisica",              // Educació física i esportiva
-  "604" => "fisicaiquimica",              // Física i química
-  "605" => "formacioiorientaciolaboral",  // Formació i orientació laboral
-  "611" => "llenguacastellana",           // Llengua castellana i literatura
-  "612" => "llenguacatalana",             // Llengua catalana i literatura
+  "602" => "educaciofisica",              // Educació Física i Esportiva
+  "604" => "fisicaiquimica",              // Física i Química
+  "605" => "formacioiorientaciolaboral",  // Formació i Orientació Laboral
+  "611" => "llenguacastellana",           // Llengua Castellana i Literatura
+  "612" => "llenguacatalana",             // Llengua Catalana i Literatura
   "613" => "matematiques",                // Matemàtiques
   "614" => "musica",                      // Música
   "616" => "tecnologia",                  // Tecnologia
   "618" => "administracio",               // Administració (F.P.)
-  "619" => "comercimarqueting",           // Comerç i màrqueting (F.P.)
-  "621" => "imatgepersonal",              // Imatge personal (F.P.)
-  "622" => "informaticaicomunicacions",   // Informàtica i comunicacions (F.P.)
+  "619" => "comercimarqueting",           // Comerç i Màrqueting (F.P.)
+  "621" => "imatgepersonal",              // Imatge Personal (F.P.)
+  "622" => "informaticaicomunicacions",   // Informàtica i Comunicacions (F.P.)
   "624" => "sanitat",                     // Sanitat (F.P.)
-  "626" => "filosofiaiclassiques",        // Llengües i cultura clàssiques
+  "626" => "filosofiaiclassiques",        // Llengües i Cultura Clàssiques
   "627" => "dibuix",                      // Dibuix i educació plàstica i visual
-  "628" => "biologiaigeologia",           // Biologia i geologia
-  "629" => "llenguesestrangeres",         // Llengües estrangeres
-  "630" => "geografiaihistoria",          // Ciències socials, geografia i història
+  "628" => "biologiaigeologia",           // Biologia i Geologia
+  "629" => "llenguesestrangeres",         // Llengües Estrangeres
+  "630" => "geografiaihistoria",          // Ciències Socials, Geografia i Història
   "5789" => "filosofiaiclassiques",       // Filosofia
 ]);
 
 define('FP_GROUP_NAME_CONVERSION', [
-  "com21" => [        // GM Activitats comercials
+  "com21" => [        // GM Activitats Comercials
     "name" => "com21",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -48,7 +48,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "com34" => [        // GS Comerç internacional
+  "com34" => [        // GS Comerç Internacional
     "name" => "com34",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -57,7 +57,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "ifc21" => [        // GM Sistemes microinformàtics i xarxes
+  "ifc21" => [        // GM Sistemes Microinformàtics i Xarxes
     "name" => "ifc21",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r A
@@ -68,7 +68,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "ifc31" => [        // GS Administració de sistemes microinformàtics en xarxa
+  "ifc31" => [        // GS Administració de Sistemes Microinformàtics en Xarxa
     "name" => "ifc31",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -78,7 +78,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "ifc32" => [        // GS Desenvolupament d'aplicacions multiplataforma
+  "ifc32" => [        // GS Desenvolupament d'Aplicacions Multiplataforma
     "name" => "ifc32",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -87,18 +87,18 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "ifc33" => [        // GS Desenvolupament d'aplicacions webs
+  "ifc33" => [        // GS Desenvolupament d'Aplicacions Web
     "name" => "ifc33",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
       "c" => ["teacher" => [""], "student" => [""]],
       "f" => ["teacher" => [""], "student" => [""]],
-      "w" => ["teacher" => ["w"], "student" => ["w"]],  // 1r dual
-      "x" => ["teacher" => ["x"], "student" => ["x"]]   // 2n dual
+      "w" => ["teacher" => ["w"], "student" => ["w"]],  // 1r DUAL
+      "x" => ["teacher" => ["x"], "student" => ["x"]]   // 2n DUAL
     ]
   ],
-  "imp11" => [        // FPB Perruqueria i estètica
+  "imp11" => [        // FPB Perruqueria i Estètica
     "name" => "imp11",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -107,7 +107,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "imp21" => [        // GM Estètica i bellesa
+  "imp21" => [        // GM Estètica i Bellesa
     "name" => "imp21",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r Matí
@@ -117,7 +117,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "imp22" => [        // GM Perruqueria i cosmètica capil·lar
+  "imp22" => [        // GM Perruqueria i Cosmètica Capil·lar
     "name" => "imp22",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -126,7 +126,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "imp31" => [        // GS Estètica integral i benestar
+  "imp31" => [        // GS Estètica Integral i Benestar
     "name" => "imp31",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -135,7 +135,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "imp33" => [        // GS Assessoria d'imatge personal i corporativa
+  "imp33" => [        // GS Assessoria d'Imatge Personal i Corporativa
     "name" => "imp33",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -144,7 +144,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "san22" => [        // GM Farmàcia i parafarmàcia
+  "san22" => [        // GM Farmàcia i Parafarmàcia
     "name" => "san22",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -155,7 +155,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "san23" => [        // GM Cures auxiliars d'infermeria
+  "san23" => [        // GM Cures Auxiliars d'Infermeria
     "name" => "san23",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r A (Matí)
@@ -165,7 +165,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "san31" => [        // GS Anatomia patològica i citodiagnòstic
+  "san31" => [        // GS Anatomia Patològica i Citodiagnòstic
     "name" => "san31",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -183,7 +183,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "san36" => [        // GS Laboratori clínic i biomèdic
+  "san36" => [        // GS Laboratori Clínic i Biomèdic
     "name" => "san36",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
@@ -192,7 +192,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
-  "sea21" => [        // GM Emergències i protecció civil
+  "sea21" => [        // GM Emergències i Protecció Civil
     "name" => "sea21",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
