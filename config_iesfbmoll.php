@@ -42,163 +42,163 @@ define('FP_GROUP_NAME_CONVERSION', [
   "com21" => [        // GM Activitats comercials
     "name" => "com21",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "com34" => [        // GS Comerç internacional
     "name" => "com34",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "ifc21" => [        // GM Sistemes microinformàtics i xarxes
-    "name" => "smx",
+    "name" => "ifc21",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "d" => ["teacher" => ["d"], "student" => ["d"]],
-      "e" => ["teacher" => ["e"], "student" => ["e"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r A
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 1r B
+      "c" => ["teacher" => ["c"], "student" => ["c"]],  // 2n
+      "d" => ["teacher" => [""], "student" => [""]],
+      "e" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "ifc31" => [        // GS Administració de sistemes microinformàtics en xarxa
-    "name" => "asix",
+    "name" => "ifc31",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "d" => ["teacher" => ["d"], "student" => ["d"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "d" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "ifc32" => [        // GS Desenvolupament d'aplicacions multiplataforma
-    "name" => "dam",
+    "name" => "ifc32",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "ifc33" => [        // GS Desenvolupament d'aplicacions webs
-    "name" => "daw",
+    "name" => "ifc33",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]],
-      "w" => ["teacher" => ["w"], "student" => ["w"]],
-      "x" => ["teacher" => ["x"], "student" => ["x"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]],
+      "w" => ["teacher" => ["w"], "student" => ["w"]],  // 1r dual
+      "x" => ["teacher" => ["x"], "student" => ["x"]]   // 2n dual
     ]
   ],
   "imp11" => [        // FPB Perruqueria i estètica
     "name" => "imp11",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "imp21" => [        // GM Estètica i bellesa
     "name" => "imp21",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "d" => ["teacher" => ["d"], "student" => ["d"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r Matí
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 1r Horabaixa
+      "c" => ["teacher" => ["c"], "student" => ["c"]],  // 2n Matí
+      "d" => ["teacher" => ["d"], "student" => ["d"]],  // 2n Horabaixa
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "imp22" => [        // GM Perruqueria i cosmètica capil·lar
     "name" => "imp22",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "imp31" => [        // GS Estètica integral i benestar
     "name" => "imp31",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "imp33" => [        // GS Assessoria d'imatge personal i corporativa
     "name" => "imp33",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "san22" => [        // GM Farmàcia i parafarmàcia
     "name" => "san22",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "d" => ["teacher" => ["d"], "student" => ["d"]],
-      "e" => ["teacher" => ["e"], "student" => ["e"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "d" => ["teacher" => [""], "student" => [""]],
+      "e" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "san23" => [        // GM Cures auxiliars d'infermeria
     "name" => "san23",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "d" => ["teacher" => ["d"], "student" => ["d"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r A (Matí)
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 1r B (Horabaixa)
+      "c" => ["teacher" => [""], "student" => [""]],
+      "d" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "san31" => [        // GS Anatomia patològica i citodiagnòstic
     "name" => "san31",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "san32" => [        // GS Dietètica
     "name" => "san32",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "san36" => [        // GS Laboratori clínic i biomèdic
     "name" => "san36",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
   "sea21" => [        // GM Emergències i protecció civil
     "name" => "sea21",
     "groups" => [
-      "a" => ["teacher" => ["a"], "student" => ["a"]],
-      "b" => ["teacher" => ["b"], "student" => ["b"]],
-      "c" => ["teacher" => ["c"], "student" => ["c"]],
-      "f" => ["teacher" => ["f"], "student" => ["f"]]
+      "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
+      "c" => ["teacher" => [""], "student" => [""]],
+      "f" => ["teacher" => [""], "student" => [""]]
     ]
   ]
 ]);
