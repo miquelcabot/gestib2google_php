@@ -75,11 +75,15 @@ function readXmlGroups($xmlfile) {
     foreach ($xmlfile->CURSOS->CURS as $curs) {
         foreach ($curs->GRUP as $grup) {
             $xmlgroups[strval($grup['codi'])] = $curs['descripcio']." ".$grup['nom'];
-            if (!array_key_exists(strval($grup['tutor']), $xmltutors)) {
-                $xmltutors[strval($grup['tutor'])] = [];
+            if (!empty($grup['tutor'])) {
+                if (!array_key_exists(strval($grup['tutor']), $xmltutors)) {
+                    $xmltutors[strval($grup['tutor'])] = [];
+                }
+                array_push($xmltutors[strval($grup['tutor'])], $curs['descripcio']." ".$grup['nom']);
+                $xmltutors[strval($grup['tutor'])] = array_unique($xmltutors[strval($grup['tutor'])]);
+            } else {
+                echo("WARNING: Group ".$curs['descripcio']." ".$grup['nom']." doesn't have a tutor in the XML file<br>");
             }
-            array_push($xmltutors[strval($grup['tutor'])], $curs['descripcio']." ".$grup['nom']);
-            $xmltutors[strval($grup['tutor'])] = array_unique($xmltutors[strval($grup['tutor'])]);
             if (!empty($grup['tutor2'])) {
                 if (!array_key_exists(strval($grup['tutor2']), $xmltutors)) {
                     $xmltutors[strval($grup['tutor2'])] = [];
