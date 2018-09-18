@@ -31,7 +31,9 @@ function getgroupemails($name, $isstudent, $istutor) {
                     $group_names =FP_GROUP_NAME_CONVERSION[$fp_name]["groups"][$grup]["teacher"];
                 }
                 foreach ($group_names as $group_name) {
-                    array_push($email, $pre_group.$fp_converted_name.$group_name);
+                    if (isset($group_name) && !empty($group_name)) {    // Si tenim configurat el grup de destí...
+                        array_push($email, $pre_group.$fp_converted_name.$group_name);
+                    }
                 }
             } else {
                 echo("WARNING: Group ".$fp_name."-".$grup." not configured as FP_GROUP_NAME_CONVERSION in config.php<br>");
@@ -127,21 +129,23 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
             $emailsstudent = getgroupemails($xmlgroup, TRUE, FALSE);
         }
          
-        $xmlusers[strval($student['codi'])] = new DomainUser(
-            strval($student['codi']),
-            mb_convert_case(trim(mb_strtolower($student['nom'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
-            mb_convert_case(trim(mb_strtolower($student['ap1']." ".$student['ap2'],'UTF-8')), MB_CASE_TITLE, "UTF-8"),
-            mb_convert_case(trim(mb_strtolower($student['ap1'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
-            mb_convert_case(trim(mb_strtolower($student['ap2'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
-            NULL,            // domainemail
-            FALSE,           // suspended
-            FALSE,           // teacher 
-            FALSE,           // withoutcode
-            $emailsstudent,  // groups
-            strval($student['expedient']), // expedient
-            NULL,            // organizationalUnit
-            NULL             // lastLoginTime
-        );
+        if (!empty($emailsstudent)) { // Si l'estudiant pertany a algún grup
+            $xmlusers[strval($student['codi'])] = new DomainUser(
+                strval($student['codi']),
+                mb_convert_case(trim(mb_strtolower($student['nom'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
+                mb_convert_case(trim(mb_strtolower($student['ap1']." ".$student['ap2'],'UTF-8')), MB_CASE_TITLE, "UTF-8"),
+                mb_convert_case(trim(mb_strtolower($student['ap1'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
+                mb_convert_case(trim(mb_strtolower($student['ap2'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
+                NULL,            // domainemail
+                FALSE,           // suspended
+                FALSE,           // teacher 
+                FALSE,           // withoutcode
+                $emailsstudent,  // groups
+                strval($student['expedient']), // expedient
+                NULL,            // organizationalUnit
+                NULL             // lastLoginTime
+            );
+        }
     }
     
     // Afegim els professors
