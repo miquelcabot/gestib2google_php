@@ -48,6 +48,12 @@
           <span class="nav-link-text">Usuaris del domini</span>
         </a>
       </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Exportar a un full de càlcul">
+        <a class="nav-link" id="fullcalcullink">
+          <i class="fa fa-fw fa-table"></i>
+          <span class="nav-link-text">Exportar a un full de càlcul</span>
+        </a>
+      </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Importar XML">
         <a class="nav-link" id="xmllink">
           <i class="fa fa-fw fa-file"></i>
@@ -180,12 +186,6 @@
           <div class="form-group">
               <div class="form-check">
                 <label class="form-check-label"> 
-                <input class="form-check-input" id="googlesheet" name="googlesheet" type="checkbox" checked> EXPORTAR A GOOGLE SHEETS</label>
-              </div>
-          </div>
-          <div class="form-group">
-              <div class="form-check">
-                <label class="form-check-label"> 
                 <input class="form-check-input" id="onlyteachers" name="onlyteachers" type="checkbox"> Només professorat</label>
               </div>
           </div>
@@ -223,7 +223,24 @@
         </div>
       </div>
     </div>
-    <!-- Fi importar fitxer XML de GestIB -->
+    <!-- Fi Mostrar usuaris del domini-->
+        
+    <!-- Exportar a full de càlcul -->
+    <div id="fullcalcul" style="display: none;">
+      <div class="card mb-3" >
+        <div class="card-header">
+          <i class="fa fa-file"></i> Exportar a un full de càlcul</div>
+        <div class="card-body">
+          <form action="spreadsheet.php" method="GET">
+          
+          <div class="form-group">
+            <input type="submit" value="Exportar">
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Fi Exportar a full de càlcul-->
 
     <!-- Taula usuaris-->
     <div id="taulausuaris" class="card mb-3">
@@ -330,16 +347,25 @@
         $("#homelink").click(function(){
           $("#taulausuaris").show();
           $("#usuarisdomini").hide();
+          $("#fullcalcul").hide();
           $("#importarxml").hide();
         });
         $("#usuarisdominilink").click(function(){
           $("#taulausuaris").hide();
           $("#usuarisdomini").show();
+          $("#fullcalcul").hide();
+          $("#importarxml").hide();
+        });
+        $("#fullcalcullink").click(function(){
+          $("#taulausuaris").hide();
+          $("#usuarisdomini").hide();
+          $("#fullcalcul").show();
           $("#importarxml").hide();
         });
         $("#xmllink").click(function(){
           $("#taulausuaris").hide();
           $("#usuarisdomini").hide();
+          $("#fullcalcul").hide();
           $("#importarxml").show();
         });
     });
