@@ -130,21 +130,30 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
         }
          
         if (!empty($emailsstudent)) { // Si l'estudiant pertany a algún grup
-            $xmlusers[strval($student['codi'])] = new DomainUser(
-                strval($student['codi']),
-                mb_convert_case(trim(mb_strtolower($student['nom'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
-                mb_convert_case(trim(mb_strtolower($student['ap1']." ".$student['ap2'],'UTF-8')), MB_CASE_TITLE, "UTF-8"),
-                mb_convert_case(trim(mb_strtolower($student['ap1'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
-                mb_convert_case(trim(mb_strtolower($student['ap2'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
-                NULL,            // domainemail
-                FALSE,           // suspended
-                FALSE,           // teacher 
-                FALSE,           // withoutcode
-                $emailsstudent,  // groups
-                strval($student['expedient']), // expedient
-                NULL,            // organizationalUnit
-                NULL             // lastLoginTime
-            );
+            // Hi pot haver un estudiant amb dues matrícules
+            // Si ja existeix, actualitzar
+            if (array_key_exists(strval($student['codi']), $xmlusers)) {
+                $xmlusers[strval($student['codi'])]->groups = array_merge(
+                    $xmlusers[strval($student['codi'])]->groups,
+                    $emailsstudent
+                );
+            } else {
+                $xmlusers[strval($student['codi'])] = new DomainUser(
+                    strval($student['codi']),
+                    mb_convert_case(trim(mb_strtolower($student['nom'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
+                    mb_convert_case(trim(mb_strtolower($student['ap1']." ".$student['ap2'],'UTF-8')), MB_CASE_TITLE, "UTF-8"),
+                    mb_convert_case(trim(mb_strtolower($student['ap1'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
+                    mb_convert_case(trim(mb_strtolower($student['ap2'],'UTF-8')), MB_CASE_TITLE, "UTF-8"), 
+                    NULL,            // domainemail
+                    FALSE,           // suspended
+                    FALSE,           // teacher 
+                    FALSE,           // withoutcode
+                    $emailsstudent,  // groups
+                    strval($student['expedient']), // expedient
+                    NULL,            // organizationalUnit
+                    NULL             // lastLoginTime
+                );
+            }
         }
     }
     
