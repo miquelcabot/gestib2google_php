@@ -35,7 +35,7 @@
       $readdomainusers = readDomainUsers();
       $domainusers = $readdomainusers['domainusers'];
       $domaingroupsmembers = $readdomainusers['domaingroupsmembers'];
-      
+
       $cont = applyDomainChanges($xmlusers, $domainusers, $domaingroupsmembers, $apply, $selectedgroup, $onlyteachers);
 
       if ($apply) {

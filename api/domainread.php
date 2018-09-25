@@ -8,20 +8,25 @@ function getDomainGroups() {
     $client = getClient();
     $service = new Google_Service_Directory($client);
 
-    // Print the first 10 users in the domain.
-    $results = $service->groups->listGroups(array('customer' => 'my_customer','maxResults' => 1000000));
-
+    $nextPageToken = NULL;
     $cont = 0;
-    foreach ($results->getGroups() as $group) {
-        $cont++;
-          
-        $domaingroups[str_replace("@".DOMAIN,"",$group->getEMail())] = array (
-                "email" =>   str_replace("@".DOMAIN,"",$group->getEMail()),
-                "id" =>      $group->getId(),
-                "name" =>    $group->getName()
-            );
-    }
-  
+    do {
+        $results = $service->groups->listGroups(array('customer' => 'my_customer',
+                                                      'maxResults' => 200,
+                                                      'pageToken' => $nextPageToken));
+        $nextPageToken = $results->nextPageToken;
+        foreach ($results->getGroups() as $group) {
+            $cont++;
+              
+            $domaingroups[str_replace("@".DOMAIN,"",$group->getEMail())] = array (
+                    "email" =>   str_replace("@".DOMAIN,"",$group->getEMail()),
+                    "id" =>      $group->getId(),
+                    "name" =>    $group->getName()
+                );
+        }
+    } while ($nextPageToken);
+    // FI Carregam els grups 200 a 200, que és el valor màxim de maxResults, paginant la resta
+
     sort($domaingroups);
     return $domaingroups;
 }
@@ -30,29 +35,36 @@ function getDomainGroupsMembers($service) {
     echo("Loading domain groups...<br>\r\n");
     $domaingroupsmembers = [];
 
-    // Print the first 10 users in the domain.
-    $results = $service->groups->listGroups(array('customer' => 'my_customer','maxResults' => 1000000));
-
+    $nextPageToken = NULL;
     $cont = 0;
-    foreach ($results->getGroups() as $group) {
-        $cont++;
-        // We read the members of this group
-        echo("Loading members of '".str_replace("@".DOMAIN,"",$group->getEMail())."' group...<br>\r\n");
-          
-        $membersgroup = [];
-        
-        $resultsGr = $service->members->listMembers($group->getId(), array('maxResults' => 1000000));
-        foreach($resultsGr->getMembers() as $member) {
-            array_push($membersgroup, $member->getEMail());
-        }
+    do {
+        $results = $service->groups->listGroups(array('customer' => 'my_customer',
+                                                      'maxResults' => 200,
+                                                      'pageToken' => $nextPageToken));
+        $nextPageToken = $results->nextPageToken;                                         
 
-        $domaingroupsmembers[str_replace("@".DOMAIN,"",$group->getEMail())] = array (
-                "email" =>   str_replace("@".DOMAIN,"",$group->getEMail()),
-                "id" =>      $group->getId(),
-                "name" =>    $group->getName(),
-                "members" => $membersgroup
-            );
-    }
+        foreach ($results->getGroups() as $group) {
+            $cont++;
+            // We read the members of this group
+            echo("Loading members of '".str_replace("@".DOMAIN,"",$group->getEMail())."' group...<br>\r\n");
+            
+            $membersgroup = [];
+            
+            $resultsGr = $service->members->listMembers($group->getId(), array('maxResults' => 1000000));
+            foreach($resultsGr->getMembers() as $member) {
+                array_push($membersgroup, $member->getEMail());
+            }
+
+            $domaingroupsmembers[str_replace("@".DOMAIN,"",$group->getEMail())] = array (
+                    "email" =>   str_replace("@".DOMAIN,"",$group->getEMail()),
+                    "id" =>      $group->getId(),
+                    "name" =>    $group->getName(),
+                    "members" => $membersgroup
+                );
+        }
+    } while ($nextPageToken);
+    // FI Carregam els grups 200 a 200, que és el valor màxim de maxResults, paginant la resta
+    
     echo($cont." groups loaded<br>\r\n");
   
     ksort($domaingroupsmembers);

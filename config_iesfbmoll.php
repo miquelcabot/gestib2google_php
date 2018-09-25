@@ -75,6 +75,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
       "c" => ["teacher" => [""], "student" => [""]],
       "d" => ["teacher" => [""], "student" => [""]],
+      "e" => ["teacher" => [""], "student" => [""]],
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
