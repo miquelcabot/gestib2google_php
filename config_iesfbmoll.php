@@ -112,9 +112,9 @@ define('FP_GROUP_NAME_CONVERSION', [
     "name" => "imp21",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r Matí
-      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 1r Horabaixa
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 1r Tarda
       "c" => ["teacher" => ["c"], "student" => ["c"]],  // 2n Matí
-      "d" => ["teacher" => ["d"], "student" => ["d"]],  // 2n Horabaixa
+      "d" => ["teacher" => ["d"], "student" => ["d"]],  // 2n Tarda
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -160,7 +160,7 @@ define('FP_GROUP_NAME_CONVERSION', [
     "name" => "san23",
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r A (Matí)
-      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 1r B (Horabaixa)
+      "b" => ["teacher" => ["b"], "student" => ["b"]],  // 1r B (Tarda)
       "c" => ["teacher" => [""], "student" => [""]],
       "d" => ["teacher" => [""], "student" => [""]],
       "f" => ["teacher" => [""], "student" => [""]]
