@@ -137,26 +137,6 @@
           </form>
         </div>
       </div>
-      <div class="card mb-3" >
-          <div class="card-header">
-            <i class="fa fa-table"></i> Resultats de la importació</div>
-          <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" width="100%" cellspacing="0">
-                  <thead>
-                  <tr>
-                    <th>Missatge</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>{{ m.message }}</td>
-                  </tr>
-                  </tbody>
-                </table>
-            </div>
-          </div>
-      </div>
     </div>
     <!-- Fi importar fitxer XML de GestIB -->
 
@@ -164,7 +144,7 @@
 <div id="usuarisdomini" style="display: none;">
       <div class="card mb-3" >
         <div class="card-header">
-          <i class="fa fa-file"></i> Mostrar usuaris del domini</div>
+          <i class="fa fa-users"></i> Mostrar usuaris del domini</div>
         <div class="card-body">
           <form action="showusers.php" method="GET">
           <div class="form-group">
@@ -229,7 +209,7 @@
     <div id="fullcalcul" style="display: none;">
       <div class="card mb-3" >
         <div class="card-header">
-          <i class="fa fa-file"></i> Exportar a un full de càlcul</div>
+          <i class="fa fa-table"></i> Exportar a un full de càlcul</div>
         <div class="card-body">
           <form action="spreadsheet.php" method="GET">
           
@@ -242,63 +222,21 @@
     </div>
     <!-- Fi Exportar a full de càlcul-->
 
-    <!-- Taula usuaris-->
-    <div id="taulausuaris" class="card mb-3">
+    <!-- Inici -->
+    <div id="taulainici" class="card mb-3">
       <div class="card-header">
-        <i class="fa fa-table"></i> Usuaris</div>
+        <i class="fa fa-home"></i> Inici</div>
       <div class="card-body">
-          <div class="form-group">
-            <label for="groupstaulausuaris" class="col-sm-2 col-form-label">Grups</label>
-            <div class="col-sm-10">
-              <select class="form-control" id="groupstaulausuaris" name="group">
-                <option value="">Tots</option>
-  <?php
-      foreach ($domaingroups as $group) {
-        if (strpos($group['email'], STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'bat') == 0) {
-          echo('<option value="'.$group['email'].'">'.str_replace("Alumnat ","",$group['name']).'</option>');
-        }
-      }
-  ?>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <input type="submit" value="Mostrar">
-          </div>
-        <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-            <tr>
-              <th>Llinatges</th>
-              <th>Nom</th>
-              <th>Email</th>
-              <th>Tipus</th>
-              <th>Grups</th>
-            </tr>
-            </thead>
-            <tfoot>
-            <tr>
-              <th>Llinatges</th>
-              <th>Nom</th>
-              <th>Email</th>
-              <th>Tipus</th>
-              <th>Grups</th>
-            </tr>
-            </tfoot>
-            <tbody>
-            <tr>
-              <td>{{ u.surname }}</td>
-              <td>{{ u.name }}</td>
-              <td>{{ u.email }}</td>
-              <td>{{ u.type }}</td>
-              <td>{{ u.groups }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+        <p>Benvingut al programa d'importació de dades del GestIB al domini de Google.</p>
+        <p>El fitxer XML amb les dades del professorat/alumnat s'ha de descarregar del <a href="https://www3.caib.es/xestib/">GestIB</a>, de l'opció de menú "Alumnat --> Exportació dades SGD".</p>
+        <p>S'actualitzaran les dades del professorat i l'alumnat del domini Google <strong><?php echo DOMAIN?></strong>.</p>
+        <p>Només s'actualitzaran els usuaris del domini que estiguin a les unitats organitzatives <strong>"/"</strong>, <strong>"<?php echo TEACHERS_ORGANIZATIONAL_UNIT?>"</strong> i <strong>"<?php echo STUDENTS_ORGANIZATIONAL_UNIT?>"</strong> i tenguin un Employee_ID.</p>
+        <p>Els nous usuaris es crearan amb el password per defecte <strong>"<?php echo DEFAULT_PASSWORD?>"</strong> i l'hauran de canviar el primer pic que entrin.</p>
       </div>
     </div>
   </div>
+  <!-- End inici -->
+  
   <!-- /.container-fluid-->
   <!-- /.content-wrapper-->
   <footer class="sticky-footer">
@@ -345,25 +283,25 @@
   <script>
     $(document).ready(function(){
         $("#homelink").click(function(){
-          $("#taulausuaris").show();
+          $("#taulainici").show();
           $("#usuarisdomini").hide();
           $("#fullcalcul").hide();
           $("#importarxml").hide();
         });
         $("#usuarisdominilink").click(function(){
-          $("#taulausuaris").hide();
+          $("#taulainici").hide();
           $("#usuarisdomini").show();
           $("#fullcalcul").hide();
           $("#importarxml").hide();
         });
         $("#fullcalcullink").click(function(){
-          $("#taulausuaris").hide();
+          $("#taulainici").hide();
           $("#usuarisdomini").hide();
           $("#fullcalcul").show();
           $("#importarxml").hide();
         });
         $("#xmllink").click(function(){
-          $("#taulausuaris").hide();
+          $("#taulainici").hide();
           $("#usuarisdomini").hide();
           $("#fullcalcul").hide();
           $("#importarxml").show();
