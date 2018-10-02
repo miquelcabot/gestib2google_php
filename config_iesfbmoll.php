@@ -44,7 +44,7 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
-      "c" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -63,9 +63,9 @@ define('FP_GROUP_NAME_CONVERSION', [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r A
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 1r B
       "c" => ["teacher" => ["c"], "student" => ["c"]],  // 2n
-      "d" => ["teacher" => [""], "student" => [""]],
-      "e" => ["teacher" => [""], "student" => [""]],
-      "f" => ["teacher" => [""], "student" => [""]]
+      "d" => ["teacher" => ["dist"], "student" => [""]],   // Distància
+      "e" => ["teacher" => [""], "student" => ["fct"]], // FCT
+      "f" => ["teacher" => [""], "student" => ["fct"]]  // FCT
     ]
   ],
   "ifc31" => [        // GS Administració de Sistemes Microinformàtics en Xarxa
@@ -74,8 +74,8 @@ define('FP_GROUP_NAME_CONVERSION', [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
       "c" => ["teacher" => [""], "student" => [""]],
-      "d" => ["teacher" => [""], "student" => [""]],
-      "e" => ["teacher" => [""], "student" => [""]],
+      "d" => ["teacher" => ["dist"], "student" => [""]],   // Distància
+      "e" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -84,7 +84,7 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
-      "c" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -93,7 +93,7 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
-      "c" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]],
       "w" => ["teacher" => ["w"], "student" => ["w"]],  // 1r DUAL
       "x" => ["teacher" => ["x"], "student" => ["x"]]   // 2n DUAL
@@ -104,7 +104,7 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
-      "c" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -115,7 +115,8 @@ define('FP_GROUP_NAME_CONVERSION', [
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 1r Tarda
       "c" => ["teacher" => ["c"], "student" => ["c"]],  // 2n Matí
       "d" => ["teacher" => ["d"], "student" => ["d"]],  // 2n Tarda
-      "f" => ["teacher" => [""], "student" => [""]]
+      "e" => ["teacher" => [""], "student" => ["fct"]], // FCT
+      "f" => ["teacher" => [""], "student" => ["fct"]]  // FCT
     ]
   ],
   "imp22" => [        // GM Perruqueria i Cosmètica Capil·lar
@@ -123,7 +124,7 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
-      "c" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -141,7 +142,7 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
-      "c" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -150,9 +151,9 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
-      "c" => ["teacher" => [""], "student" => [""]],
-      "d" => ["teacher" => [""], "student" => [""]],
-      "e" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
+      "d" => ["teacher" => ["dist"], "student" => [""]],   // Distància
+      "e" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -161,8 +162,8 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r A (Matí)
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 1r B (Tarda)
-      "c" => ["teacher" => [""], "student" => [""]],
-      "d" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
+      "d" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -180,7 +181,7 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
-      "c" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -189,7 +190,7 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
-      "c" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
@@ -198,7 +199,7 @@ define('FP_GROUP_NAME_CONVERSION', [
     "groups" => [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
-      "c" => ["teacher" => [""], "student" => [""]],
+      "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ]
