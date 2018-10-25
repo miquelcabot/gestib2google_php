@@ -31,8 +31,10 @@ function getDomainGroups() {
     return $domaingroups;
 }
 
-function getDomainGroupsMembers($service) {
-    echo("Loading domain groups...<br>\r\n");
+function getDomainGroupsMembers($service, $outputtext=true) {
+    if ($outputtext) {
+        echo("Loading domain groups...<br>\r\n");
+    }
     $domaingroupsmembers = [];
 
     $nextPageToken = NULL;
@@ -46,7 +48,9 @@ function getDomainGroupsMembers($service) {
         foreach ($results->getGroups() as $group) {
             $cont++;
             // We read the members of this group
-            echo("Loading members of '".str_replace("@".DOMAIN,"",$group->getEMail())."' group...<br>\r\n");
+            if ($outputtext) {
+                echo("Loading members of '".str_replace("@".DOMAIN,"",$group->getEMail())."' group...<br>\r\n");
+            }
             
             $membersgroup = [];
             
@@ -65,15 +69,19 @@ function getDomainGroupsMembers($service) {
     } while ($nextPageToken);
     // FI Carregam els grups 200 a 200, que és el valor màxim de maxResults, paginant la resta
     
-    echo($cont." groups loaded<br>\r\n");
+    if ($outputtext) {
+        echo($cont." groups loaded<br>\r\n");
+    }
   
     ksort($domaingroupsmembers);
   
     return $domaingroupsmembers;
 }
 
-function getDomainUsers($service, $domaingroupsmembers) {
-    echo("Loading domain users...<br>\r\n");
+function getDomainUsers($service, $domaingroupsmembers, $outputtext=true) {
+    if ($outputtext) {
+        echo("Loading domain users...<br>\r\n");
+    }
     $domainusers = [];
   
     // INICI Carregam els usuaris 500 a 500, que és el valor màxim de maxResults, paginant la resta
@@ -133,16 +141,18 @@ function getDomainUsers($service, $domaingroupsmembers) {
     } while ($nextPageToken);
     // FI Carregam els usuaris 500 a 500, que és el valor màxim de maxResults, paginant la resta
  
-    echo($cont." users loaded<br>\r\n");
+    if ($outputtext) {
+        echo($cont." users loaded<br>\r\n");
+    }
     return $domainusers;
 }
 
-function readDomainUsers() {
+function readDomainUsers($outputtext=true) {
     $client = getClient();
     $service = new Google_Service_Directory($client);
   
-    $domaingroupsmembers = getDomainGroupsMembers($service);
-    $domainusers = getDomainUsers($service, $domaingroupsmembers);
+    $domaingroupsmembers = getDomainGroupsMembers($service, $outputtext);
+    $domainusers = getDomainUsers($service, $domaingroupsmembers, $outputtext);
   
     return array(
         "domainusers" => $domainusers,
