@@ -238,7 +238,7 @@
           <div class="form-group">
             <label for="groupsusuarisdominicsv" class="col-sm-2 col-form-label">Grups</label>
             <div class="col-sm-10">
-              <select class="form-control" id="groupsusuarisdominicsv" name="group">
+              <select class="form-control" id="groupsusuarisdominicsv" name="groupcsv">
                 <option value="">Tots</option>
   <?php
       foreach ($domaingroups as $group) {
@@ -253,7 +253,7 @@
           <div class="form-group">
             <div class="form-check">
               <label class="form-check-label"> 
-              <input class="form-check-input" id="onlyteachers" name="onlyteachers" type="checkbox"> Només professorat</label>
+              <input class="form-check-input" id="onlyteacherscsv" name="onlyteacherscsv" type="checkbox"> Només professorat</label>
             </div>
           </div>
           <div class="form-group">
