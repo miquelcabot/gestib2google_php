@@ -54,9 +54,15 @@
           <span class="nav-link-text">Exportar a un full de càlcul</span>
         </a>
       </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Exportar a CSV">
+        <a class="nav-link" id="csvlink">
+          <i class="fa fa-fw fa-file-text"></i>
+          <span class="nav-link-text">Exportar a CSV</span>
+        </a>
+      </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Importar XML">
         <a class="nav-link" id="xmllink">
-          <i class="fa fa-fw fa-file"></i>
+          <i class="fa fa-fw fa-file-o"></i>
           <span class="nav-link-text">Importar XML</span>
         </a>
       </li>
@@ -83,7 +89,7 @@
     <div id="importarxml" style="display: none;">
       <div class="card mb-3" >
         <div class="card-header">
-          <i class="fa fa-file"></i> Importar fitxer XML de GestIB</div>
+          <i class="fa fa-file-o"></i> Importar fitxer XML de GestIB</div>
         <div class="card-body">
           <form action="importgestib.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
@@ -222,6 +228,43 @@
     </div>
     <!-- Fi Exportar a full de càlcul-->
 
+    <!-- Exportar a CSV -->
+    <div id="csv" style="display: none;">
+      <div class="card mb-3" >
+        <div class="card-header">
+          <i class="fa fa-file-text"></i> Exportar a CSV</div>
+        <div class="card-body">
+          <form action="csv.php" method="GET">
+          <div class="form-group">
+            <label for="groupsusuarisdominicsv" class="col-sm-2 col-form-label">Grups</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="groupsusuarisdominicsv" name="group">
+                <option value="">Tots</option>
+  <?php
+      foreach ($domaingroups as $group) {
+        if (strpos($group['email'], STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group['email'], STUDENTS_GROUP_PREFIX.'bat') == 0) {
+          echo('<option value="'.$group['email'].'">'.str_replace("Alumnat ","",$group['name']).'</option>');
+        }
+      }
+  ?>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <label class="form-check-label"> 
+              <input class="form-check-input" id="onlyteachers" name="onlyteachers" type="checkbox"> Només professorat</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Exportar">
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Fi Exportar a CSV-->
+
     <!-- Inici -->
     <div id="taulainici" class="card mb-3">
       <div class="card-header">
@@ -286,24 +329,35 @@
           $("#taulainici").show();
           $("#usuarisdomini").hide();
           $("#fullcalcul").hide();
+          $("#csv").hide();
           $("#importarxml").hide();
         });
         $("#usuarisdominilink").click(function(){
           $("#taulainici").hide();
           $("#usuarisdomini").show();
           $("#fullcalcul").hide();
+          $("#csv").hide();
           $("#importarxml").hide();
         });
         $("#fullcalcullink").click(function(){
           $("#taulainici").hide();
           $("#usuarisdomini").hide();
           $("#fullcalcul").show();
+          $("#csv").hide();
+          $("#importarxml").hide();
+        });
+        $("#csvlink").click(function(){
+          $("#taulainici").hide();
+          $("#usuarisdomini").hide();
+          $("#fullcalcul").hide();
+          $("#csv").show();
           $("#importarxml").hide();
         });
         $("#xmllink").click(function(){
           $("#taulainici").hide();
           $("#usuarisdomini").hide();
           $("#fullcalcul").hide();
+          $("#csv").hide();
           $("#importarxml").show();
         });
     });
