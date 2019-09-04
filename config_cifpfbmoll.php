@@ -63,7 +63,9 @@ define('FP_GROUP_NAME_CONVERSION', [
       "c" => ["teacher" => [""], "student" => [""]],
       "d" => ["teacher" => ["dist"], "student" => [""]],   // Distància
       "e" => ["teacher" => [""], "student" => ["fct"]], // FCT
-      "f" => ["teacher" => [""], "student" => [""]]
+      "f" => ["teacher" => [""], "student" => [""]],
+      "w" => ["teacher" => ["w"], "student" => ["w"]],  // 1r DUAL
+      "x" => ["teacher" => ["x"], "student" => ["x"]]   // 2n DUAL
     ]
   ],
   "ifc32" => [        // GS Desenvolupament d'Aplicacions Multiplataforma
