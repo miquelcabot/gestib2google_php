@@ -14,7 +14,7 @@ function removeAccents($str) {
 function normalizedName($name) {
   $tokens = explode(" ",removeAccents(mb_strtolower($name,'UTF-8')));
   $names = [];
-  // Words with compound names and surnames
+  // Paraules amb noms i llinatges composts
   $especialTokens = array('da', 'de', 'di', 'do', 'del', 'la', 'las', 'le', 'los', 
     'mac', 'mc', 'van', 'von', 'y', 'i', 'san', 'santa','al','el');
 
@@ -24,9 +24,9 @@ function normalizedName($name) {
     }
   }
   
-  if (count($names)>=1) { // If name exists (with name or surname)
+  if (count($names)>=1) { // Si el nom existeix (amb nom o llinatge)
     return $names[0];
-  } else {                // If name not exists (without name or surname)
+  } else {                // Si el nom no existeix (sense nom o llinatge)
     return "_";
   }
 }
@@ -67,12 +67,12 @@ class DomainUser {
   public function email() {
     if (!empty($this->domainemail)) {
       return $this->domainemail;
-    } elseif ($this->teacher || LONG_STUDENTS_EMAIL) {  // Long email
+    } elseif ($this->teacher || LONG_STUDENTS_EMAIL) {  // Email llarg
       $email = "";
       $email = normalizedname(mb_substr($this->name,0,1)) .
         normalizedname($this->surname1);
       return $email."@".DOMAIN;
-    } else {                                            // Short email
+    } else {                                            // Email curt
       $email = "";
       $email = normalizedname(mb_substr($this->name,0,1)) .
         normalizedname(mb_substr($this->surname1,0,1)) .

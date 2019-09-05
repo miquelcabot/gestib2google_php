@@ -33,7 +33,7 @@ function getDomainGroups() {
 
 function getDomainGroupsMembers($service, $outputtext=true) {
     if ($outputtext) {
-        echo("Loading domain groups...<br>\r\n");
+        echo("Carregant grups del domini...<br>\r\n");
     }
     $domaingroupsmembers = [];
 
@@ -49,7 +49,7 @@ function getDomainGroupsMembers($service, $outputtext=true) {
             $cont++;
             // We read the members of this group
             if ($outputtext) {
-                echo("Loading members of '".str_replace("@".DOMAIN,"",$group->getEMail())."' group...<br>\r\n");
+                echo("Carregant membres del grup '".str_replace("@".DOMAIN,"",$group->getEMail())."' ...<br>\r\n");
             }
             
             $membersgroup = [];
@@ -70,7 +70,7 @@ function getDomainGroupsMembers($service, $outputtext=true) {
     // FI Carregam els grups 200 a 200, que és el valor màxim de maxResults, paginant la resta
     
     if ($outputtext) {
-        echo($cont." groups loaded<br>\r\n");
+        echo($cont." grups carregats<br>\r\n");
     }
   
     ksort($domaingroupsmembers);
@@ -80,7 +80,7 @@ function getDomainGroupsMembers($service, $outputtext=true) {
 
 function getDomainUsers($service, $domaingroupsmembers, $outputtext=true) {
     if ($outputtext) {
-        echo("Loading domain users...<br>\r\n");
+        echo("Carregant usuaris del domini...<br>\r\n");
     }
     $domainusers = [];
   
@@ -104,7 +104,7 @@ function getDomainUsers($service, $domaingroupsmembers, $outputtext=true) {
                 $id = $user['externalIds'][0]['value'];
             } else {
                 $userWithoutCode++;
-                $id = "WITHOUTCODE".$userWithoutCode;
+                $id = "SENSECODI".$userWithoutCode;
                 $withoutcode = TRUE;
             }
           
@@ -142,7 +142,7 @@ function getDomainUsers($service, $domaingroupsmembers, $outputtext=true) {
     // FI Carregam els usuaris 500 a 500, que és el valor màxim de maxResults, paginant la resta
  
     if ($outputtext) {
-        echo($cont." users loaded<br>\r\n");
+        echo($cont." usuaris carregats<br>\r\n");
     }
     return $domainusers;
 }

@@ -1,6 +1,6 @@
 <?php
 if (!file_exists(__DIR__ . '/config.php')) {
-  die("File config.php doesn't exist");
+  die("El fitxer config.php no existeix");
 }
 
 require_once __DIR__.'/vendor/autoload.php';

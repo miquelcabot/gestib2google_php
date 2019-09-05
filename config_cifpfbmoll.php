@@ -2,16 +2,16 @@
 define('APPLICATION_NAME', 'GestIB to Google');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 
-define('DOMAIN', 'cifpfbmoll.eu');                // For example: 'cifpfbmoll.eu'
-define('DEFAULT_PASSWORD', 'Curs201920');         // For example: '12345678'
+define('DOMAIN', 'cifpfbmoll.eu');                // Per example: 'cifpfbmoll.eu'
+define('DEFAULT_PASSWORD', 'Curs201920');         // Per example: '12345678'
 
-define('DEPARTMENT_GROUP_PREFIX', 'dept.');       // For example: 'dept.'
-define('TEACHERS_GROUP_PREFIX', 'professorat.');  // For example: 'professorat.'
-define('STUDENTS_GROUP_PREFIX', 'alumnat.');      // For example: 'alumnat.'
-define('TUTORS_GROUP_PREFIX', 'tutor.');          // For example: 'tutor.'
+define('DEPARTMENT_GROUP_PREFIX', 'dept.');       // Per example: 'dept.'
+define('TEACHERS_GROUP_PREFIX', 'professorat.');  // Per example: 'professorat.'
+define('STUDENTS_GROUP_PREFIX', 'alumnat.');      // Per example: 'alumnat.'
+define('TUTORS_GROUP_PREFIX', 'tutor.');          // Per example: 'tutor.'
 
-define('TEACHERS_ORGANIZATIONAL_UNIT', '/Professorat');      // For example: '/Professorat'
-define('STUDENTS_ORGANIZATIONAL_UNIT', '/Alumnat');          // For example: '/Alumnat'
+define('TEACHERS_ORGANIZATIONAL_UNIT', '/Professorat');      // Per example: '/Professorat'
+define('STUDENTS_ORGANIZATIONAL_UNIT', '/Alumnat');          // Per example: '/Alumnat'
 
 define('LONG_STUDENTS_EMAIL', TRUE);         // TRUE: jsmith@domain FALSE: jsf00@domain
 

@@ -82,7 +82,7 @@
       
       ksort($sheetusers);
       foreach ($sheetusers as $group => $users) {
-        echo "Writing group '$group' to file<br>";
+        echo "Guardant grup '$group' al fitxer<br>";
         // Ordenam llista alumnes del grup
         usort($users, "cmp");
         // Afegim títols a les columnes
@@ -115,7 +115,7 @@
       ]);
       $service->spreadsheets->batchUpdate($spreadsheetId, $batchUpdateRequest);
       
-      echo "File saved as ... '$filetitle'";
+      echo "Fitxer guardat com a ... '$filetitle'";
       
 ?>
 </body>

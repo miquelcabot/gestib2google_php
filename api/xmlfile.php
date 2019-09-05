@@ -4,8 +4,8 @@ require_once 'domainuser.php';
 function getgroupemails($name, $isstudent, $istutor) {
     $name = mb_strtolower($name,'UTF-8');
     $email = [];
-    $curs = filter_var($name, FILTER_SANITIZE_NUMBER_INT); // We get the course from the numbers in the string
-    $grup = mb_substr($name, -1); // We get the group name from the last char of the string
+    $curs = filter_var($name, FILTER_SANITIZE_NUMBER_INT); // Agafam el curs dels números del string
+    $grup = mb_substr($name, -1); // Agafam el nom del grup del darrer caràcter del string
   
     if ($isstudent) {
         $pre_group = STUDENTS_GROUP_PREFIX;
@@ -36,10 +36,10 @@ function getgroupemails($name, $isstudent, $istutor) {
                     }
                 }
             } else {
-                echo("WARNING: Group ".$fp_name."-".$grup." not configured as FP_GROUP_NAME_CONVERSION in config.php<br>");
+                echo("ATENCIÓ: El grup ".$fp_name."-".$grup." no està configurat a FP_GROUP_NAME_CONVERSION al fitxer config.php<br>");
             }
         } else {
-            echo("WARNING: Group ".$fp_name." not configured as FP_GROUP_NAME_CONVERSION in config.php<br>");
+            echo("ATENCIÓ: El grup ".$fp_name." no està configurat a FP_GROUP_NAME_CONVERSION al fitxer config.php<br>");
         }
     }
     
@@ -68,7 +68,7 @@ function getgroupemails($name, $isstudent, $istutor) {
 }
 
 function readXmlGroups($xmlfile) {
-    echo("Loading XML groups...<br>\r\n");
+    echo("Carregant grups de l'XML...<br>\r\n");
     $xmlgroups = [];
     $xmltutors = [];
     
@@ -82,7 +82,7 @@ function readXmlGroups($xmlfile) {
                 array_push($xmltutors[strval($grup['tutor'])], $curs['descripcio']." ".$grup['nom']);
                 $xmltutors[strval($grup['tutor'])] = array_unique($xmltutors[strval($grup['tutor'])]);
             } else {
-                echo("WARNING: Group ".$curs['descripcio']." ".$grup['nom']." doesn't have a tutor in the XML file<br>");
+                echo("ATENCIÓ: El grup ".$curs['descripcio']." ".$grup['nom']." no té tutor assignat al fitxer XML<br>");
             }
             if (!empty($grup['tutor2'])) {
                 if (!array_key_exists(strval($grup['tutor2']), $xmltutors)) {
@@ -97,7 +97,7 @@ function readXmlGroups($xmlfile) {
 }
 
 function readXmlTimeTable($xmlfile, $xmlgroups) {
-    echo("Loading XML timetable...<br>\r\n");
+    echo("Carregant horari de l'XML...<br>\r\n");
     $xmltimetable = [];
     
     foreach ($xmlfile->HORARIP->SESSIO as $sessio) {
@@ -122,7 +122,7 @@ function readXmlTimeTable($xmlfile, $xmlgroups) {
 }
 
 function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
-    echo("Loading XML users...<br>\r\n");
+    echo("Carregant usuaris de l'XML...<br>\r\n");
     $xmlusers = [];
     
     // Afegim els alumnes
@@ -170,7 +170,7 @@ function readXmlUsers($xmlfile, $xmlgroups, $xmltutors, $xmltimetable) {
         if (isset($teacher['departament']) && array_key_exists(strval($teacher['departament']), DEPARTMENT_NUMBER_TO_NAME)) {
             array_push($emailsteacher, DEPARTMENT_GROUP_PREFIX.DEPARTMENT_NUMBER_TO_NAME[strval($teacher['departament'])]);
         } else {
-            echo("WARNING: Teacher ".$teacher['ap1']." ".$teacher['ap2'].", ".$teacher['nom']." doesn't have a department in the XML file<br>");
+            echo("ATENCIÓ: El professor ".$teacher['ap1']." ".$teacher['ap2'].", ".$teacher['nom']." no té departament assignat al fitxer XML<br>");
         }
         // Si és tutor, estarà a l'array associatiu $xmltutors
         if (array_key_exists(strval($teacher['codi']), $xmltutors)) {

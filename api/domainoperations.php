@@ -4,8 +4,10 @@ require_once 'domainuser.php';
 
 function deleteDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedgroup, $onlyteachers) {
     $cont = 0;
-    echo("Deleting domain users...<br>\r\n");
-    foreach ($domainusers as $domainuser) {     // For every domain user
+    echo("===============================<br>\r\n");
+    echo("ESBORRANT USUARIS DEL DOMINI...<br>\r\n");
+    echo("===============================<br>\r\n");
+    foreach ($domainusers as $domainuser) {     // Per cada usuari del domini
         if (!$domainuser->suspended && !$domainuser->withoutcode) {
             if (!array_key_exists($domainuser->id, $xmlusers)) {
                 if (empty($selectedgroup)) {
@@ -18,45 +20,45 @@ function deleteDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedg
                         }
                     }
                 }
-                // Only users with all the groups of the current DOMAIN (for iesfbmoll.org --> cifpfbmoll.org)
+                // Només usuaris amb tots els grups al DOMAIN actual (Canvi domini de @iesfbmoll.org a DOMAIN)
                 $current_domain = TRUE;
                 foreach ($domainuser->groups as $group) {
                     if (strpos($group, "@iesfbmoll.org") !== FALSE) {
                         $current_domain = FALSE;
                     }
                 }
-                // END Only users with all the groups of the current DOMAIN (for iesfbmoll.org --> cifpfbmoll.org)
-                if ($group_ok) { // Apply only to selected group
+                // END Només usuaris amb tots els grups al DOMAIN actual (Canvi domini de @iesfbmoll.org a DOMAIN)
+                if ($group_ok) { // Aplicar només al grup seleccionat
                     if (!$onlyteachers || $domainuser->teacher) {
                         if (in_array($domainuser->organizationalUnit, ['/', TEACHERS_ORGANIZATIONAL_UNIT, STUDENTS_ORGANIZATIONAL_UNIT])) {
                             if ($current_domain) {
-                                // Apply only to teachers, students and / organizational units
-                                echo("SUSPEND --> ".$domainuser."<br>\r\n");
+                                // Aplicar només les unitats organitzatives 'Professorat', 'Alumnat' i '/'
+                                echo("SUSPENDRE --> ".$domainuser."<br>\r\n");
                                 $cont++;
                                 if ($apply) {
-                                    // Suspend domain user
+                                    // Suspendre l'usuari del domini
                                     $userObj = new Google_Service_Directory_User(
                                         array(
                                             'suspended' => TRUE
                                         )
                                     );
                                     $service->users->update($domainuser->email(), $userObj);
-                                    // Remove from all groups
+                                    // Eliminar tots els grups
                                     foreach ($domainuser->groupswithdomain() as $groupwithdomain) {
                                         // https://developers.google.com/admin-sdk/directory/v1/reference/members/delete
                                         $service->members->delete($groupwithdomain, $domainuser->email());
                                     }
                                 }
-                                // Change domain from @iesfbmoll.org to DOMAIN
+                                // Canvi domini de @iesfbmoll.org a DOMAIN
                                 if (strpos($domainuser->email(), "@iesfbmoll.org") !== FALSE) {
-                                    echo("CHANGE DOMAIN --> ".$domainuser->email()." --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
+                                    echo("CANVIAR DOMINI --> ".$domainuser->email()." --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
                                     if ($apply) {
 // kkkk
                                     }
                                 }
-                                // END Change domain from @iesfbmoll.org to DOMAIN
+                                // END Canvi domini de @iesfbmoll.org a DOMAIN
                             } else {
-                                echo("NOT SUSPEND (iesfbmoll.org user) --> ".$domainuser."<br>\r\n");
+                                echo("NO SUSPENDRE (usuari iesfbmoll.org) --> ".$domainuser."<br>\r\n");
                             }
                         }
                     }
@@ -74,9 +76,11 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
     $conto = 0;
     $contg = 0;
   
-    echo("Adding domain users...<br>\r\n");
-    foreach ($xmlusers as $xmluser) {     // For every XML user
-        if (!array_key_exists($xmluser->id, $domainusers)) {  // It doesn't exists in domain
+    echo("=============================<br>\r\n");
+    echo("AFEGINT USUARIS DEL DOMINI...<br>\r\n");
+    echo("=============================<br>\r\n");
+    foreach ($xmlusers as $xmluser) {     // Per cada usuari de l'XML
+        if (!array_key_exists($xmluser->id, $domainusers)) {  // Si no existeix al domini...
             if (empty($selectedgroup)) {
                 $group_ok = TRUE;
             } else {
@@ -87,7 +91,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                     }
                 }
             }
-            if ($group_ok) { // Apply only to selected group
+            if ($group_ok) { // Aplicar només al grup seleccionat
                 if (!$onlyteachers || $xmluser->teacher) {
                     // Email pot ser repetit, comprovar-ho!!
                     if (!$xmluser->teacher && !LONG_STUDENTS_EMAIL) {  // Short email
@@ -102,7 +106,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                                 }
                             }
                         }
-                    } else {        // Long email
+                    } else {        // Email llarg
                         // Primer, provam mcabot
                         $emailok = TRUE;
                         $newemail = normalizedname(mb_substr($xmluser->name,0,1)) .
@@ -179,21 +183,21 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                         NULL                   // lastLoginTime
                         );
                     foreach ($xmluser->groupswithprefixadded() as $gr) {
-                        // If grop doesn't exist, we create it
+                        // Si el grup no existeix, el cream
                         if (!array_key_exists($gr, $domaingroupsmembers)) {
-                            echo("CREATE --> GROUP ".$gr."@".DOMAIN."<br>\r\n");
+                            echo("CREAR --> GRUP ".$gr."@".DOMAIN."<br>\r\n");
                             $contg++;
                             if (!$apply) {
                                 $domaingroupsmembers[$gr] = [];
                             }
                         }      
                     }
-                    echo("CREATE --> ".$xmluser."<br>\r\n");
+                    echo("CREAR --> ".$xmluser."<br>\r\n");
     
                     $contc++;
                     if ($apply) {
                         try {
-                            // Create domain user
+                            // Crear l'usuari del domini
                             // https://developers.google.com/admin-sdk/reseller/v1/codelab/end-to-end
                             $userObj = new Google_Service_Directory_User(array(
                                     'primaryEmail' => $xmluser->email(), 
@@ -202,13 +206,13 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                                     'externalIds' => array(array("type" => 'organization', "value" => $xmluser->id)),
                                     'suspended' => FALSE,
                                     'changePasswordAtNextLogin' => TRUE,
-                                    'password' => DEFAULT_PASSWORD //Default password
+                                    'password' => DEFAULT_PASSWORD //Password per defecte
                                 ));
                             $service->users->insert($userObj);
-                            // Insert all TEACHERS_GROUP_PREFIX,  STUDENTS_GROUP_PREFIX and TUTORS_GROUP_PREFIX groups
+                            // Insertar tots els grups TEACHERS_GROUP_PREFIX,  STUDENTS_GROUP_PREFIX and TUTORS_GROUP_PREFIX
                             foreach ($xmluser->groupswithprefixadded() as $gr) {
                                 // https://developers.google.com/admin-sdk/directory/v1/reference/members/insert
-                                // If grop doesn't exist, we create it
+                                // Si el grup no existeix, el cream
                                 if (!array_key_exists($gr, $domaingroupsmembers)) {
                                     $groupObj = new Google_Service_Directory_Group(
                                         array(
@@ -219,7 +223,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                                     $domaingroupsmembers[$gr] = [];
                                     sleep(1);
                                 }
-                                // Insert member in group
+                                // Insertar el membre al grup
                                 $memberObj = new Google_Service_Directory_Member(array(
                                     'email' => $xmluser->email()));
                                 $service->members->insert($gr."@".DOMAIN, $memberObj);
@@ -248,15 +252,15 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                     }
                 }
             }
-            if ($group_ok) { // Apply only to selected group
+            if ($group_ok) { // Aplicar només al grup seleccionat
                 if (!$onlyteachers || $xmluser->teacher || $domainuser->teacher) {
                     if (in_array($domainuser->organizationalUnit, ['/', TEACHERS_ORGANIZATIONAL_UNIT, STUDENTS_ORGANIZATIONAL_UNIT])) {
-                        // Apply only to teachers, students and / organizational units
+                        // Aplicar només les unitats organitzatives 'Professorat', 'Alumnat' i '/'
                         if ($domainuser->suspended) {
-                            echo("ACTIVATE --> ".$xmluser."<br>\r\n");
+                            echo("ACTIVAR --> ".$xmluser."<br>\r\n");
                             $conta++;
                             if ($apply) {
-                                // Activate domain user
+                                // Activar l'usuari del domini
                                 $userObj = new Google_Service_Directory_User(array(
                                         'suspended' => FALSE
                                     ));
@@ -269,9 +273,9 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                         $deletegroups = array_diff($domainuser->groupswithprefix(), $xmluser->groupswithprefixadded());
                         if (!$domainuser->suspended && (count($creategroups)>0 || count($deletegroups)>0)) {
                             foreach ($creategroups as $gr) {
-                                // If grop doesn't exist, we create it
+                                // Si el grup no existeix, el cream
                                 if (!array_key_exists($gr, $domaingroupsmembers)) {
-                                    echo("CREATE --> GROUP ".$gr."@".DOMAIN."<br>\r\n");
+                                    echo("CREAR --> GROUP ".$gr."@".DOMAIN."<br>\r\n");
                                     $contg++;
                                     if (!$apply) {
                                         $domaingroupsmembers[$gr] = [];
@@ -279,11 +283,11 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                                 }
                             }
                             if (count($deletegroups)) {
-                                echo("DELETE MEMBER --> ".$domainuser->surname.", ".$domainuser->name.
+                                echo("ESBORRAR MEMBRE --> ".$domainuser->surname.", ".$domainuser->name.
                                     " (".$domainuser->email().") [".implode(", ",$deletegroups)."]<br>\r\n");
                             }
                             if (count($creategroups)>0) {
-                                echo("INSERT MEMBER --> ".$domainuser->surname.", ".$domainuser->name.
+                                echo("AFEGIR MEMBRE --> ".$domainuser->surname.", ".$domainuser->name.
                                     " (".$domainuser->email().") [".implode(", ",$creategroups)."]<br>\r\n");
                             }
                             $contm++;
@@ -294,7 +298,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                                     $service->members->delete($gr."@".DOMAIN, $domainuser->email());
                                 }
                                 foreach ($creategroups as $gr) {
-                                    // If grop doesn't exist, we create it
+                                    // Si el grup no existeix, el cream
                                     if (!array_key_exists($gr, $domaingroupsmembers)) {
                                         $groupObj = new Google_Service_Directory_Group(
                                             array(
@@ -314,7 +318,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                         }
                         // Actualitzar unitat organtizativa
                         if ($domainuser->organizationalUnit != ($xmluser->teacher?TEACHERS_ORGANIZATIONAL_UNIT:STUDENTS_ORGANIZATIONAL_UNIT)) {
-                            echo("CHANGE ORGANIZATIONAL UNIT --> ".$domainuser->surname.", ".$domainuser->name.
+                            echo("CANVIAR UNITAT ORGANITZATIVA --> ".$domainuser->surname.", ".$domainuser->name.
                                 " (".$domainuser->email().") [".($xmluser->teacher?TEACHERS_ORGANIZATIONAL_UNIT:STUDENTS_ORGANIZATIONAL_UNIT)."]<br>\r\n");
                             $conto++;
                             if ($apply) {
@@ -329,14 +333,14 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                     }
                 }
             }
-            // Change domain from @iesfbmoll.org to DOMAIN
+            // Canvi domini de @iesfbmoll.org a DOMAIN
             if (strpos($domainuser->email(), "@iesfbmoll.org") !== FALSE) {
-                echo("CHANGE DOMAIN --> ".$domainuser->email()." --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
+                echo("CANVIAR DOMINI --> ".$domainuser->email()." --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
                 if ($apply) {
     // kkkk
                 }
             }
-            // END Change domain from @iesfbmoll.org to DOMAIN
+            // END Canvi domini de @iesfbmoll.org a DOMAIN
         }
     }
 

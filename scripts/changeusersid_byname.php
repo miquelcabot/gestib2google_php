@@ -42,7 +42,7 @@
             if (removeAccents(mb_strtolower($xmluser->surname,'UTF-8'))==removeAccents(mb_strtolower($domainuser->surname,'UTF-8')) &&
                 removeAccents(mb_strtolower($xmluser->name,'UTF-8'))==removeAccents(mb_strtolower($domainuser->name,'UTF-8'))) { // tenen el mateix nom
                 if ($xmluser->id!=$domainuser->id) {
-                    echo "DOMAIN: ";
+                    echo "DOMINI: ";
                     echo $domainuser->id." - ";
                     echo $domainuser->surname.", ".$domainuser->name." - ";
                     echo $domainuser->domainemail."<br>";
@@ -50,7 +50,7 @@
                     echo $xmluser->expedient." - ";
                     echo $xmluser->surname.", ".$xmluser->name." - ";
                     echo $xmluser->domainemail."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                    echo "NEW ID: ".$xmluser->id."<br>";
+                    echo "NOU ID: ".$xmluser->id."<br>";
                     $contador++;
                     if ($apply) {
                         $userObj = new Google_Service_Directory_User(

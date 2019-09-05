@@ -27,8 +27,8 @@
 
     $selectedgroup = isset($_REQUEST['group'])?rtrim($_REQUEST['group'], '.'):'';
 
-    if ($_FILES['xmlfile']['error'] == UPLOAD_ERR_OK               //checks for errors
-          && is_uploaded_file($_FILES['xmlfile']['tmp_name'])) { //checks that file is uploaded
+    if ($_FILES['xmlfile']['error'] == UPLOAD_ERR_OK               //Comprovar errors
+          && is_uploaded_file($_FILES['xmlfile']['tmp_name'])) { //Comprovar que el fitxer s'ha carregat
       $xml = simplexml_load_file($_FILES['xmlfile']['tmp_name']);
       $xmlusers = readXmlFile($xml);
 
@@ -39,22 +39,22 @@
       $cont = applyDomainChanges($xmlusers, $domainusers, $domaingroupsmembers, $apply, $selectedgroup, $onlyteachers);
 
       if ($apply) {
-          echo($cont['deleted']." users have been suspended<br>\r\n");
-          echo($cont['created']." users have been created<br>\r\n");
-          echo($cont['activated']." users have been activated<br>\r\n");
-          echo($cont['membersmodified']." users have been changed their group membership<br>\r\n");
-          echo($cont['orgunitmodified']." users have been changed their organizational unit<br>\r\n");
-          echo($cont['groupsmodified']." groups have been created<br>\r\n");
+          echo($cont['deleted']." usuaris han estat suspesos<br>\r\n");
+          echo($cont['created']." usuaris han estat creats<br>\r\n");
+          echo($cont['activated']." usuaris han estat activats<br>\r\n");
+          echo($cont['membersmodified']." usuaris han canviat de grup/s<br>\r\n");
+          echo($cont['orgunitmodified']." usuaris han canviat de 'organizational unit'<br>\r\n");
+          echo($cont['groupsmodified']." grups han estat creats<br>\r\n");
       } else {
-          echo($cont['deleted']." users will be suspended<br>\r\n");
-          echo($cont['created']." users will be created<br>\r\n");
-          echo($cont['activated']." users will be activated<br>\r\n");
-          echo($cont['membersmodified']." users will change their group membership<br>\r\n"); 
-          echo($cont['orgunitmodified']." users will change their organizational unit<br>\r\n"); 
-          echo($cont['groupsmodified']." groups will be created<br>\r\n"); 
+          echo($cont['deleted']." usuaris seran suspesos<br>\r\n");
+          echo($cont['created']." usuaris seran creats<br>\r\n");
+          echo($cont['activated']." usuaris seran activats<br>\r\n");
+          echo($cont['membersmodified']." usuaris canviaran de grup/s<br>\r\n"); 
+          echo($cont['orgunitmodified']." usuaris canviaran de 'organizational unit'<br>\r\n"); 
+          echo($cont['groupsmodified']." grups seran creats<br>\r\n"); 
       }
     } else {
-      echo("Error uploading file...<br>");
+      echo("Error carregant el fitxer...<br>");
     }
 ?>
 </body>
