@@ -51,9 +51,14 @@ function deleteDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedg
                                 }
                                 // Canvi domini de @iesfbmoll.org a DOMAIN
                                 if (strpos($domainuser->email(), "@iesfbmoll.org") !== FALSE) {
-                                    echo("CANVIAR DOMINI --> ".$domainuser->email()." --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
+                                    echo("CANVIAR DOMINI --> ".$domainuser->surname.", ".$domainuser->name.
+                                    " (".$domainuser->email().") --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
                                     if ($apply) {
-// kkkk
+                                        // Canviam el mail de @iesfbmoll.org a DOMAIN
+                                        $userObj = new Google_Service_Directory_User(array(
+                                            'primaryEmail' => str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())
+                                        ));
+                                        $service->users->update($domainuser->email(), $userObj);
                                     }
                                 }
                                 // END Canvi domini de @iesfbmoll.org a DOMAIN
@@ -335,9 +340,14 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
             }
             // Canvi domini de @iesfbmoll.org a DOMAIN
             if (strpos($domainuser->email(), "@iesfbmoll.org") !== FALSE) {
-                echo("CANVIAR DOMINI --> ".$domainuser->email()." --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
+                echo("CANVIAR DOMINI --> ".$domainuser->surname.", ".$domainuser->name.
+                " (".$domainuser->email().") --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
                 if ($apply) {
-    // kkkk
+                    // Canviam el mail de @iesfbmoll.org a DOMAIN
+                    $userObj = new Google_Service_Directory_User(array(
+                        'primaryEmail' => str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())
+                    ));
+                    $service->users->update($domainuser->email(), $userObj);
                 }
             }
             // END Canvi domini de @iesfbmoll.org a DOMAIN
