@@ -1,14 +1,14 @@
 # gestib2google
-GestIB XML to Google domain conversion
+Conversió de fitxer XML del GestIB al domini de Google
 
-## Requirements
-Requirements: 
-* A web server with [PHP 7.0](http://www.php.net/) support.
-* Google API libraries. You can install it with the following command:
+## Requisits
+Requisits: 
+* Un servidor web amb suport per [PHP 7.0](http://www.php.net/).
+* Llibreries Google API. Es poden instal·lar amb la següent instrucció:
 ```
 $ php composer.phar require google/apiclient:^2.0
 ```
-* Create authorization credentials following [these link](https://console.developers.google.com) and copy **client_secret.json** generated file at application rout folder.
+* Crear credencials d'autorització (authorization credentials) seguint [aquest enllaç](https://console.developers.google.com) i copiar el fitxer generat **client_secret.json** a la carpeta arrel de l'aplicació.
 
 ## Credits
-Based on Start Bootstrap SB Admin theme. [Link](https://github.com/BlackrockDigital/startbootstrap-sb-admin/)
+Basat en el tema Start Bootstrap SB Admin. [Link](https://github.com/BlackrockDigital/startbootstrap-sb-admin/)

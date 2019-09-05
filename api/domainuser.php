@@ -111,7 +111,7 @@ class DomainUser {
   }
 
   public function __toString() {
-    return ($this->teacher?"TEACHER: ":"STUDENT: ").$this->surname.", ".$this->name.
+    return ($this->teacher?"PROFESSOR: ":"ESTUDIANT: ").$this->surname.", ".$this->name.
       " (".$this->email().") [".implode(", ",$this->groups)."]";
   }
 }
