@@ -18,25 +18,45 @@ function deleteDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedg
                         }
                     }
                 }
+                // Only users with all the groups of the current DOMAIN (for iesfbmoll.org --> cifpfbmoll.org)
+                $current_domain = TRUE;
+                foreach ($domainuser->groups as $group) {
+                    if (strpos($group, "@iesfbmoll.org") !== FALSE) {
+                        $current_domain = FALSE;
+                    }
+                }
+                // END Only users with all the groups of the current DOMAIN (for iesfbmoll.org --> cifpfbmoll.org)
                 if ($group_ok) { // Apply only to selected group
                     if (!$onlyteachers || $domainuser->teacher) {
                         if (in_array($domainuser->organizationalUnit, ['/', TEACHERS_ORGANIZATIONAL_UNIT, STUDENTS_ORGANIZATIONAL_UNIT])) {
-                            // Apply only to teachers, students and / organizational units
-                            echo("SUSPEND --> ".$domainuser."<br>\r\n");
-                            $cont++;
-                            if ($apply) {
-                                // Suspend domain user
-                                $userObj = new Google_Service_Directory_User(
-                                    array(
-                                        'suspended' => TRUE
-                                    )
-                                );
-                                $service->users->update($domainuser->email(), $userObj);
-                                // Remove from all groups
-                                foreach ($domainuser->groupswithdomain() as $groupwithdomain) {
-                                    // https://developers.google.com/admin-sdk/directory/v1/reference/members/delete
-                                    $service->members->delete($groupwithdomain, $domainuser->email());
+                            if ($current_domain) {
+                                // Apply only to teachers, students and / organizational units
+                                echo("SUSPEND --> ".$domainuser."<br>\r\n");
+                                $cont++;
+                                if ($apply) {
+                                    // Suspend domain user
+                                    $userObj = new Google_Service_Directory_User(
+                                        array(
+                                            'suspended' => TRUE
+                                        )
+                                    );
+                                    $service->users->update($domainuser->email(), $userObj);
+                                    // Remove from all groups
+                                    foreach ($domainuser->groupswithdomain() as $groupwithdomain) {
+                                        // https://developers.google.com/admin-sdk/directory/v1/reference/members/delete
+                                        $service->members->delete($groupwithdomain, $domainuser->email());
+                                    }
                                 }
+                                // Change domain from @iesfbmoll.org to DOMAIN
+                                if (strpos($domainuser->email(), "@iesfbmoll.org") !== FALSE) {
+                                    echo("CHANGE DOMAIN --> ".$domainuser->email()." --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
+                                    if ($apply) {
+// kkkk
+                                    }
+                                }
+                                // END Change domain from @iesfbmoll.org to DOMAIN
+                            } else {
+                                echo("NOT SUSPEND (iesfbmoll.org user) --> ".$domainuser."<br>\r\n");
                             }
                         }
                     }
@@ -309,6 +329,14 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                     }
                 }
             }
+            // Change domain from @iesfbmoll.org to DOMAIN
+            if (strpos($domainuser->email(), "@iesfbmoll.org") !== FALSE) {
+                echo("CHANGE DOMAIN --> ".$domainuser->email()." --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
+                if ($apply) {
+    // kkkk
+                }
+            }
+            // END Change domain from @iesfbmoll.org to DOMAIN
         }
     }
 
