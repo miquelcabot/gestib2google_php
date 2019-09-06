@@ -21,7 +21,7 @@ define('DEPARTMENT_NUMBER_TO_NAME', [
   "618" => "administracio",               // Administració (F.P.)
   "619" => "comercimarqueting",           // Comerç i Màrqueting (F.P.)
   "621" => "imatgepersonal",              // Imatge Personal (F.P.)
-  "622" => "informaticaicomunicacions",   // Informàtica i Comunicacions (F.P.)
+  "622" => "informatica",                 // Informàtica i Comunicacions (F.P.)
   "624" => "sanitat",                     // Sanitat (F.P.)
 ]);
 
