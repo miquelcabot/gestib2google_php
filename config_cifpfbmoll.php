@@ -16,13 +16,12 @@ define('STUDENTS_ORGANIZATIONAL_UNIT', '/Alumnat');          // Per example: '/A
 define('LONG_STUDENTS_EMAIL', TRUE);         // TRUE: jsmith@domain FALSE: jsf00@domain
 
 define('DEPARTMENT_NUMBER_TO_NAME', [
-  "597" => "orientacio",                  // Orientació
-  "605" => "formacioiorientaciolaboral",  // Formació i Orientació Laboral
-  "618" => "administracio",               // Administració (F.P.)
-  "619" => "comercimarqueting",           // Comerç i Màrqueting (F.P.)
-  "621" => "imatgepersonal",              // Imatge Personal (F.P.)
-  "622" => "informatica",                 // Informàtica i Comunicacions (F.P.)
-  "624" => "sanitat",                     // Sanitat (F.P.)
+  "7310" => "orientacio",                  // Orientació
+  "7313" => "formacioiorientaciolaboral",  // Formació i Orientació Laboral
+  "7314" => "comercimarqueting",           // Comerç i Màrqueting (F.P.)
+  "7312" => "imatgepersonal",              // Imatge Personal (F.P.)
+  "7315" => "informatica",                 // Informàtica i Comunicacions (F.P.)
+  "7311" => "sanitat",                     // Sanitat (F.P.)
 ]);
 
 define('FP_GROUP_NAME_CONVERSION', [
