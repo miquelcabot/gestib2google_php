@@ -53,15 +53,13 @@
       foreach($domainusers as $key=>$domainuser) {
           foreach ($domainuser->groups as $group) {
             if (!$domainuser->suspended && (strpos($group, STUDENTS_GROUP_PREFIX) !== FALSE && strpos($group,  STUDENTS_GROUP_PREFIX) == 0)) {
-              if (strpos($group, "@iesfbmoll.org") === FALSE) {  // Només usuaris del domini actual (Canvi domini de @iesfbmoll.org a DOMAIN)
-                if (!array_key_exists($group, $sheetusers)) {
-                  $sheetusers[$group] = [];
-                }
-                array_push($sheetusers[$group], [
-                  $domainuser->surname.", ".$domainuser->name,
-                  $domainuser->domainemail
-                ]);
+              if (!array_key_exists($group, $sheetusers)) {
+                $sheetusers[$group] = [];
               }
+              array_push($sheetusers[$group], [
+                $domainuser->surname.", ".$domainuser->name,
+                $domainuser->domainemail
+              ]);
             }
           }
           if (!$domainuser->suspended && $domainuser->teacher) {

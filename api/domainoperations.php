@@ -20,18 +20,16 @@ function deleteDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedg
                         }
                     }
                 }
-                // Només usuaris amb tots els grups al DOMAIN actual (Canvi domini de @iesfbmoll.org a DOMAIN)
-                $current_domain = TRUE;
-                foreach ($domainuser->groups as $group) {
-                    if (strpos($group, "@iesfbmoll.org") !== FALSE) {
-                        $current_domain = FALSE;
-                    }
-                }
-                // END Només usuaris amb tots els grups al DOMAIN actual (Canvi domini de @iesfbmoll.org a DOMAIN)
                 if ($group_ok) { // Aplicar només al grup seleccionat
                     if (!$onlyteachers || $domainuser->teacher) {
                         if (in_array($domainuser->organizationalUnit, ['/', TEACHERS_ORGANIZATIONAL_UNIT, STUDENTS_ORGANIZATIONAL_UNIT])) {
-                            if ($current_domain) {
+
+                            // No eliminam professors del @iesfbmoll.org
+                            if (in_array($domainuser->organizationalUnit, ['/', TEACHERS_ORGANIZATIONAL_UNIT]) && strpos($domainuser->email(),"@iesfbmoll.org")) {
+                                // No fer res.
+                                // No eliminam professors del @iesfbmoll.org
+                            } else {
+
                                 // Aplicar només les unitats organitzatives 'Professorat', 'Alumnat' i '/'
                                 echo("SUSPENDRE --> ".$domainuser."<br>\r\n");
                                 $cont++;
@@ -49,21 +47,7 @@ function deleteDomainUsers($xmlusers, $domainusers, $apply, $service, $selectedg
                                         $service->members->delete($groupwithdomain, $domainuser->email());
                                     }
                                 }
-                                // Canvi domini de @iesfbmoll.org a DOMAIN
-                                if (strpos($domainuser->email(), "@iesfbmoll.org") !== FALSE) {
-                                    echo("CANVIAR DOMINI --> ".$domainuser->surname.", ".$domainuser->name.
-                                    " (".$domainuser->email().") --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
-                                    if ($apply) {
-                                        // Canviam el mail de @iesfbmoll.org a DOMAIN
-                                        $userObj = new Google_Service_Directory_User(array(
-                                            'primaryEmail' => str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())
-                                        ));
-                                        $service->users->update($domainuser->email(), $userObj);
-                                    }
-                                }
-                                // END Canvi domini de @iesfbmoll.org a DOMAIN
-                            } else {
-                                echo("NO SUSPENDRE (usuari iesfbmoll.org) --> ".$domainuser."<br>\r\n");
+                                
                             }
                         }
                     }
@@ -338,19 +322,6 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                     }
                 }
             }
-            // Canvi domini de @iesfbmoll.org a DOMAIN
-            if (strpos($domainuser->email(), "@iesfbmoll.org") !== FALSE) {
-                echo("CANVIAR DOMINI --> ".$domainuser->surname.", ".$domainuser->name.
-                " (".$domainuser->email().") --> ".str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())."<br>\r\n");
-                if ($apply) {
-                    // Canviam el mail de @iesfbmoll.org a DOMAIN
-                    $userObj = new Google_Service_Directory_User(array(
-                        'primaryEmail' => str_replace("@iesfbmoll.org","@".DOMAIN,$domainuser->email())
-                    ));
-                    $service->users->update($domainuser->email(), $userObj);
-                }
-            }
-            // END Canvi domini de @iesfbmoll.org a DOMAIN
         }
     }
 
