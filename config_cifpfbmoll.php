@@ -60,8 +60,8 @@ define('FP_GROUP_NAME_CONVERSION', [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
       "c" => ["teacher" => [""], "student" => [""]],
-      "d" => ["teacher" => ["dist"], "student" => [""]],   // Distància
-      "e" => ["teacher" => [""], "student" => ["fct"]], // FCT
+      "d" => ["teacher" => ["dist"], "student" => ["fct"]], // Distància
+      "e" => ["teacher" => [""], "student" => ["fct"]],     // FCT
       "f" => ["teacher" => [""], "student" => [""]],
       "w" => ["teacher" => ["w"], "student" => ["w"]],  // 1r DUAL
       "x" => ["teacher" => ["x"], "student" => ["x"]]   // 2n DUAL
