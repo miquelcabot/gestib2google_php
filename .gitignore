@@ -1,6 +1,7 @@
-/vendor/*
+vendor/
 
 .credentials
 client_secret*.json
 exportacioDadesCentre*.xml
 config.php
+composer.lock
