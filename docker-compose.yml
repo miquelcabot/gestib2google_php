@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  gestib2google:
+    container_name: gestib2google
+    image: php:7.3-apache 
+    restart: always
+    ports: 
+      - '8080:80'
+    volumes: ['./:/var/www/html']
+    networks:
+      - default
+  composer:
+    container_name: composer
+    image: composer:latest
+    restart: 'no'
+    command: install
+    volumes: ['./:/app']
+    networks:
+      - default
