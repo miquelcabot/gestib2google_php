@@ -67,12 +67,19 @@ class DomainUser {
   public function email() {
     if (!empty($this->domainemail)) {
       return $this->domainemail;
-    } elseif ($this->teacher || LONG_STUDENTS_EMAIL) {  // Email llarg
+    } elseif ($this->teacher || (LONG_STUDENTS_EMAIL===TRUE)) {  // Email llarg (mcabot@)
       $email = "";
       $email = normalizedname(mb_substr($this->name,0,1)) .
         normalizedname($this->surname1);
       return $email."@".DOMAIN;
-    } else {                                            // Email curt
+    } elseif (LONG_STUDENTS_EMAIL==='2surnames') {  // Email amb dos llinatges (m.cabotnadal@)
+      $email = "";
+      $email = normalizedname(mb_substr($this->name,0,1)) .
+        "." .
+        normalizedname($this->surname1) .
+        normalizedname($this->surname2);
+      return $email."@".DOMAIN;
+    } else {                                            // Email curt (mcn00@)
       $email = "";
       $email = normalizedname(mb_substr($this->name,0,1)) .
         normalizedname(mb_substr($this->surname1,0,1)) .
