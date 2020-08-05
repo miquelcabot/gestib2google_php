@@ -83,7 +83,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
             if ($group_ok) { // Aplicar només al grup seleccionat
                 if (!$onlyteachers || $xmluser->teacher) {
                     // Email pot ser repetit, comprovar-ho!!
-                    if (!$xmluser->teacher && !LONG_STUDENTS_EMAIL) {  // Short email
+                    if (!$xmluser->teacher && LONG_STUDENTS_EMAIL===FALSE) {  // Short email
                         foreach ($domainusers as $d_user) {
                             // Si hi ha un usuari del domini amb les 3 primeres lletres iguals
                             if (mb_substr($d_user->email(),0,3)===mb_substr($xmluser->email(),0,3)) {
@@ -95,6 +95,41 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                                 }
                             }
                         }
+                    } elseif (LONG_STUDENTS_EMAIL==='2surnames') {        // Email amb dos llinatges
+                        // Primer, provam m.cabotnadal
+                        $emailok = TRUE;
+                        $newemail = normalizedname(mb_substr($xmluser->name,0,1)) .
+                          "." . 
+                          normalizedname($xmluser->surname1) . 
+                          normalizedname($xmluser->surname2) . 
+                          "@".DOMAIN;
+                        foreach ($domainusers as $d_user) {
+                          // Si hi ha un usuari del domini amb el mateix email
+                          if ($d_user->email()===$newemail) {
+                            $emailok = FALSE;
+                          }
+                        }
+                        // Finalment, m.cabotnadal2, m.cabotnadal3...
+                        if (!$emailok) {
+                            $emailnumber = 1;
+                            while (!$emailok) {
+                                $emailok = TRUE;
+                                $emailnumber++;
+                                $newemail = normalizedname(mb_substr($xmluser->name,0,1)) .
+                                  "." . 
+                                  normalizedname($xmluser->surname1) . 
+                                  normalizedname($xmluser->surname2) . 
+                                  $emailnumber .
+                                  "@".DOMAIN;
+                                foreach ($domainusers as $d_user) {
+                                  // Si hi ha un usuari del domini amb el mateix email
+                                  if ($d_user->email()===$newemail) {
+                                    $emailok = FALSE;
+                                  }
+                                }
+                            }
+                        }
+                        $xmluser->domainemail = $newemail;
                     } else {        // Email llarg
                         // Primer, provam mcabot
                         $emailok = TRUE;

@@ -13,7 +13,7 @@ define('TUTORS_GROUP_PREFIX', 'tutor.');     // Per example: 'tutor.'
 define('TEACHERS_ORGANIZATIONAL_UNIT', '/Professorat');      // Per example: '/Professorat'
 define('STUDENTS_ORGANIZATIONAL_UNIT', '/Alumnat');          // Per example: '/Alumnat'
 
-define('LONG_STUDENTS_EMAIL', FALSE);         // TRUE: jsmith@domain FALSE: jsf00@domain
+define('LONG_STUDENTS_EMAIL', FALSE);         // TRUE: jsmith@domain, FALSE: jsf00@domain, '2surnames': j.smithjohnson@domain
 
 define('DEPARTMENT_NUMBER_TO_NAME', [
   "544" => "orientacio",     // "Orientació"
