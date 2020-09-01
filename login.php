@@ -19,8 +19,9 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
   $files = $drive->files->listFiles(array())->getItems();
   echo json_encode($files);*/
 } else {
-  $pos = strripos('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], '/');
-  $redirect_uri = substr_replace('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], 'oauth2callback.php', $pos+1);
+  $protocol = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
+  $pos = strripos($protocol . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], '/');
+  $redirect_uri = substr_replace($protocol .  $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], 'oauth2callback.php', $pos+1);
   header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 ?>

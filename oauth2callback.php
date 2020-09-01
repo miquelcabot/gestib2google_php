@@ -13,7 +13,9 @@ $client->setApplicationName(APPLICATION_NAME);
 $client->setScopes(SCOPES);
 $client->setAccessType('offline');
 
-$client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] );
+$protocol = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
+
+$client->setRedirectUri($protocol . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] );
 
 if (!isset($_GET['code'])) {
   $auth_url = $client->createAuthUrl();
@@ -21,7 +23,7 @@ if (!isset($_GET['code'])) {
 } else {
   $client->authenticate($_GET['code']);
   $_SESSION['access_token'] = $client->getAccessToken();
-  $redirect_uri = str_replace('oauth2callback.php', '', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
+  $redirect_uri = str_replace('oauth2callback.php', '', $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
   header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 ?>

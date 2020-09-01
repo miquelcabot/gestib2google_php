@@ -22,6 +22,7 @@ $client->revokeToken($accesstoken);
 //Destroy entire session    
 session_destroy();   
 
-$redirect_uri = str_replace('logout.php', '', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
+$protocol = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
+$redirect_uri = str_replace('logout.php', '', $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
 header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 ?>
