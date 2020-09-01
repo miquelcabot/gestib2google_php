@@ -6,7 +6,9 @@ services:
     restart: always
     ports: 
       - '8080:80'
-    volumes: ['./:/var/www/html']
+    volumes:
+      - './uploads.ini:/usr/local/etc/php/conf.d/uploads.ini'
+      - './:/var/www/html'
     networks:
       - default
   composer:
