@@ -95,7 +95,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                                 }
                             }
                         }
-                    } elseif (LONG_STUDENTS_EMAIL==='2surnames') {        // Email amb dos llinatges
+                    } elseif (!$xmluser->teacher && LONG_STUDENTS_EMAIL==='2surnames') {        // Email amb dos llinatges
                         // Primer, provam m.cabotnadal
                         $emailok = TRUE;
                         $newemail = normalizedname(mb_substr($xmluser->name,0,1)) .
