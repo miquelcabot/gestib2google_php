@@ -3,7 +3,7 @@ define('APPLICATION_NAME', 'GestIB to Google');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 
 define('DOMAIN', 'cifpfbmoll.eu');                // Per example: 'cifpfbmoll.eu'
-define('DEFAULT_PASSWORD', 'Curs201920');         // Per example: '12345678'
+define('DEFAULT_PASSWORD', 'Curs202021');         // Per example: '12345678'
 
 define('DEPARTMENT_GROUP_PREFIX', 'dept.');       // Per example: 'dept.'
 define('TEACHERS_GROUP_PREFIX', 'professorat.');  // Per example: 'professorat.'
@@ -179,6 +179,7 @@ define('FP_GROUP_NAME_CONVERSION', [
       "a" => ["teacher" => ["a"], "student" => ["a"]],  // 1r
       "b" => ["teacher" => ["b"], "student" => ["b"]],  // 2n
       "c" => ["teacher" => [""], "student" => ["fct"]], // FCT
+      "d" => ["teacher" => ["d"], "student" => [""]],    // Distància
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
