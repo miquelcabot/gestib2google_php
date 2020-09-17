@@ -299,7 +299,7 @@ function addDomainUsers($xmlusers, $domainusers, $domaingroupsmembers, $apply, $
                             foreach ($creategroups as $gr) {
                                 // Si el grup no existeix, el cream
                                 if (!array_key_exists($gr, $domaingroupsmembers)) {
-                                    echo("CREAR --> GROUP ".$gr."@".DOMAIN."<br>\r\n");
+                                    echo("CREAR --> GRUP ".$gr."@".DOMAIN."<br>\r\n");
                                     $contg++;
                                     if (!$apply) {
                                         $domaingroupsmembers[$gr] = [];
