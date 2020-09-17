@@ -43,6 +43,12 @@ define('FP_GROUP_NAME_CONVERSION', [
       "f" => ["teacher" => [""], "student" => [""]]
     ]
   ],
+  "ifc11" => [        // FPB Informàtica i comunicacions
+    "name" => "ifc11",
+    "groups" => [
+      "a" => ["teacher" => ["a"], "student" => ["a"]]  // 1r
+    ]
+  ],
   "ifc21" => [        // GM Sistemes Microinformàtics i Xarxes
     "name" => "ifc21",
     "groups" => [
